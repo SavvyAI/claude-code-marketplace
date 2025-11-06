@@ -1,5 +1,5 @@
 ---
-description: "Create & check out a new feature branch, entering plan mode to define its implementation"
+description: "Starting something new? → Plan your approach with guided questions → Creates a feature branch ready for implementation"
 allowed-tools: ["Bash"]
 ---
 

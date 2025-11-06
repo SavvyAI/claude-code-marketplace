@@ -1,5 +1,5 @@
 ---
-description: "PR is successfully merged and closed (post-merge cleanup)"
+description: "PR successfully merged? → Cleans up planning artifacts and branches → Completes the development cycle"
 allowed-tools: ["Bash"]
 ---
 

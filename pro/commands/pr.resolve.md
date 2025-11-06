@@ -1,5 +1,5 @@
 ---
-description: "Resolve ALL PR Comments"
+description: "Received review feedback? → Addresses all PR comments systematically → Resolves reviewer concerns efficiently"
 allowed-tools: ["Bash", "Read", "Edit", "Write", "Glob", "Grep", "TodoWrite"]
 ---
 

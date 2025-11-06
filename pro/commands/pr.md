@@ -1,5 +1,5 @@
 ---
-description: "Clean up completed planning documentation & create and push a pull request"
+description: "Feature complete and tested? → Archives planning docs and analyzes commits → Creates a comprehensive pull request"
 allowed-tools: ["Bash"]
 ---
 
