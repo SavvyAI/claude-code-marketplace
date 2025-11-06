@@ -1,5 +1,5 @@
 ---
-description: "Feature Branch for Refactoring"
+description: "Need to improve existing code? → Creates a dedicated branch for refactoring → Systematic code improvements without breaking features"
 allowed-tools: ["Bash"]
 ---
 

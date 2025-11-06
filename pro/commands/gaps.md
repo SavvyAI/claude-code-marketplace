@@ -1,5 +1,5 @@
 ---
-description: "Gap Analysis Plan"
+description: "Ready to verify completeness? → Analyzes requirements coverage, tests, and edge cases → Catches what you might have missed"
 allowed-tools: ["Bash"]
 ---
 
