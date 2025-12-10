@@ -4,3 +4,10 @@ allowed-tools: ["Bash"]
 ---
 
 Please gather context and continue with plans in @./plan/*
+
+## Browser Verification
+
+For web applications, use Playwright MCP (if available) rather than screenshots for:
+- Visual verification and UI state inspection
+- Console log and error analysis
+- Network request inspection

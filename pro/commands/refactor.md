@@ -16,6 +16,13 @@ Review the coding standards (SEE: @claude.md), docs, and code, and refactor the 
   8. **Code Smells**: Remove commented code, console.logs, TODOs, or placeholder implementations
   9. **CLAUDE.md Violations**: Check against both global and project CLAUDE.md requirements
 
+## Browser Verification
+
+For web applications, use Playwright MCP (if available) rather than screenshots for:
+- Visual verification and UI state inspection
+- Console log and error analysis
+- Network request inspection
+
 ## Your Task
 
 0. Enter **plan mode** (announce this to the user).

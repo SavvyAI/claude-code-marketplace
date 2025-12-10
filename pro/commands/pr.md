@@ -5,6 +5,13 @@ allowed-tools: ["Bash", "Read", "Write", "Glob", "Grep", "Edit"]
 
 Clean up completed planning documentation, document architectural decisions, and create a pull request.
 
+## Browser Verification
+
+For web applications, use Playwright MCP (if available) rather than screenshots for:
+- Visual verification and UI state inspection
+- Console log and error analysis
+- Network request inspection
+
 ## Your Task
 
 1. Move planning documentation located under `.plan/{current-branch-name}` to `.plan/.done/`.
@@ -60,7 +67,11 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 
 ### Step 2: Check for existing ADRs
 
-Read `.plan/adr-index.json` and check if an entry exists for the current branch. If ADRs already exist for this branch, skip to Step 6.
+Read `.plan/adr-index.json` and check if an entry exists for the current branch.
+
+- **If ADRs already exist for this branch and no new decisions were made:** Skip the entire ADR workflow (proceed to Step 3 of "Your Task" above).
+- **If ADRs already exist but new architectural decisions were made:** Continue to Step 3 to add new ADRs.
+- **If no ADRs exist for this branch:** Continue to Step 3.
 
 ### Step 3: Determine next ADR number
 
