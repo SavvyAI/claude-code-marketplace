@@ -20,6 +20,13 @@ create a comprehensive verification and gap analysis plan
 8. `> coderabbit --prompt-only`
 9. Document any known issues that won't be addressed here so they can be addressed in a subsequent effort.
 
+## Browser Verification
+
+For web applications, use Playwright MCP (if available) rather than screenshots for:
+- Visual verification and UI state inspection
+- Console log and error analysis
+- Network request inspection
+
 ## Definition of Done
 > SEE: @claude.md
 
