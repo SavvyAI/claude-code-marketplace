@@ -71,3 +71,31 @@ rm -rf ~/.claude/plugins/cache/claude-code-marketplace/
 # Verify MCP servers
 # Run /mcp in Claude Code
 ```
+
+## Known Issues
+
+### 1. Stale Plugin References Require Manual Cleanup
+**Issue:** When a plugin is renamed, Claude Code does not automatically clean up references to the old plugin name from user configuration files.
+
+**Impact:** Users who had the old plugin installed will see errors like `Plugin {old-name} not found in marketplace`.
+
+**Workaround:** Users must manually:
+1. Edit `~/.claude/settings.json` to remove old plugin entries from `enabledPlugins`
+2. Edit `~/.claude/plugins/installed_plugins.json` and `installed_plugins_v2.json` to remove old plugin entries
+3. Clear the plugin cache: `rm -rf ~/.claude/plugins/cache/{marketplace-name}/`
+
+**Future Consideration:** This should ideally be handled by Claude Code itself. Consider filing a feature request with Anthropic.
+
+### 2. Version Bumps Required for Plugin Updates
+**Issue:** Claude Code uses plugin version numbers to determine if cached plugins need to be refreshed. Any change to plugin contents (including new MCP servers, updated commands, etc.) requires a version bump to propagate to users.
+
+**Impact:** Without a version bump, users will continue using stale cached versions even if the marketplace has been updated.
+
+**Best Practice:** Always bump the version in `plugin.json` when making any changes to plugin contents.
+
+## Resolution Status
+
+- [x] Fixed: MCP servers now properly registered after version bump to 1.1.0
+- [x] Fixed: Stale "product-planning" references cleaned up from user config
+- [x] Verified: `/mcp` shows playwright MCP server
+- [x] Verified: `/plugin` shows no errors
