@@ -17,7 +17,7 @@ Professional development workflows with intelligent planning and automation.
 
 ## Workflow
 
-```bash
+```
 /pro:feature "add CSV export"   # Plan and start
 /pro:continue                   # Resume later
 /pro:gaps                       # Verify completeness
@@ -26,6 +26,23 @@ Professional development workflows with intelligent planning and automation.
 /pro:pr.merged                  # Clean up
 ```
 
+## Bundled MCP Servers
+
+| Server | Purpose |
+|--------|---------|
+| **Playwright** | Browser automation for visual verification |
+| **Context7** | Up-to-date documentation for any library |
+| **Supabase** | Local database operations (requires setup) |
+
+### Supabase Setup
+
+The Supabase MCP requires `SUPABASE_SERVICE_ROLE_KEY` in your environment:
+
+```bash
+# Get your key from a running local Supabase instance
+export SUPABASE_SERVICE_ROLE_KEY=$(supabase status -o json | jq -r '.SERVICE_ROLE_KEY')
+```
+
 ---
 
-**Part of the [Claude Code Marketplace](../readme.md)**
+Part of [ccplugins](../readme.md)

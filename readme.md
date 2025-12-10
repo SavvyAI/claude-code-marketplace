@@ -1,11 +1,15 @@
-# Claude Code Marketplace
+# ccplugins
 
 Plugins that extend Claude Code with powerful development workflows.
 
-## Installation
+## Quick Start
 
 ```bash
-git clone git@github.com:SavvyAI/claude-code-marketplace.git
+# Clone the marketplace
+git clone https://github.com/SavvyAI/ccplugins.git
+
+# Install the Pro plugin
+claude plugin add ./ccplugins/pro
 ```
 
 ## Plugins
@@ -23,4 +27,4 @@ git clone git@github.com:SavvyAI/claude-code-marketplace.git
 
 ---
 
-**Maintained by:** Savvy AI
+Maintained by **Savvy AI**
