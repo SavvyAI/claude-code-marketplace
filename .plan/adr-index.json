@@ -1,0 +1,9 @@
+{
+  "lastSequence": 1,
+  "entries": [
+    {
+      "branch": "feat/adr-integration-workflow",
+      "adrs": ["001-integrate-adrs-into-pr-workflow.md"]
+    }
+  ]
+}
