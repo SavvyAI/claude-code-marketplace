@@ -1,9 +1,13 @@
 {
-  "lastSequence": 1,
+  "lastSequence": 2,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
       "adrs": ["001-integrate-adrs-into-pr-workflow.md"]
+    },
+    {
+      "branch": "feat/add-chrome-devtools-and-figma-mcp",
+      "adrs": ["002-support-http-transport-mcp-servers.md"]
     }
   ]
 }

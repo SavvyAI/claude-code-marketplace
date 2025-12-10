@@ -19,3 +19,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 ## Index
 
 - [001. Integrate ADRs into PR Workflow](001-integrate-adrs-into-pr-workflow.md)
+- [002. Support HTTP Transport MCP Servers](002-support-http-transport-mcp-servers.md)

@@ -2,6 +2,13 @@
 
 Professional development workflows with intelligent planning and automation.
 
+## What This Plugin Provides
+
+Installing this plugin gives Claude Code:
+
+- **Slash Commands** - Workflow commands (`/pro:feature`, `/pro:pr`, etc.) that guide you through planning, development, and PR workflows
+- **MCP Servers** - Pre-configured servers: Playwright, Context7, Supabase, Chrome DevTools, and Figma
+
 ## Commands
 
 | Command | Description |
@@ -33,6 +40,8 @@ Professional development workflows with intelligent planning and automation.
 | **Playwright** | Browser automation for visual verification |
 | **Context7** | Up-to-date documentation for any library |
 | **Supabase** | Local database operations (requires setup) |
+| **Chrome DevTools** | Browser debugging, performance analysis, and automation |
+| **Figma** | Figma design file access and integration |
 
 ### Supabase Setup
 
