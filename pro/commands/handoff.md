@@ -21,7 +21,7 @@ Thoroughly explore the codebase and generate a structured markdown report coveri
 - **License**
 - **Repository URL** (if available)
 - **Primary language(s) and framework(s)**
-- **Project type** (web app, API, CLI, library, monorepo, etc.)
+- **Project type** (web app, mobile app, API, CLI, library, monorepo, etc.)
 - **Mission/purpose statement** (1-2 sentences summarizing what this does)
 
 ### 2. Tech Stack
