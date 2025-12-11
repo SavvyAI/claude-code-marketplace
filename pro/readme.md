@@ -21,6 +21,7 @@ Installing this plugin gives Claude Code:
 | `/pro:pr.resolve` | Address PR review comments systematically |
 | `/pro:pr.merged` | Clean up after a successful merge |
 | `/pro:og` | Generate OG images and social sharing metadata |
+| `/pro:handoff` | Generate comprehensive codebase handoff report |
 
 ## Workflow
 
