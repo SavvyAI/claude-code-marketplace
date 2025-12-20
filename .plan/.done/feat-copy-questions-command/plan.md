@@ -28,7 +28,8 @@ User flow:
 - [x] Create feature branch
 - [x] Update copy.questions.md with retrieval-based approach
 - [x] Create planning docs
-- [ ] Commit changes
+- [x] Commit changes
+- [x] Create PR
 
 ## Known Limitations
 
