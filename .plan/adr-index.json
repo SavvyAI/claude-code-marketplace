@@ -1,5 +1,5 @@
 {
-  "lastSequence": 2,
+  "lastSequence": 3,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -8,6 +8,10 @@
     {
       "branch": "feat/add-chrome-devtools-and-figma-mcp",
       "adrs": ["002-support-http-transport-mcp-servers.md"]
+    },
+    {
+      "branch": "feat/bundle-claude-md-rules",
+      "adrs": ["003-symlink-approach-for-plugin-instructions.md"]
     }
   ]
 }
