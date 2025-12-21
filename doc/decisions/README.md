@@ -21,3 +21,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [001. Integrate ADRs into PR Workflow](001-integrate-adrs-into-pr-workflow.md)
 - [002. Support HTTP Transport MCP Servers](002-support-http-transport-mcp-servers.md)
 - [003. Symlink Approach for Plugin Instructions](003-symlink-approach-for-plugin-instructions.md)
+- [004. Forensic Capture Workflow for Bug Command](004-forensic-workflow-for-bug-command.md)

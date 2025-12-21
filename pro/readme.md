@@ -14,6 +14,7 @@ Installing this plugin gives Claude Code:
 | Command | Description |
 |---------|-------------|
 | `/pro:feature` | Start a new feature with guided planning |
+| `/pro:bug` | Report and fix a bug with structured capture |
 | `/pro:continue` | Resume work using saved planning notes |
 | `/pro:gaps` | Analyze requirements coverage and edge cases |
 | `/pro:refactor` | Create a branch for systematic refactoring |
@@ -26,12 +27,16 @@ Installing this plugin gives Claude Code:
 ## Workflow
 
 ```
+# Feature development
 /pro:feature "add CSV export"   # Plan and start
 /pro:continue                   # Resume later
 /pro:gaps                       # Verify completeness
 /pro:pr                         # Create PR
 /pro:pr.resolve                 # Address feedback
 /pro:pr.merged                  # Clean up
+
+# Bug fixes
+/pro:bug "login fails silently" # Capture, investigate, fix
 ```
 
 ## Bundled MCP Servers
