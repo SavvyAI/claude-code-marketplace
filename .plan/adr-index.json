@@ -1,5 +1,5 @@
 {
-  "lastSequence": 3,
+  "lastSequence": 4,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -12,6 +12,10 @@
     {
       "branch": "feat/bundle-claude-md-rules",
       "adrs": ["003-symlink-approach-for-plugin-instructions.md"]
+    },
+    {
+      "branch": "feat/add-bug-command",
+      "adrs": ["004-forensic-workflow-for-bug-command.md"]
     }
   ]
 }
