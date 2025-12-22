@@ -1,5 +1,5 @@
 {
-  "lastSequence": 7,
+  "lastSequence": 8,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -28,6 +28,10 @@
     {
       "branch": "feat/add-onboarding-command",
       "adrs": ["007-interactive-phased-onboarding-with-partial-detection.md"]
+    },
+    {
+      "branch": "feat/readme-beauty-mode-formatting-control",
+      "adrs": ["008-explicit-mode-selection-for-readme-beautification.md"]
     }
   ]
 }
