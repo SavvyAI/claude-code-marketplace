@@ -1,5 +1,5 @@
 {
-  "lastSequence": 4,
+  "lastSequence": 5,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -16,6 +16,10 @@
     {
       "branch": "feat/add-bug-command",
       "adrs": ["004-forensic-workflow-for-bug-command.md"]
+    },
+    {
+      "branch": "feat/pr-version-check",
+      "adrs": ["005-runtime-inference-for-version-check.md"]
     }
   ]
 }

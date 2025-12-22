@@ -16,8 +16,9 @@ For web applications, use Playwright MCP (if available) rather than screenshots 
 
 1. Move planning documentation located under `.plan/{current-branch-name}` to `.plan/.done/`.
 2. **Create Architecture Decision Records (ADRs)** - see ADR instructions below.
-3. Create and push a pull request.
-4. Document any known issues that won't be addressed here so they can be addressed in a subsequent effort.
+3. **Version check** - see Version Check instructions below.
+4. Create and push a pull request.
+5. Document any known issues that won't be addressed here so they can be addressed in a subsequent effort.
 
 ---
 
@@ -136,6 +137,50 @@ Accepted
 2. Update `doc/decisions/README.md` index with links to new ADRs
 
 3. Add "Related ADRs" section to `.plan/.done/{branch-name}/plan.md`
+
+---
+
+## Version Check Instructions
+
+Before creating the PR, verify that the project version has been updated.
+
+### Step 1: Find the version file
+
+Search the project root for the primary version file. Common locations include:
+- Package manifests: `package.json`, `Cargo.toml`, `pyproject.toml`, `composer.json`, `mix.exs`
+- Build configs: `pom.xml`, `build.gradle`, `*.csproj`
+- Plugin metadata: `**/.claude-plugin/plugin.json`
+- Dedicated version files: `VERSION`, `version.txt`, `lib/**/version.rb`
+
+If no version file is found, skip version check.
+
+### Step 2: Compare to base branch
+
+```bash
+# Get base branch version
+git show main:{path/to/version-file} | # extract version
+
+# Get current version
+cat {path/to/version-file} | # extract version
+```
+
+Use the appropriate extraction method for the file format (JSON, TOML, XML, etc.).
+
+### Step 3: Handle unchanged version
+
+If version is unchanged:
+
+1. **Warn the user:**
+   > Version unchanged ({current_version}). Edit `{version_file}` to bump.
+
+2. **Ask user to choose:**
+   - Bump version now (recommended for `feat/*` and `fix/*` branches)
+   - Proceed without bump (acceptable for `docs/*` branches)
+
+3. If bumping, suggest increment based on branch prefix:
+   - `feat/*` → minor (1.3.0 → 1.4.0)
+   - `fix/*` → patch (1.3.0 → 1.3.1)
+   - `docs/*` → typically none needed
 
 ---
 
