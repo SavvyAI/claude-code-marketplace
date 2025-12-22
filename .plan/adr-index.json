@@ -1,5 +1,5 @@
 {
-  "lastSequence": 5,
+  "lastSequence": 6,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -20,6 +20,10 @@
     {
       "branch": "feat/pr-version-check",
       "adrs": ["005-runtime-inference-for-version-check.md"]
+    },
+    {
+      "branch": "feat/wtf-alias-and-report-output",
+      "adrs": ["006-subdirectory-pattern-for-shared-templates.md"]
     }
   ]
 }
