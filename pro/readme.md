@@ -23,6 +23,11 @@ Installing this plugin gives Claude Code:
 | `/pro:pr.merged` | Clean up after a successful merge |
 | `/pro:og` | Generate OG images and social sharing metadata |
 | `/pro:handoff` | Generate comprehensive codebase handoff report |
+| `/pro:wtf` | Quick situational report (alias for handoff) |
+| `/pro:onboarding` | Interactive setup guide for new developers |
+| `/pro:rules` | View bundled CLAUDE.md coding rules |
+| `/pro:rules.install` | Install bundled CLAUDE.md via symlink |
+| `/pro:copy.questions` | Copy recent clarifying questions to clipboard |
 
 ## Workflow
 
