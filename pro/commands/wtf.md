@@ -1,11 +1,11 @@
 ---
-description: "Need to onboard developers? → Analyzes codebase structure, health, and operations → Generates comprehensive handoff documentation"
+description: "WTF is going on here? → Deep-dive analysis of codebase state and health → Comprehensive situation report"
 allowed-tools: ["Bash", "Read", "Glob", "Grep", "Write"]
 ---
 
-# Codebase Handoff Report Generator
+# WTF Report Generator
 
-Generate a comprehensive codebase handoff report suitable for developer onboarding, team transitions, or project audits. This report should provide a complete picture of the project's current state, health, and operational knowledge.
+Generate a comprehensive "WTF is going on here?" report for when you need to quickly understand a codebase's current state, health, and operational knowledge. Same thorough analysis as a handoff report, but for when you're diving into unfamiliar territory.
 
 ## Instructions
 
@@ -22,7 +22,7 @@ Generate the report as a single markdown document with clear section headers. Us
 
 ### 2. Save to Temp Directory
 Save the report to a file using this naming convention:
-- **Filename pattern:** `handoff-{project}-{timestamp}.md`
+- **Filename pattern:** `wtf-{project}-{timestamp}.md`
 - **Location:** Cross-platform temp directory
 - **Project name:** Use the current directory name (lowercase, sanitized)
 - **Timestamp:** Format as `YYYYMMDD-HHMMSS`
@@ -31,8 +31,8 @@ Save the report to a file using this naming convention:
 - **macOS/Linux/WSL:** `${TMPDIR:-/tmp}/`
 - **Windows (PowerShell):** `$env:TEMP\` or `%TEMP%\`
 
-Example (Unix): `${TMPDIR:-/tmp}/handoff-myproject-20241222-143022.md`
-Example (Windows): `$env:TEMP\handoff-myproject-20241222-143022.md`
+Example (Unix): `${TMPDIR:-/tmp}/wtf-myproject-20241222-143022.md`
+Example (Windows): `$env:TEMP\wtf-myproject-20241222-143022.md`
 
 ### 3. Copy to Clipboard
 After saving the file, copy the markdown content to the clipboard:
@@ -63,7 +63,7 @@ After completing the report, clearly display:
 End the report with:
 - Report generated: [timestamp]
 - Git commit: [current HEAD commit hash]
-- Generator: Claude Code /pro:handoff
+- Generator: Claude Code /pro:wtf
 
 ## Design Principles
 
