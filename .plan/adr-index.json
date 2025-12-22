@@ -1,5 +1,5 @@
 {
-  "lastSequence": 6,
+  "lastSequence": 7,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -24,6 +24,10 @@
     {
       "branch": "feat/wtf-alias-and-report-output",
       "adrs": ["006-subdirectory-pattern-for-shared-templates.md"]
+    },
+    {
+      "branch": "feat/add-onboarding-command",
+      "adrs": ["007-interactive-phased-onboarding-with-partial-detection.md"]
     }
   ]
 }
