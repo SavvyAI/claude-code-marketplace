@@ -27,6 +27,7 @@ Installing this plugin gives Claude Code:
 | `/pro:onboarding` | Interactive setup guide for new developers |
 | `/pro:rules` | View bundled CLAUDE.md coding rules |
 | `/pro:rules.install` | Install bundled CLAUDE.md via symlink |
+| `/pro:supabase.local` | Setup and manage local Supabase with unique ports |
 | `/pro:copy.questions` | Copy recent clarifying questions to clipboard |
 
 ## Workflow
@@ -55,6 +56,8 @@ Installing this plugin gives Claude Code:
 | **Figma** | Figma design file access and integration |
 
 ### Supabase Setup
+
+Use `/pro:supabase.local` to initialize and manage local Supabase instances with unique ports per project.
 
 The Supabase MCP requires `SUPABASE_SERVICE_ROLE_KEY` in your environment:
 

@@ -26,3 +26,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [006. Subdirectory Pattern for Shared Templates](006-subdirectory-pattern-for-shared-templates.md)
 - [007. Interactive Phased Onboarding with Partial Detection](007-interactive-phased-onboarding-with-partial-detection.md)
 - [008. Explicit Mode Selection for README Beautification](008-explicit-mode-selection-for-readme-beautification.md)
+- [009. Supabase Port Range Allocation Strategy](009-supabase-port-range-allocation-strategy.md)

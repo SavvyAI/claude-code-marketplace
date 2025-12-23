@@ -1,5 +1,5 @@
 {
-  "lastSequence": 8,
+  "lastSequence": 9,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -32,6 +32,10 @@
     {
       "branch": "feat/readme-beauty-mode-formatting-control",
       "adrs": ["008-explicit-mode-selection-for-readme-beautification.md"]
+    },
+    {
+      "branch": "feat/supabase-local-command",
+      "adrs": ["009-supabase-port-range-allocation-strategy.md"]
     }
   ]
 }
