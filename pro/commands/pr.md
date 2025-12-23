@@ -1,9 +1,89 @@
 ---
 description: "Feature complete and tested? → Archives planning docs and analyzes commits → Creates a comprehensive pull request"
-allowed-tools: ["Bash", "Read", "Write", "Glob", "Grep", "Edit"]
+allowed-tools: ["Bash", "Read", "Write", "Glob", "Grep", "Edit", "AskUserQuestion"]
 ---
 
 Clean up completed planning documentation, document architectural decisions, and create a pull request.
+
+---
+
+## Git & Remote Prerequisites
+
+**Run these checks BEFORE proceeding to "Your Task".** Handle any failures using the guided workflows below.
+
+### Step 1: Verify GitHub CLI Authentication
+
+```bash
+gh auth status
+```
+
+**If authenticated:** Continue to Step 2.
+
+**If NOT authenticated:**
+
+1. Inform user: "GitHub CLI is not authenticated. This is required to create PRs."
+2. Use AskUserQuestion to offer:
+   - Option 1: "Authenticate now with `gh auth login`" (Recommended)
+   - Option 2: "Skip - I'll create the PR manually"
+3. If Option 1: Run `gh auth login` and verify success before continuing.
+4. If Option 2: Skip to "Manual PR Instructions" at the end of this file.
+
+### Step 2: Check Git Repository Status
+
+```bash
+git rev-parse --git-dir 2>/dev/null
+```
+
+**If this returns `.git` or a path:** Continue to Step 3.
+
+**If this fails (not a git repo):**
+
+1. Inform user: "This directory is not a git repository."
+2. Use AskUserQuestion to offer:
+   - Option 1: "Initialize git and create GitHub repo" (Recommended)
+   - Option 2: "Skip - I'll set up git manually"
+3. If Option 1, run the following workflow:
+
+```bash
+# Initialize git
+git init
+
+# Create initial commit (if no commits exist)
+git add .
+git commit -m "Initial commit"
+
+# Create GitHub repo (will prompt for name/visibility)
+gh repo create --source=. --push
+```
+
+4. Verify remote was created: `git remote -v`
+5. If successful, continue to "Your Task".
+
+### Step 3: Check for Git Remote
+
+```bash
+git remote -v
+```
+
+**If remote exists (shows origin or other remote):** Continue to "Your Task".
+
+**If NO remote configured:**
+
+1. Inform user: "No git remote is configured."
+2. Use AskUserQuestion to offer:
+   - Option 1: "Create GitHub repo and push" (Recommended)
+   - Option 2: "Skip - I'll add a remote manually"
+3. If Option 1:
+
+```bash
+# Create repo on GitHub and add as remote
+gh repo create --source=. --push
+```
+
+4. Verify: `git remote -v` should now show origin.
+5. Continue to "Your Task".
+
+---
 
 ## Browser Verification
 
@@ -187,3 +267,32 @@ If version is unchanged:
 ### Omit the following from the commit message:
 - [ ] "Generated with" line
 - [ ] "Co-Auth-By"
+
+---
+
+## Manual PR Instructions
+
+If the user chose to skip automated setup, provide these manual steps:
+
+```
+Next Steps (Manual Setup Required):
+
+1. Initialize git (if needed):
+   git init
+   git add .
+   git commit -m "Initial commit"
+
+2. Create a GitHub repository at https://github.com/new
+
+3. Add the remote:
+   git remote add origin <your-repo-url>
+
+4. Push your branch:
+   git push -u origin {current-branch-name}
+
+5. Create the PR:
+   gh pr create
+   # or use the GitHub web UI
+```
+
+**Important:** After manual setup is complete, the user can re-run `/pro:pr` to continue with the full PR workflow.
