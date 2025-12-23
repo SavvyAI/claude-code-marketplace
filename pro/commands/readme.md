@@ -1,6 +1,6 @@
 ---
 description: "Need a professional README? → Analyzes project and offers beautification options → Creates or updates polished documentation"
-allowed-tools: ["Bash", "Read", "Write", "Edit", "Glob", "Grep", "WebFetch"]
+allowed-tools: ["Bash", "Read", "Write", "Edit", "Glob", "Grep", "WebFetch", "AskUserQuestion"]
 ---
 
 # README Generator & Beautifier
@@ -12,6 +12,80 @@ Create or update a README with explicit control over beautification. Supports tw
 Target README: $ARGUMENTS (defaults to `./README.md` if not specified)
 
 ## Your Task
+
+### Phase 0: Context Detection
+
+Before asking questions, detect what needs documenting by analyzing the current state.
+
+#### 0.1 Check Git Status
+
+```bash
+git status --porcelain
+git diff --name-only HEAD~5 2>/dev/null || git diff --name-only
+```
+
+Identify:
+- **New files** (untracked or recently added)
+- **Modified files** (staged or unstaged changes)
+- **Current branch** (feature branch suggests active work)
+
+#### 0.2 Detect Undocumented Items
+
+**For Claude Code Plugin Projects** (detected by `.claude-plugin/` directory):
+
+1. List all command files:
+   ```bash
+   ls -1 */commands/*.md 2>/dev/null | grep -v readme.md
+   ```
+
+2. Parse the plugin's readme for documented commands (look for command table)
+
+3. Compare: Find commands that exist as files but aren't in the readme
+
+**For Other Projects:**
+
+1. Check for new source files not mentioned in README
+2. Check for new features in recent commits
+3. Look for version bumps without changelog updates
+
+#### 0.3 Auto-Determine Target
+
+Based on findings, determine the appropriate action:
+
+| Finding | Action |
+|---------|--------|
+| New command files undocumented | Target plugin readme, add to command table |
+| New source files | Target root README, update project structure |
+| No changes detected | Proceed to Phase 1 (full discovery) |
+
+#### 0.4 Report Findings
+
+If undocumented items found:
+
+```
+📋 Context Detection
+
+Found undocumented changes:
+
+Commands not in readme:
+  + /pro:supabase.local (new)
+
+Target: pro/readme.md
+Action: Add new command to Commands table
+
+Proceed with this update?
+```
+
+**If the action is clear and specific:**
+- Present findings and proposed action
+- Get confirmation to proceed
+- Skip unnecessary mode selection (use Preserve mode for targeted updates)
+
+**If no specific changes detected:**
+- Proceed to Phase 1 (full discovery)
+- Follow standard flow with mode selection
+
+---
 
 ### Phase 1: Discovery
 
