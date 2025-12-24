@@ -28,6 +28,7 @@ Installing this plugin gives Claude Code:
 | `/pro:rules` | View bundled CLAUDE.md coding rules |
 | `/pro:rules.install` | Install bundled CLAUDE.md via symlink |
 | `/pro:supabase.local` | Setup and manage local Supabase with unique ports |
+| `/pro:dev.setup` | Setup npx dev server management with auto port allocation |
 | `/pro:copy.questions` | Copy recent clarifying questions to clipboard |
 
 ## Workflow

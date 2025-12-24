@@ -1,5 +1,5 @@
 {
-  "lastSequence": 9,
+  "lastSequence": 11,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -36,6 +36,10 @@
     {
       "branch": "feat/supabase-local-command",
       "adrs": ["009-supabase-port-range-allocation-strategy.md"]
+    },
+    {
+      "branch": "feat/dev-setup-command",
+      "adrs": ["010-bundled-bin-assets-for-setup-commands.md", "011-command-first-cli-pattern-for-npx-dev.md"]
     }
   ]
 }
