@@ -29,3 +29,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [009. Supabase Port Range Allocation Strategy](009-supabase-port-range-allocation-strategy.md)
 - [010. Bundled Bin Assets for Setup Commands](010-bundled-bin-assets-for-setup-commands.md)
 - [011. Command-First CLI Pattern for npx dev](011-command-first-cli-pattern-for-npx-dev.md)
+- [012. Dynamic Port Allocation at Setup Time](012-dynamic-port-allocation-at-setup-time.md)
