@@ -1,5 +1,5 @@
 {
-  "lastSequence": 11,
+  "lastSequence": 12,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -40,6 +40,10 @@
     {
       "branch": "feat/dev-setup-command",
       "adrs": ["010-bundled-bin-assets-for-setup-commands.md", "011-command-first-cli-pattern-for-npx-dev.md"]
+    },
+    {
+      "branch": "fix/dev-setup-port-detection",
+      "adrs": ["012-dynamic-port-allocation-at-setup-time.md"]
     }
   ]
 }

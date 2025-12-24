@@ -134,14 +134,69 @@ Report: `[PASS] Updated package.json with bin entry and dependencies`
 
 ## Phase 4: Auto-Detect Servers
 
-### 4.1 Parse package.json Scripts
+### 4.1 Find Available Port Range
+
+Before assigning ports, scan for an available port range. This prevents conflicts with other projects/services.
+
+> **Note:** The port scan uses `lsof` which is available on macOS and Linux. For Windows users with WSL, this works natively. Native Windows support would require an alternative approach using `netstat -ano`.
+
+**Port Scan Ranges (in order of preference):**
+- Primary: 4000-4099 (clean range, minimal conflicts)
+- Fallback 1: 6000-6099 (alternative range)
+- Fallback 2: 7000-7099 (secondary fallback)
+
+**Port Scan Algorithm:**
+
+```bash
+# Find first free port in range 4000-4099
+basePort=""
+for port in $(seq 4000 4099); do
+  if ! lsof -i :$port >/dev/null 2>&1; then
+    basePort=$port
+    break
+  fi
+done
+
+# If 4000 range is full, try 6000 range
+if [ -z "$basePort" ]; then
+  for port in $(seq 6000 6099); do
+    if ! lsof -i :$port >/dev/null 2>&1; then
+      basePort=$port
+      break
+    fi
+  done
+fi
+
+# If 6000 range is full, try 7000 range
+if [ -z "$basePort" ]; then
+  for port in $(seq 7000 7099); do
+    if ! lsof -i :$port >/dev/null 2>&1; then
+      basePort=$port
+      break
+    fi
+  done
+fi
+
+# Default to 4000 if all scans fail (with warning)
+if [ -z "$basePort" ]; then
+  basePort=4000
+fi
+```
+
+Store `basePort` for use in server configuration.
+
+Report: `[PASS] Found available port range starting at $basePort`
+
+If no free ports found: `[WARN] Could not find free port - defaulting to 4000 (may conflict)`
+
+### 4.2 Parse package.json Scripts
 
 Read the `scripts` field from package.json and detect server-like scripts:
 - Scripts containing: `dev`, `start`, `serve`, `preview`
 - Exclude: scripts containing `build`, `test`, `lint`, `format`
 - Exclude: scripts that already reference `npx dev`
 
-### 4.2 Generate servers.json
+### 4.3 Generate servers.json
 
 Create `.dev/servers.json` with detected servers:
 
@@ -155,21 +210,21 @@ Create `.dev/servers.json` with detected servers:
 }
 ```
 
-**Port Assignment:**
-- First server: 3000
-- Subsequent servers: increment by 10 (3010, 3020, etc.)
+**Port Assignment (using basePort from 4.1):**
+- First server: `basePort` (dynamically detected, e.g., 4000)
+- Subsequent servers: increment by 10 (`basePort + 10`, `basePort + 20`, etc.)
 
-### 4.3 Create .dev Directory Structure
+### 4.4 Create .dev Directory Structure
 
 ```bash
 mkdir -p .dev/log
 ```
 
-### 4.4 Write servers.json
+### 4.5 Write servers.json
 
 Use Write tool to create `.dev/servers.json`.
 
-### 4.5 User Review
+### 4.6 User Review
 
 Display the generated configuration and ask if adjustments are needed:
 - Show detected servers
@@ -266,8 +321,8 @@ Updated:
   README.md           Added development section
 
 Detected Servers:
-  web                 :3000
-  api                 :3010
+  dev                 :4000  (dynamically assigned)
+  start               :4010
 
 Quick Start:
   npm install         Install dependencies (if not done)
@@ -285,12 +340,12 @@ Quick Start:
 
 If no server-like scripts are found in package.json:
 
-1. Create a minimal `servers.json` template:
+1. Create a minimal `servers.json` template (using `basePort` from port scan):
 ```json
 {
   "dev": {
     "command": "npm run dev -- -p {PORT}",
-    "preferredPort": 3000,
+    "preferredPort": <basePort>,
     "healthCheck": "http://localhost:{PORT}"
   }
 }
