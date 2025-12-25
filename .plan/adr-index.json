@@ -1,5 +1,5 @@
 {
-  "lastSequence": 15,
+  "lastSequence": 16,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -56,6 +56,10 @@
     {
       "branch": "feat/audit-backlog-roadmap-commands",
       "adrs": ["015-audit-backlog-roadmap-command-architecture.md"]
+    },
+    {
+      "branch": "fix/adr-check-backlog-integration-commands",
+      "adrs": ["016-adr-check-and-backlog-integration-for-work-commands.md"]
     }
   ]
 }
