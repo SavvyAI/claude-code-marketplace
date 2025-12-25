@@ -7,7 +7,7 @@ Professional development workflows with intelligent planning and automation.
 Installing this plugin gives Claude Code:
 
 - **Slash Commands** - Workflow commands (`/pro:feature`, `/pro:pr`, etc.) that guide you through planning, development, and PR workflows
-- **MCP Servers** - Pre-configured servers: Playwright, Context7, Supabase, Chrome DevTools, and Figma
+- **MCP Servers** - Pre-configured servers: Playwright, Context7, Supabase, Chrome DevTools, Figma, and shadcn-ui
 - **Skills** - Bundled agent skills that enhance Claude's capabilities
 
 ## Commands
@@ -56,6 +56,7 @@ Installing this plugin gives Claude Code:
 | **Supabase** | Local database operations (requires setup) |
 | **Chrome DevTools** | Browser debugging, performance analysis, and automation |
 | **Figma** | Figma design file access and integration |
+| **shadcn-ui** | Access shadcn/ui v4 components, blocks, and implementations |
 
 ### Supabase Setup
 
@@ -67,6 +68,16 @@ The Supabase MCP requires `SUPABASE_SERVICE_ROLE_KEY` in your environment:
 # Get your key from a running local Supabase instance
 export SUPABASE_SERVICE_ROLE_KEY=$(supabase status -o json | jq -r '.SERVICE_ROLE_KEY')
 ```
+
+### shadcn-ui Setup
+
+The shadcn-ui MCP works out of the box but benefits from a GitHub token for higher rate limits (5000 vs 60 requests/hour):
+
+```bash
+export GITHUB_TOKEN=ghp_your_token_here
+```
+
+The server provides access to shadcn/ui v4 components across React, Vue, Svelte, and React Native frameworks.
 
 ## Bundled Skills
 
