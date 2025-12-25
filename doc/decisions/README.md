@@ -31,3 +31,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [011. Command-First CLI Pattern for npx dev](011-command-first-cli-pattern-for-npx-dev.md)
 - [012. Dynamic Port Allocation at Setup Time](012-dynamic-port-allocation-at-setup-time.md)
 - [013. Centralized JSON Index for Known Issues](013-centralized-json-index-for-known-issues.md)
+- [014. Skills Directory for Bundled Agent Skills](014-skills-directory-for-bundled-agent-skills.md)

@@ -1,5 +1,5 @@
 {
-  "lastSequence": 13,
+  "lastSequence": 14,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -48,6 +48,10 @@
     {
       "branch": "feat/known-issues-command",
       "adrs": ["013-centralized-json-index-for-known-issues.md"]
+    },
+    {
+      "branch": "feat/frontend-design-skill",
+      "adrs": ["014-skills-directory-for-bundled-agent-skills.md"]
     }
   ]
 }
