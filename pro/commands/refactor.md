@@ -32,4 +32,7 @@ For web applications, use Playwright MCP (if available) rather than screenshots 
 4. Outline detailed implementation steps.
 5. Implement the feature and document changes.
 6. `> coderabbit --prompt-only`
-7. Document any known issues that won't be addressed here so they can be addressed in a subsequent effort.
+7. Document any known issues that won't be addressed here:
+   - For each issue, add to `.plan/known-issues.json` (see `/pro:known.issues` for schema)
+   - Or use `/pro:known.issues <description>` to add issues one at a time
+   - Set `source` to `/pro:refactor` and `sourceBranch` to current branch

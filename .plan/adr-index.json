@@ -1,5 +1,5 @@
 {
-  "lastSequence": 12,
+  "lastSequence": 13,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -44,6 +44,10 @@
     {
       "branch": "fix/dev-setup-port-detection",
       "adrs": ["012-dynamic-port-allocation-at-setup-time.md"]
+    },
+    {
+      "branch": "feat/known-issues-command",
+      "adrs": ["013-centralized-json-index-for-known-issues.md"]
     }
   ]
 }
