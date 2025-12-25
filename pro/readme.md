@@ -16,8 +16,11 @@ Installing this plugin gives Claude Code:
 |---------|-------------|
 | `/pro:feature` | Start a new feature with guided planning |
 | `/pro:bug` | Report and fix a bug with structured capture |
-| `/pro:continue` | Resume work using saved planning notes |
-| `/pro:gaps` | Analyze requirements coverage and edge cases |
+| `/pro:audit` | Analyze requirements, tests, security, and more |
+| `/pro:backlog` | Pick items from backlog to work on |
+| `/pro:backlog.add` | Add an item to the backlog manually |
+| `/pro:backlog.resume` | Resume in-progress OR start recommended next item |
+| `/pro:roadmap` | Dashboard view of project status |
 | `/pro:refactor` | Create a branch for systematic refactoring |
 | `/pro:pr` | Archive planning docs and create a pull request |
 | `/pro:pr.resolve` | Address PR review comments systematically |
@@ -37,14 +40,20 @@ Installing this plugin gives Claude Code:
 ```
 # Feature development
 /pro:feature "add CSV export"   # Plan and start
-/pro:continue                   # Resume later
-/pro:gaps                       # Verify completeness
+/pro:backlog.resume             # Resume later
+/pro:audit                      # Verify completeness
 /pro:pr                         # Create PR
 /pro:pr.resolve                 # Address feedback
 /pro:pr.merged                  # Clean up
 
 # Bug fixes
 /pro:bug "login fails silently" # Capture, investigate, fix
+
+# Backlog management
+/pro:roadmap                    # See project status
+/pro:backlog                    # Pick items (or resume in-progress)
+/pro:backlog.add "add retry"    # Add item manually
+/pro:backlog.resume             # Resume in-progress work
 ```
 
 ## Bundled MCP Servers

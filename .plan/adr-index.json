@@ -1,5 +1,5 @@
 {
-  "lastSequence": 14,
+  "lastSequence": 15,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -52,6 +52,10 @@
     {
       "branch": "feat/frontend-design-skill",
       "adrs": ["014-skills-directory-for-bundled-agent-skills.md"]
+    },
+    {
+      "branch": "feat/audit-backlog-roadmap-commands",
+      "adrs": ["015-audit-backlog-roadmap-command-architecture.md"]
     }
   ]
 }

@@ -30,8 +30,7 @@ Before planning the fix, gather the following information through guided prompts
 8. **Verify fix** - Confirm the reproduction steps no longer trigger the bug.
 9. `> coderabbit --prompt-only`
 10. Document any related issues discovered that won't be addressed here:
-    - For each issue, add to `.plan/known-issues.json` (see `/pro:known.issues` for schema)
-    - Or use `/pro:known.issues <description>` to add issues one at a time
+    - Use `/pro:backlog.add <description>` to add items to the backlog
     - Set `source` to `/pro:bug` and `sourceBranch` to current branch
 
 ## Browser Verification
