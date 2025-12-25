@@ -8,6 +8,7 @@ Installing this plugin gives Claude Code:
 
 - **Slash Commands** - Workflow commands (`/pro:feature`, `/pro:pr`, etc.) that guide you through planning, development, and PR workflows
 - **MCP Servers** - Pre-configured servers: Playwright, Context7, Supabase, Chrome DevTools, and Figma
+- **Skills** - Bundled agent skills that enhance Claude's capabilities
 
 ## Commands
 
@@ -66,6 +67,16 @@ The Supabase MCP requires `SUPABASE_SERVICE_ROLE_KEY` in your environment:
 # Get your key from a running local Supabase instance
 export SUPABASE_SERVICE_ROLE_KEY=$(supabase status -o json | jq -r '.SERVICE_ROLE_KEY')
 ```
+
+## Bundled Skills
+
+| Skill | Description |
+|-------|-------------|
+| **frontend-design** | Create distinctive, production-grade frontend interfaces with high design quality. Automatically used when building web components, pages, dashboards, or styling any web UI. |
+
+Skills are automatically available when the plugin is installed. Claude uses them when relevant to your task.
+
+> The `frontend-design` skill is sourced from [Anthropic's skills repository](https://github.com/anthropics/skills) (Apache 2.0).
 
 ---
 

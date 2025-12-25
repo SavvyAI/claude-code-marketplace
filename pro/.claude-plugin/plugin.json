@@ -1,8 +1,9 @@
 {
   "name": "pro",
   "description": "Product Planning",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "author": {
     "name": "Wil Moore III"
-  }
+  },
+  "skills": "./skills/"
 }
