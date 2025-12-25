@@ -1,0 +1,75 @@
+{
+  "lastSequence": 7,
+  "issues": [
+    {
+      "id": 1,
+      "title": "Consider splitting /pro:gaps into analyze and fix commands",
+      "description": "The current /pro:gaps command both analyzes gaps AND creates branches to fix them. Consider whether this should be two separate commands for clearer purpose: one for analysis/verification only, and one for addressing identified gaps.",
+      "severity": "low",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/known-issues-command",
+      "createdAt": "2024-12-24T00:00:00Z",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "/pro:readme - No Offline Mode",
+      "description": "If network is unavailable, badge and link validation will fail. Currently warns user and proceeds with syntax-only checks. Could cache validation results or provide explicit offline mode flag.",
+      "severity": "low",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/readme-beauty-mode-formatting-control",
+      "createdAt": "2024-12-15T00:00:00Z",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "/pro:readme - No Badge Preview Images",
+      "description": "When proposing badges, we describe them but don't show actual rendered previews. Currently shows text descriptions. Could use terminal image rendering or generate a preview document.",
+      "severity": "low",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/readme-beauty-mode-formatting-control",
+      "createdAt": "2024-12-15T00:00:00Z",
+      "status": "open"
+    },
+    {
+      "id": 4,
+      "title": "/pro:readme - No README Templates for Specific Frameworks",
+      "description": "Dynamic generation works well but some frameworks (Next.js, Rails, etc.) have community-standard README patterns. Currently uses generic structure adapted to project type. Could add optional framework-specific templates.",
+      "severity": "low",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/readme-beauty-mode-formatting-control",
+      "createdAt": "2024-12-15T00:00:00Z",
+      "status": "open"
+    },
+    {
+      "id": 5,
+      "title": "/pro:readme - No Automated Section Ordering",
+      "description": "When generating sections, the order is hardcoded rather than learned from the ecosystem. Currently uses fixed section order based on common patterns. Could analyze popular repositories to determine optimal ordering.",
+      "severity": "low",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/readme-beauty-mode-formatting-control",
+      "createdAt": "2024-12-15T00:00:00Z",
+      "status": "open"
+    },
+    {
+      "id": 6,
+      "title": "/pro:readme - No Diff Visualization",
+      "description": "Changes are described in text but not shown as an actual diff. Currently summarizes changes in categories (sections, badges, links). Could show side-by-side or unified diff format.",
+      "severity": "low",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/readme-beauty-mode-formatting-control",
+      "createdAt": "2024-12-15T00:00:00Z",
+      "status": "open"
+    },
+    {
+      "id": 7,
+      "title": "/pro:readme - No CI/CD Badge Auto-Detection for all providers",
+      "description": "Currently checks for GitHub Actions but not all CI providers. Could detect CircleCI, Travis CI, GitLab CI, etc.",
+      "severity": "low",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/readme-beauty-mode-formatting-control",
+      "createdAt": "2024-12-15T00:00:00Z",
+      "status": "open"
+    }
+  ]
+}
