@@ -99,8 +99,7 @@ For web applications, use Playwright MCP (if available) rather than screenshots 
 3. **Version check** - see Version Check instructions below.
 4. Create and push a pull request.
 5. Document any known issues that won't be addressed here:
-   - For each issue, add to `.plan/known-issues.json` (see `/pro:known.issues` for schema)
-   - Or use `/pro:known.issues <description>` to add issues one at a time
+   - Use `/pro:backlog.add <description>` to add items to the backlog
    - Set `source` to `/pro:pr` and `sourceBranch` to current branch
 
 ---

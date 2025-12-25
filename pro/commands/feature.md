@@ -19,8 +19,7 @@ Let's plan the implementation for: $ARGUMENTS
 7. Implement the feature and document changes.
 8. `> coderabbit --prompt-only`
 9. Document any known issues that won't be addressed here:
-   - For each issue, add to `.plan/known-issues.json` (see `/pro:known.issues` for schema)
-   - Or use `/pro:known.issues <description>` to add issues one at a time
+   - Use `/pro:backlog.add <description>` to add items to the backlog
    - Set `source` to `/pro:feature` and `sourceBranch` to current branch
 
 ## Browser Verification
