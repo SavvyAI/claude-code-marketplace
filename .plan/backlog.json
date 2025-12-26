@@ -1,6 +1,18 @@
 {
-  "lastSequence": 11,
+  "lastSequence": 12,
   "items": [
+    {
+      "id": 12,
+      "title": "React to Next.js migration command",
+      "description": "Add /pro:react.to.next command that converts client-rendered React applications into Next.js applications using a deterministic, auditable migration pipeline. Key features: in-place migration preserving git history, App Router default with Pages Router fallback, guaranteed route safety (no valid URL may 404), guided prompt-based execution, preflight detection engine, and comprehensive migration documentation.",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|12|react-to-next-migration-command",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/react-to-next-migration-command",
+      "createdAt": "2025-12-26T12:00:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 1,
       "title": "Consider splitting /pro:gaps into analyze and fix commands",
