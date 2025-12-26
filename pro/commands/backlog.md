@@ -40,7 +40,7 @@ The backlog is stored in `.plan/backlog.json` at the project root. It contains c
    - If no open items, inform user: "Backlog is empty. Nice work!"
 
 4. **Group and sort items**
-   - Group by `category` (Security, Tests, i18n, Debt, Feature, Bug)
+   - Group by `category` (Security, Bug, Spike, Tests, Feature, Chore, Debt, i18n)
    - Within each category, sort by severity (critical > high > medium > low)
 
 5. **Present items for selection**
@@ -57,9 +57,10 @@ The backlog is stored in `.plan/backlog.json` at the project root. It contains c
      | Category | Prefix |
      |----------|--------|
      | security, bug, tests | `fix/` |
+     | spike | `spike/` |
      | feature | `feat/` |
+     | chore, i18n | `chore/` |
      | debt | `refactor/` |
-     | i18n | `chore/` |
 
      **Branch name format:**
      - Single item: `{prefix}{category}-{short-title}` (lowercase, dash-separated, max 50 chars)
@@ -81,7 +82,7 @@ The backlog is stored in `.plan/backlog.json` at the project root. It contains c
       "id": 1,
       "title": "Brief description",
       "description": "Full detailed description",
-      "category": "security|tests|i18n|debt|feature|bug",
+      "category": "security|bug|spike|tests|feature|chore|debt|i18n",
       "severity": "low|medium|high|critical",
       "fingerprint": "file.ts:42-45|issue-type",
       "source": "manual|/pro:audit|/pro:feature",
@@ -100,10 +101,12 @@ The backlog is stored in `.plan/backlog.json` at the project root. It contains c
 Present categories in this order (skip empty categories):
 1. Security
 2. Bug
-3. Tests
-4. Feature
-5. Debt
-6. i18n
+3. Spike
+4. Tests
+5. Feature
+6. Chore
+7. Debt
+8. i18n
 
 ## Example Selection UI
 
@@ -113,8 +116,10 @@ Select items to work on (will be grouped into one branch):
 [ ] [Security] [critical] Hardcoded API key in config.ts
 [ ] [Security] [high]     Missing auth check on /api/users
 [ ] [Bug]      [high]     Payment flow crashes on empty cart
+[ ] [Spike]    [medium]   Evaluate auth library options
 [ ] [Tests]    [medium]   Missing unit tests for auth flow
 [ ] [Feature]  [low]      Add dark mode support
+[ ] [Chore]    [low]      Update dependencies
 [ ] [Debt]     [low]      TODO: refactor validation logic
 [ ] [i18n]     [low]      Hardcoded "Submit" string
 

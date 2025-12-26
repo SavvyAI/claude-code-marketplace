@@ -1,5 +1,5 @@
 {
-  "lastSequence": 8,
+  "lastSequence": 9,
   "items": [
     {
       "id": 1,
@@ -97,7 +97,19 @@
       "source": "manual",
       "sourceBranch": "main",
       "createdAt": "2024-12-25T00:00:00Z",
-      "status": "open"
+      "status": "in-progress"
+    },
+    {
+      "id": 9,
+      "title": "New work-type commands and spec ingestion layer",
+      "description": "Introduce /pro:spike (exploratory work), /pro:chore (maintenance work), /pro:spec.import (ingest and persist specs), and /pro:spec (view imported specs). Codify branch-naming invariant: all work-initiating commands create branches with intent-appropriate prefixes. This addresses backlog item #8 by providing lossless spec ingestion with auto-parsing of epics/stories to backlog.",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|9|work-type-commands-spec-ingestion",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/work-type-commands-spec-ingestion",
+      "createdAt": "2025-12-25T00:00:00Z",
+      "status": "in-progress"
     }
   ]
 }
