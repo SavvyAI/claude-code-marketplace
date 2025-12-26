@@ -34,3 +34,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [014. Skills Directory for Bundled Agent Skills](014-skills-directory-for-bundled-agent-skills.md)
 - [015. Audit, Backlog, and Roadmap Command Architecture](015-audit-backlog-roadmap-command-architecture.md)
 - [016. ADR Check and Backlog Integration for Work Commands](016-adr-check-and-backlog-integration-for-work-commands.md)
+- [017. Branch Naming Invariant and Work-Type Taxonomy](017-branch-naming-invariant-and-work-type-taxonomy.md)

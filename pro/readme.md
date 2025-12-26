@@ -16,12 +16,16 @@ Installing this plugin gives Claude Code:
 |---------|-------------|
 | `/pro:feature` | Start a new feature with guided planning |
 | `/pro:bug` | Report and fix a bug with structured capture |
+| `/pro:spike` | Time-boxed exploratory work with optional documentation |
+| `/pro:chore` | Maintenance work (infra, docs, tests, deps, CI/config) |
+| `/pro:refactor` | Create a branch for systematic refactoring |
+| `/pro:spec.import` | Ingest and persist a PRD/spec, auto-parse to backlog |
+| `/pro:spec` | View imported specifications (read-only) |
 | `/pro:audit` | Analyze requirements, tests, security, and more |
 | `/pro:backlog` | Pick items from backlog to work on |
 | `/pro:backlog.add` | Add an item to the backlog manually |
 | `/pro:backlog.resume` | Resume in-progress OR start recommended next item |
 | `/pro:roadmap` | Dashboard view of project status |
-| `/pro:refactor` | Create a branch for systematic refactoring |
 | `/pro:pr` | Archive planning docs and create a pull request |
 | `/pro:pr.resolve` | Address PR review comments systematically |
 | `/pro:pr.merged` | Clean up after a successful merge |
@@ -48,6 +52,17 @@ Installing this plugin gives Claude Code:
 
 # Bug fixes
 /pro:bug "login fails silently" # Capture, investigate, fix
+
+# Exploratory work
+/pro:spike "evaluate auth libs" # Time-boxed exploration
+
+# Maintenance work
+/pro:chore "update deps"        # Infra, docs, tests, deps, CI
+
+# Spec ingestion (lossless PRD/spec handling)
+/pro:spec.import <paste spec>   # Persist spec, auto-parse to backlog
+/pro:spec                       # View imported specs
+/pro:spec spec-001              # View specific spec details
 
 # Backlog management
 /pro:roadmap                    # See project status

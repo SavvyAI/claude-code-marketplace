@@ -1,5 +1,5 @@
 {
-  "lastSequence": 16,
+  "lastSequence": 17,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -60,6 +60,10 @@
     {
       "branch": "fix/adr-check-backlog-integration-commands",
       "adrs": ["016-adr-check-and-backlog-integration-for-work-commands.md"]
+    },
+    {
+      "branch": "feat/work-type-commands-spec-ingestion",
+      "adrs": ["017-branch-naming-invariant-and-work-type-taxonomy.md"]
     }
   ]
 }
