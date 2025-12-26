@@ -1,5 +1,5 @@
 {
-  "lastSequence": 10,
+  "lastSequence": 11,
   "items": [
     {
       "id": 1,
@@ -122,6 +122,20 @@
       "sourceBranch": "feat/mvp-cut-line-workflow",
       "createdAt": "2025-12-25T12:00:00Z",
       "status": "in-progress"
+    },
+    {
+      "id": 11,
+      "title": "Rename plugin description from Product Planning to Product Owner",
+      "description": "Change plugin.json description field from 'Product Planning' to 'Product Owner' to better reflect the plugin's purpose as a Product Owner toolkit.",
+      "category": "chore",
+      "severity": "low",
+      "fingerprint": "chore|11|rename-plugin-description-product-owner",
+      "source": "/pro:chore",
+      "sourceBranch": "chore/rename-plugin-description-product-owner",
+      "createdAt": "2025-12-26T00:00:00Z",
+      "status": "resolved",
+      "resolvedAt": "2025-12-26T00:00:00Z",
+      "resolvedBranch": "chore/rename-plugin-description-product-owner"
     }
   ]
 }
