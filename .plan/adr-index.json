@@ -1,5 +1,5 @@
 {
-  "lastSequence": 18,
+  "lastSequence": 19,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -68,6 +68,10 @@
     {
       "branch": "feat/mvp-cut-line-workflow",
       "adrs": ["018-mvp-cut-line-moscow-phases.md"]
+    },
+    {
+      "branch": "feat/react-to-next-migration-command",
+      "adrs": ["019-react-to-next-migration-design.md"]
     }
   ]
 }
