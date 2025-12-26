@@ -38,6 +38,7 @@ Installing this plugin gives Claude Code:
 | `/pro:supabase.local` | Setup and manage local Supabase with unique ports |
 | `/pro:dev.setup` | Setup npx dev server management with auto port allocation |
 | `/pro:copy.questions` | Copy recent clarifying questions to clipboard |
+| `/pro:git.main` | Standardize default branch to `main` with explicit confirmation |
 
 ## Workflow
 
@@ -69,6 +70,9 @@ Installing this plugin gives Claude Code:
 /pro:backlog                    # Pick items (or resume in-progress)
 /pro:backlog.add "add retry"    # Add item manually
 /pro:backlog.resume             # Resume in-progress work
+
+# Git utilities
+/pro:git.main                   # Standardize default branch to 'main'
 ```
 
 ## Bundled MCP Servers

@@ -1,6 +1,18 @@
 {
-  "lastSequence": 12,
+  "lastSequence": 13,
   "items": [
+    {
+      "id": 13,
+      "title": "/pro:git.main - Standardize default branch to main",
+      "description": "Add /pro:git.main command that standardizes a repository's default branch name to 'main'. Features: inspection-first workflow, safety gates (uncommitted changes, existing main branch, detached HEAD, permissions), explicit phrase confirmation 'CONFIRM RENAME TO MAIN', pre-check via gh api for permissions, support for local-only repos with adjusted behavior.",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|13|pro-main-command",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/pro-main-command",
+      "createdAt": "2025-12-26T18:00:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 12,
       "title": "React to Next.js migration command",
