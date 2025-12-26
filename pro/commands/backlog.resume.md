@@ -13,7 +13,13 @@ Smart "next action" command that either resumes in-progress work or recommends t
 
 Read `.plan/backlog.json` and filter items with `status: "in-progress"`.
 
-**If in-progress items exist:**
+**Check for MVP batch first:**
+
+If any items have `mvpBatch: true`:
+- This is an active MVP workflow → Go to step 3a (MVP Resume)
+- Show MVP progress and continue from where it left off
+
+**If in-progress items exist (non-MVP):**
 
 - If single item → Resume it (go to step 3)
 - If multiple items → Present list and ask which to resume
@@ -54,7 +60,53 @@ If no work is in progress, show the backlog with the highest priority item pre-s
 
 7. Once selected, create branch and begin work (same as `/pro:backlog` step 6)
 
-### 3. Resume in-progress work
+### 3a. Resume MVP Batch
+
+When resuming an MVP batch (`mvpBatch: true` items detected):
+
+1. **Gather MVP batch items**
+   - Filter all items with `mvpBatch: true`
+   - Separate into: completed (`status: "resolved"`) and remaining (`status: "in-progress"`)
+   - Calculate progress: `{completed}/{total}`
+
+2. **Find next item to work on**
+   - Sort remaining items by `id` (original order)
+   - First item in remaining list is the "current" item
+
+3. **Switch to MVP branch**
+   - Get branch from any MVP item's `sourceBranch` (should all be same)
+   - Switch to the branch: `git checkout {mvp-branch}`
+
+4. **Display MVP progress**
+
+   ```
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MVP Progress: ████████░░░░░░░░░░░░ 3/8 complete
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   ✓ Completed:
+     #12 User can sign up with email
+     #13 User can log in
+     #14 User can view dashboard
+
+   ▶ Current: #15 User can reset password
+
+   ○ Remaining:
+     #16 User can update profile
+     #17 User can change password
+     #18 User can delete account
+     #19 Admin can view all users
+
+   Branch: mvp/my-project
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ```
+
+5. **Continue with current item**
+   - Read planning notes from `.plan/mvp-{branch-name}/item-{id}.md`
+   - Enter implementation mode for current item
+   - Follow the same flow as `/pro:backlog.mvp` step 7
+
+### 3. Resume in-progress work (non-MVP)
 
 For the selected in-progress item:
 
@@ -91,8 +143,14 @@ For the selected in-progress item:
 
 ## Priority Sort Order
 
-1. **Severity** (descending): critical > high > medium > low
-2. **Age** (ascending): oldest items first (by `createdAt`)
+1. **Phase** (descending): must > should > could > wont > unset
+2. **Severity** (descending): critical > high > medium > low
+3. **Age** (ascending): oldest items first (by `createdAt`)
+
+**Phase inference:** If item has no `phase` field, infer from severity:
+- `critical`/`high` → `must`
+- `medium` → `should`
+- `low` → `could`
 
 ## Browser Verification
 
