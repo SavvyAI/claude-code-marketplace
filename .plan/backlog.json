@@ -1,5 +1,5 @@
 {
-  "lastSequence": 9,
+  "lastSequence": 10,
   "items": [
     {
       "id": 1,
@@ -109,6 +109,18 @@
       "source": "/pro:feature",
       "sourceBranch": "feat/work-type-commands-spec-ingestion",
       "createdAt": "2025-12-25T00:00:00Z",
+      "status": "in-progress"
+    },
+    {
+      "id": 10,
+      "title": "MVP cut line workflow with MoSCoW prioritization",
+      "description": "Add MVP awareness to the backlog system using MoSCoW notation (MUST/SHOULD/COULD/WONT). Enhance /pro:spec.import to detect MoSCoW markers. Create /pro:backlog.mvp command to run through all MVP items in a single branch. Update /pro:backlog to show phase badges and select MVP items by default. Infer phase from severity when no explicit markers exist.",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|10|mvp-cut-line-workflow",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/mvp-cut-line-workflow",
+      "createdAt": "2025-12-25T12:00:00Z",
       "status": "in-progress"
     }
   ]

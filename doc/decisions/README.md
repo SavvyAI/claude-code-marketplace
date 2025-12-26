@@ -35,3 +35,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [015. Audit, Backlog, and Roadmap Command Architecture](015-audit-backlog-roadmap-command-architecture.md)
 - [016. ADR Check and Backlog Integration for Work Commands](016-adr-check-and-backlog-integration-for-work-commands.md)
 - [017. Branch Naming Invariant and Work-Type Taxonomy](017-branch-naming-invariant-and-work-type-taxonomy.md)
+- [018. MVP Cut Line with MoSCoW Prioritization](018-mvp-cut-line-moscow-phases.md)

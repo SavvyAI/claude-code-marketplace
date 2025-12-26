@@ -1,5 +1,5 @@
 {
-  "lastSequence": 17,
+  "lastSequence": 18,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -64,6 +64,10 @@
     {
       "branch": "feat/work-type-commands-spec-ingestion",
       "adrs": ["017-branch-naming-invariant-and-work-type-taxonomy.md"]
+    },
+    {
+      "branch": "feat/mvp-cut-line-workflow",
+      "adrs": ["018-mvp-cut-line-moscow-phases.md"]
     }
   ]
 }

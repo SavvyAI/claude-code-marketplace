@@ -103,6 +103,24 @@ Add spec entry:
 | Given/When/Then | `Given I am logged out...` | BDD format |
 | Indented checklist under story | `- [ ] Validates email format` | Only if directly under story |
 
+#### MoSCoW Phase Detection (per-item):
+
+Detect MoSCoW priority markers on each epic/story line:
+
+| Pattern | Phase | Example |
+|---------|-------|---------|
+| `[MUST]`, `[M]`, `(MUST)` | `must` | `- US-001 [MUST] As a user, I can sign up` |
+| `[SHOULD]`, `[S]`, `(SHOULD)` | `should` | `- US-002 [SHOULD] As a user, I can reset password` |
+| `[COULD]`, `[C]`, `(COULD)` | `could` | `- US-003 [COULD] As a user, I can use social login` |
+| `[WONT]`, `[W]`, `(WON'T)`, `[WON'T]` | `wont` | `- US-004 [WONT] As a user, I can use SSO` |
+
+**Detection Rules:**
+- Case-insensitive matching
+- Markers can appear anywhere in the line (typically after ID or at start)
+- If no marker found, leave `phase` unset (will be inferred later from severity)
+- Set `phaseSource: "explicit"` when marker is detected
+- Remove marker from title when storing (e.g., `[MUST] Login flow` → title: `Login flow`)
+
 **Hierarchy Rules:**
 - Stories may exist outside epics (standalone)
 - ACs must attach to nearest ancestor story
@@ -131,6 +149,8 @@ For each epic (not already in backlog):
   "description": "<epic description with full context>",
   "category": "feature",
   "severity": "medium",
+  "phase": "must|should|could|wont",
+  "phaseSource": "explicit",
   "fingerprint": "spec|<spec-id>|epic|<hash>",
   "source": "/pro:spec.import",
   "sourceSpec": "<spec-id>",
@@ -140,6 +160,8 @@ For each epic (not already in backlog):
 }
 ```
 
+**Note:** `phase` and `phaseSource` are only included if a MoSCoW marker was detected. If no marker, omit these fields (phase will be inferred from severity by consuming commands).
+
 For each story (not already in backlog):
 ```json
 {
@@ -148,6 +170,8 @@ For each story (not already in backlog):
   "description": "<full story text including acceptance criteria>",
   "category": "feature",
   "severity": "medium",
+  "phase": "must|should|could|wont",
+  "phaseSource": "explicit",
   "fingerprint": "spec|<spec-id>|story|<hash>",
   "source": "/pro:spec.import",
   "sourceSpec": "<spec-id>",
@@ -180,6 +204,18 @@ Update `extractedItems.epics` and `extractedItems.stories` with final counts.
 - As a user, I want to log in with email and password
 - As a user, I want to reset my password
 - ...
+
+### MVP Scope (MoSCoW)
+
+| Phase | Count | Items |
+|-------|-------|-------|
+| MUST  | 5     | US-001, US-002, US-003, US-005, US-007 |
+| SHOULD | 2    | US-004, US-006 |
+| COULD | 1     | US-008 |
+| (no marker) | 0 | — |
+
+**MVP Items:** 5 stories marked as MUST
+Use `/pro:backlog.mvp` to work through MVP items.
 
 ### Backlog Updates
 
