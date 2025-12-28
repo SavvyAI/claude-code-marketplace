@@ -1,6 +1,20 @@
 {
-  "lastSequence": 13,
+  "lastSequence": 14,
   "items": [
+    {
+      "id": 14,
+      "title": "/pro:dev.setup gitignore ignores entire .dev/ directory",
+      "description": "The /pro:dev.setup command is adding .dev/ to gitignore (ignoring entire directory) instead of only ignoring .dev/pid.json and .dev/log/. This causes .dev/servers.json and .dev/README.md to not be tracked by git, which blocks team sharing of configuration. Root cause: Phase 5 instructions are ambiguous and don't explicitly warn against adding .dev/ as catch-all.",
+      "category": "bug",
+      "severity": "critical",
+      "fingerprint": "bug|14|dev-setup-gitignore-pattern",
+      "source": "/pro:bug",
+      "sourceBranch": "fix/dev-setup-gitignore-pattern",
+      "createdAt": "2025-12-28T00:00:00Z",
+      "status": "resolved",
+      "resolvedAt": "2025-12-28T00:00:00Z",
+      "resolvedBranch": "fix/dev-setup-gitignore-pattern"
+    },
     {
       "id": 13,
       "title": "/pro:git.main - Standardize default branch to main",
