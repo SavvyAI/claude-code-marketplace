@@ -243,17 +243,25 @@ Read `.gitignore` if it exists.
 
 ### 5.2 Add Entries
 
-Append these entries if not already present:
+**CRITICAL:** Add ONLY these specific patterns. Do NOT add `.dev/` as a catch-all.
+
+The `.dev/` directory contains both:
+- **Runtime files** (should be gitignored): `pid.json`, `log/`
+- **Configuration files** (must be tracked): `servers.json`, `README.md`
+
+Append these **exact entries** if not already present:
 
 ```
-# npx dev runtime files
+# npx dev runtime files (config files are tracked)
 .dev/pid.json
 .dev/log/
 ```
 
+⚠️ **DO NOT add `.dev/` to .gitignore** - this would ignore the entire directory including `servers.json` which must be version controlled for team sharing.
+
 Use Edit tool to append to `.gitignore`, or Write if it doesn't exist.
 
-Report: `[PASS] Updated .gitignore`
+Report: `[PASS] Updated .gitignore (tracking .dev/servers.json, ignoring .dev/pid.json and .dev/log/)`
 
 ---
 
@@ -317,7 +325,7 @@ Created:
 
 Updated:
   package.json        Added bin entry and dependencies
-  .gitignore          Added runtime file exclusions
+  .gitignore          Ignoring .dev/pid.json and .dev/log/ (config tracked)
   README.md           Added development section
 
 Detected Servers:
