@@ -1,6 +1,21 @@
 {
-  "lastSequence": 14,
+  "lastSequence": 15,
   "items": [
+    {
+      "id": 15,
+      "title": "Git worktree integration for agent sandboxing",
+      "description": "Explore using git worktrees to create isolated sandboxes for Claude agents. Inspired by DHH's workflow where `ga fix` creates a worktree+branch and `gd` destroys it. Goals: (1) parallel isolation - agents work without touching user's current branch, (2) multi-agent sandboxes - multiple agents working in parallel, (3) safer experimentation - spike work fully isolated from main.",
+      "category": "spike",
+      "severity": "medium",
+      "fingerprint": "spike|15|git-worktree-agent-sandboxing",
+      "source": "/pro:spike",
+      "sourceBranch": "spike/git-worktree-agent-sandboxing",
+      "createdAt": "2025-12-28T12:30:00Z",
+      "status": "resolved",
+      "resolvedAt": "2025-12-28T13:00:00Z",
+      "resolvedBranch": "spike/git-worktree-agent-sandboxing",
+      "resolution": "Added tip to /pro:spike command documenting git worktrees for full isolation. No new commands needed - pattern already supported by Claude Code."
+    },
     {
       "id": 14,
       "title": "/pro:dev.setup gitignore ignores entire .dev/ directory",

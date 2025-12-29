@@ -17,6 +17,25 @@ A spike is time-boxed exploratory work focused on **uncertainty reduction**, not
 - No guarantee of merge or continuation
 - May be discarded, promoted to feature, or merged as-is
 
+## Tip: Git Worktrees for Full Isolation
+
+For risky experiments where you want **complete isolation** from your current work, consider using [git worktrees for parallel Claude sessions](https://www.anthropic.com/engineering/claude-code-best-practices):
+
+```bash
+# Create isolated worktree (sibling directory)
+git worktree add -b spike/experiment ../$(basename $PWD)--experiment
+
+# Open new terminal, cd into worktree, start fresh Claude session
+cd ../project--experiment
+claude
+
+# When done, clean up
+git worktree remove ../project--experiment --force
+git branch -D spike/experiment
+```
+
+This keeps your main working directory pristine while experimenting in parallel.
+
 ## Your Task
 
 0. Enter **plan mode** (announce this to the user).
