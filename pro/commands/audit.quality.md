@@ -118,7 +118,7 @@ Project: {project name}
    - Check fingerprint against existing backlog items
    - Skip if already exists (inform user)
    - Add new items to `.plan/backlog.json`
-   - Set `source: "/pro:audit"` and `sourceBranch: "{current branch}"`
+   - Set `source: "/pro:audit.quality"` and `sourceBranch: "{current branch}"`
 
 ### 5. Offer to Open Report
 
