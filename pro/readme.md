@@ -21,6 +21,7 @@ Installing this plugin gives Claude Code:
 | `/pro:refactor` | Create a branch for systematic refactoring |
 | `/pro:spec.import` | Ingest and persist a PRD/spec, auto-parse to backlog |
 | `/pro:spec` | View imported specifications (read-only) |
+| `/pro:audit` | Full audit: runs quality + security, unified report |
 | `/pro:audit.quality` | Analyze requirements, tests, docs, and production readiness |
 | `/pro:audit.security` | Deep security scan: CVE, OWASP Top 10, secrets, framework analysis |
 | `/pro:backlog` | Pick items from backlog to work on |
@@ -47,8 +48,9 @@ Installing this plugin gives Claude Code:
 # Feature development
 /pro:feature "add CSV export"   # Plan and start
 /pro:backlog.resume             # Resume later
-/pro:audit.quality              # Verify completeness
-/pro:audit.security             # Deep security scan (pre-release)
+/pro:audit                      # Full audit (quality + security)
+/pro:audit.quality              # Quick completeness check
+/pro:audit.security             # Security-only scan
 /pro:pr                         # Create PR
 /pro:pr.resolve                 # Address feedback
 /pro:pr.merged                  # Clean up
