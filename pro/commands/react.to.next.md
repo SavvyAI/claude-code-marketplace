@@ -46,6 +46,8 @@ If found: Use `AskUserQuestion` - "Next.js is already installed. This appears to
 
 ## Phase 1: Preflight Analysis
 
+**ultrathink:** This migration requires complete understanding of the React application before making any changes. Thoroughly analyze routing patterns, state management, data fetching, and framework-specific idioms. The route safety guarantee depends on identifying ALL routes, including dynamic and catch-all patterns.
+
 > Purpose: Detect patterns, assess risks, and make recommendations before any changes.
 
 Read the preflight report template from `_templates/react-to-next/preflight-report.md`.

@@ -9,6 +9,8 @@ Audit analyzes the current branch for gaps and issues, generates a report, and o
 
 ## Your Task
 
+**ultrathink:** This quality audit covers multiple dimensions—tests, security, documentation, production readiness. Before analyzing, consider the project's architecture and how gaps in one area might indicate systemic issues across others.
+
 ### 1. Run Comprehensive Analysis
 
 Analyze the current branch against these categories:

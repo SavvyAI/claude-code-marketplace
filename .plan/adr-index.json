@@ -1,5 +1,5 @@
 {
-  "lastSequence": 21,
+  "lastSequence": 22,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -80,6 +80,10 @@
     {
       "branch": "feat/build-in-public",
       "adrs": ["021-build-in-public-skill-architecture.md"]
+    },
+    {
+      "branch": "feature/ultrathink-integration",
+      "adrs": ["022-ultrathink-integration-for-complex-commands.md"]
     }
   ]
 }
