@@ -23,7 +23,9 @@
       "source": "/pro:feature",
       "sourceBranch": "feat/audit-security-command",
       "createdAt": "2025-12-29T00:00:00Z",
-      "status": "in-progress"
+      "status": "resolved",
+      "resolvedAt": "2025-12-29T00:00:00Z",
+      "resolvedBranch": "feat/audit-security-command"
     },
     {
       "id": 15,

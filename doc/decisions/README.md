@@ -36,3 +36,5 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [016. ADR Check and Backlog Integration for Work Commands](016-adr-check-and-backlog-integration-for-work-commands.md)
 - [017. Branch Naming Invariant and Work-Type Taxonomy](017-branch-naming-invariant-and-work-type-taxonomy.md)
 - [018. MVP Cut Line with MoSCoW Prioritization](018-mvp-cut-line-moscow-phases.md)
+- [019. React to Next.js Migration Design](019-react-to-next-migration-design.md)
+- [020. Audit Command Namespace Hierarchy](020-audit-command-namespace-hierarchy.md)
