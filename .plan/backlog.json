@@ -1,6 +1,30 @@
 {
-  "lastSequence": 17,
+  "lastSequence": 19,
   "items": [
+    {
+      "id": 19,
+      "title": "Build in Public - voice/tone calibration",
+      "description": "Add /pro:bip.setup command for voice personalization. Allow users to calibrate the tone of generated content by providing example posts or selecting from preset styles. Could analyze existing social media posts to learn the user's voice. Deferred from v1 to keep initial implementation simple.",
+      "category": "feature",
+      "severity": "low",
+      "fingerprint": "feature|19|bip-voice-calibration",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/build-in-public",
+      "createdAt": "2025-12-29T12:00:00Z",
+      "status": "open"
+    },
+    {
+      "id": 18,
+      "title": "Build in Public - auto-surface shareable content",
+      "description": "Pro Plugin skill that automatically surfaces notable development moments and drafts shareable content for X and LinkedIn. Features: (1) Skill-based auto-invocation during normal work, (2) Inline suggestions with defer option, (3) Configurable confidence threshold, (4) Fingerprint-based deduplication, (5) Pending queue for deferred items, (6) Draft-only output (manual copy-paste to platforms). Storage at .plan/build-in-public/. Turns 'building in public' into a byproduct of real work.",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|18|build-in-public",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/build-in-public",
+      "createdAt": "2025-12-29T12:00:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 17,
       "title": "/pro:spike git worktree example uses hardcoded path",

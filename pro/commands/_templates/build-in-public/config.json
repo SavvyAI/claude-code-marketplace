@@ -1,0 +1,5 @@
+{
+  "threshold": "medium",
+  "platforms": ["x", "linkedin"],
+  "autoSuggest": true
+}

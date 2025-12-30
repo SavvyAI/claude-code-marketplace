@@ -41,6 +41,7 @@ Installing this plugin gives Claude Code:
 | `/pro:dev.setup` | Setup npx dev server management with auto port allocation |
 | `/pro:copy.questions` | Copy recent clarifying questions to clipboard |
 | `/pro:git.main` | Standardize default branch to `main` with explicit confirmation |
+| `/pro:bip` | Review and manage your "build in public" content queue |
 
 ## Workflow
 
@@ -116,10 +117,23 @@ The server provides access to shadcn/ui v4 components across React, Vue, Svelte,
 | Skill | Description |
 |-------|-------------|
 | **frontend-design** | Create distinctive, production-grade frontend interfaces with high design quality. Automatically used when building web components, pages, dashboards, or styling any web UI. |
+| **build-in-public** | Automatically surface notable development moments and draft shareable content for X and LinkedIn. Proposes posts when features ship, bugs are solved, milestones are reached, design decisions are made, or learnings are discovered. |
 
 Skills are automatically available when the plugin is installed. Claude uses them when relevant to your task.
 
 > The `frontend-design` skill is sourced from [Anthropic's skills repository](https://github.com/anthropics/skills) (Apache 2.0).
+
+### Build in Public
+
+The `build-in-public` skill watches your development work and proposes shareable content when notable moments occur:
+
+- Feature shipped
+- Bug solved
+- Milestone reached
+- Design decision made
+- Learning discovered
+
+Content is drafted inline during work. You can approve, edit, defer, or skip. Use `/pro:bip` to review your pending queue.
 
 ---
 
