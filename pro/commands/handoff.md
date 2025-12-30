@@ -9,6 +9,8 @@ Generate a comprehensive codebase handoff report suitable for developer onboardi
 
 ## Instructions
 
+**ultrathink:** This handoff report must capture comprehensive institutional knowledge. Before exploring the codebase, consider what a new developer would need to understand: architectural decisions, operational patterns, tribal knowledge, and non-obvious gotchas. Look for patterns that span multiple files and aren't immediately apparent.
+
 1. Read the report template from `_templates/handoff-report.md` (relative to this command file)
 2. Thoroughly explore the codebase and generate a structured markdown report covering ALL sections in the template
 3. Use actual data from the codebase - do not make assumptions

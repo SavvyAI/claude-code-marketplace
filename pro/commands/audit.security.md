@@ -15,6 +15,8 @@ Execute a multi-layered security audit and generate both a scorecard and detaile
 
 ## Phase 1: Project Detection
 
+**ultrathink:** This security audit requires systematic analysis across multiple attack surfaces. Before scanning, thoroughly consider the project's architecture, framework-specific vulnerabilities, and how different components interact to create potential security gaps.
+
 Detect the project profile to enable targeted scanning:
 
 ### Package Managers (for CVE scanning)
@@ -113,6 +115,8 @@ Record which tools ran and which were skipped (not installed).
 ---
 
 ## Phase 3: OWASP Top 10 Static Analysis
+
+**ultrathink:** OWASP analysis requires deep reasoning about how vulnerabilities manifest across different frameworks and contexts. Consider not just pattern matching, but how data flows through the application and where trust boundaries are crossed.
 
 Analyze the codebase for OWASP Top 10 (2021) vulnerabilities:
 

@@ -1,6 +1,18 @@
 {
-  "lastSequence": 19,
+  "lastSequence": 20,
   "items": [
+    {
+      "id": 20,
+      "title": "Strategic ultrathink integration for complex commands",
+      "description": "Add ultrathink triggers to high-value commands where extended thinking provides material benefit: /pro:audit.security (OWASP analysis), /pro:audit.quality (multi-dimensional analysis), /pro:react.to.next (migration planning), /pro:handoff (comprehensive codebase analysis). Uses hybrid approach with explicit trigger + guidance.",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|20|ultrathink-integration",
+      "source": "/pro:spike",
+      "sourceBranch": "feature/ultrathink-integration",
+      "createdAt": "2025-12-30T00:00:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 19,
       "title": "Build in Public - voice/tone calibration",
