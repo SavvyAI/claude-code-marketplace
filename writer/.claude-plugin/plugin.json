@@ -1,0 +1,8 @@
+{
+  "name": "writer",
+  "description": "Long-form authoring and publishing",
+  "version": "1.0.0",
+  "author": {
+    "name": "Wil Moore III"
+  }
+}
