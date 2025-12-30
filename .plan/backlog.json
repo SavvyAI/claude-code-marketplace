@@ -1,6 +1,32 @@
 {
-  "lastSequence": 15,
+  "lastSequence": 17,
   "items": [
+    {
+      "id": 17,
+      "title": "/pro:spike git worktree example uses hardcoded path",
+      "description": "In pro/commands/spike.md lines 24-35, the git worktree tip creates a worktree using $(basename $PWD)--experiment but the cd and remove commands hardcode 'project--experiment'. Should use $(basename $PWD)--experiment consistently.",
+      "category": "bug",
+      "severity": "low",
+      "fingerprint": "pro/commands/spike.md:29-33|hardcoded-path",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/audit-security-command",
+      "createdAt": "2025-12-29T00:00:00Z",
+      "status": "open"
+    },
+    {
+      "id": 16,
+      "title": "Comprehensive security audit command",
+      "description": "Add /pro:audit.security command for deep security analysis. Features: (1) CVE scanning via multiple tools (npm audit, pip-audit, cargo audit, etc.) with merged results, (2) OWASP Top 10 static analysis covering all categories A01-A10, (3) Secrets scanning in current files AND git history using truffleHog/gitleaks, (4) Framework-specific attack vector analysis with severity weighting, (5) Compliance-style report with scores + detailed findings, (6) Graceful degradation when tools unavailable. Far more comprehensive than /pro:audit's basic security checks.",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|16|audit-security-command",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/audit-security-command",
+      "createdAt": "2025-12-29T00:00:00Z",
+      "status": "resolved",
+      "resolvedAt": "2025-12-29T00:00:00Z",
+      "resolvedBranch": "feat/audit-security-command"
+    },
     {
       "id": 15,
       "title": "Git worktree integration for agent sandboxing",

@@ -1,5 +1,5 @@
 {
-  "lastSequence": 19,
+  "lastSequence": 20,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -72,6 +72,10 @@
     {
       "branch": "feat/react-to-next-migration-command",
       "adrs": ["019-react-to-next-migration-design.md"]
+    },
+    {
+      "branch": "feat/audit-security-command",
+      "adrs": ["020-audit-command-namespace-hierarchy.md"]
     }
   ]
 }

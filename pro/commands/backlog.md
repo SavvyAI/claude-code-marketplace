@@ -11,7 +11,7 @@ The backlog is stored in `.plan/backlog.json` at the project root. It contains c
 
 1. **Read the backlog**
    - Check if `.plan/backlog.json` exists
-   - If not, inform user: "No backlog found. Use `/pro:backlog.add <description>` to add items or `/pro:audit` to analyze your code."
+   - If not, inform user: "No backlog found. Use `/pro:backlog.add <description>` to add items or `/pro:audit.quality` to analyze your code."
 
 2. **Check for in-progress work**
    - Filter items with `status: "in-progress"`
