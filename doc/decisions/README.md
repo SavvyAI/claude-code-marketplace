@@ -38,3 +38,6 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [018. MVP Cut Line with MoSCoW Prioritization](018-mvp-cut-line-moscow-phases.md)
 - [019. React to Next.js Migration Design](019-react-to-next-migration-design.md)
 - [020. Audit Command Namespace Hierarchy](020-audit-command-namespace-hierarchy.md)
+- [021. Build in Public Skill Architecture](021-build-in-public-skill-architecture.md)
+- [022. Ultrathink Integration for Complex Commands](022-ultrathink-integration-for-complex-commands.md)
+- [023. Writer Plugin Multi-Plugin Architecture](023-writer-plugin-multi-plugin-architecture.md)

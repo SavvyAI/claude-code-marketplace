@@ -1,5 +1,5 @@
 {
-  "lastSequence": 22,
+  "lastSequence": 23,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -84,6 +84,10 @@
     {
       "branch": "feature/ultrathink-integration",
       "adrs": ["022-ultrathink-integration-for-complex-commands.md"]
+    },
+    {
+      "branch": "mvp/writer-plugin",
+      "adrs": ["023-writer-plugin-multi-plugin-architecture.md"]
     }
   ]
 }
