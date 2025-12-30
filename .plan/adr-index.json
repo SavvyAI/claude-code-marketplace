@@ -1,5 +1,5 @@
 {
-  "lastSequence": 20,
+  "lastSequence": 21,
   "entries": [
     {
       "branch": "feat/adr-integration-workflow",
@@ -76,6 +76,10 @@
     {
       "branch": "feat/audit-security-command",
       "adrs": ["020-audit-command-namespace-hierarchy.md"]
+    },
+    {
+      "branch": "feat/build-in-public",
+      "adrs": ["021-build-in-public-skill-architecture.md"]
     }
   ]
 }
