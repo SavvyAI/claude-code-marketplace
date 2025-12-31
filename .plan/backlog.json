@@ -1,6 +1,20 @@
 {
-  "lastSequence": 39,
+  "lastSequence": 40,
   "items": [
+    {
+      "id": 40,
+      "title": "MVP command prompts instead of running unattended",
+      "description": "The /pro:backlog.mvp command prompts for user confirmation at multiple points instead of running through all MVP items unattended.\n\n**Steps to reproduce:**\n1. Run `/pro:backlog.mvp`\n2. Command shows MVP scope summary\n3. BUG: Command prompts for confirmation to proceed (Step 4 AskUserQuestion)\n4. After each item, command prompts for next action [N/P/Q] (Step 7.3)\n\n**Expected behavior:**\n- Command runs through ALL MVP items unattended\n- Makes a commit at each milestone\n- Continues automatically until MVP is complete\n- No prompts or questions asked\n\n**Actual behavior:**\n- Command prompts for confirmation before starting\n- After each item, prompts \"[N]ext item | [P]ause | [Q]uit\"\n- Requires user interaction at multiple points\n\n**Root cause:**\nThe command definition in `pro/commands/backlog.mvp.md` explicitly includes:\n- Step 4: AskUserQuestion to confirm before starting\n- Step 7.3: Prompt after each item for next action",
+      "category": "bug",
+      "severity": "high",
+      "fingerprint": "bug|40|mvp-unattended-workflow",
+      "source": "/pro:bug",
+      "sourceBranch": "fix/mvp-unattended-workflow",
+      "createdAt": "2025-12-31T00:00:00Z",
+      "status": "resolved",
+      "resolvedAt": "2025-12-31T00:30:00Z",
+      "resolvedBranch": "fix/mvp-unattended-workflow"
+    },
     {
       "id": 39,
       "title": "Build in Public - API access for performance tracking",

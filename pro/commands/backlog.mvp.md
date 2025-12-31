@@ -1,6 +1,6 @@
 ---
 description: "Ready for MVP? → Shows MVP scope and runs through all MUST items → Single branch, iterative workflow"
-allowed-tools: ["Bash", "Read", "Write", "Edit", "Glob", "Grep", "AskUserQuestion"]
+allowed-tools: ["Bash", "Read", "Write", "Edit", "Glob", "Grep"]
 ---
 
 ## Context
@@ -9,12 +9,15 @@ Run through all MVP (MUST) items in the backlog systematically.
 
 ## Purpose
 
-Provide a focused workflow for completing MVP scope:
+Provide an **unattended** workflow for completing MVP scope:
 - Identify all MVP items (explicit `phase: must` or inferred from severity)
-- Show scope summary for confirmation
+- Show scope summary (no confirmation needed)
 - Create a single MVP branch
-- Work through items iteratively
-- Support pause/resume via `/pro:backlog.resume`
+- Work through items iteratively with **automatic progression**
+- Commit after each item completion
+- Support pause/resume via `/pro:backlog.resume` for interrupted sessions
+
+**CRITICAL:** This command runs unattended. Do NOT prompt the user for confirmation at any step. Do NOT ask questions between items. Proceed automatically until all items are complete or an unrecoverable error occurs.
 
 ## Your Task
 
@@ -81,19 +84,14 @@ Show all MVP items grouped by source (explicit vs inferred):
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
-### Step 4: Confirm with User
+### Step 4: Proceed Automatically
 
-Use `AskUserQuestion`:
+**No confirmation needed.** Running `/pro:backlog.mvp` is explicit user intent.
 
+Display a brief message and proceed immediately:
 ```
-question: "Proceed with MVP workflow? This will create branch and work through all {N} items."
-options:
-  - "Start MVP workflow" (recommended)
-  - "Review items first" → show detailed list, then re-prompt
-  - "Cancel"
+Starting MVP workflow with {N} items...
 ```
-
-If cancelled, exit gracefully.
 
 ### Step 5: Create MVP Branch
 
@@ -140,7 +138,7 @@ For each MVP item (in order by id):
    ---
    ```
 
-2. Enter **plan mode** for the current item:
+2. Implement the current item:
    - Create `.plan/mvp-{branch-name}/item-{id}.md` with item details
    - Design implementation approach
    - Implement the item
@@ -149,25 +147,19 @@ For each MVP item (in order by id):
 3. After item is complete:
    - Update item: `status: "resolved"`, `resolvedAt: "<timestamp>"`
    - Remove `mvpBatch: true` (no longer in active batch)
-   - Prompt for next action:
+   - **Commit the changes:**
+     ```bash
+     git add -A && git commit -m "feat(mvp): #{id} {title}"
      ```
-     Item #{id} complete!
-
-     [N]ext item | [P]ause (resume later) | [Q]uit MVP workflow
+   - Display brief completion message:
      ```
+     #{id} {title} - DONE
+     ```
+   - **Automatically proceed to next item** (no prompt)
 
-4. If **Pause**:
-   - Keep remaining items as `in-progress` with `mvpBatch: true`
-   - Display: "MVP paused. Use `/pro:backlog.resume` to continue."
-   - Exit
-
-5. If **Next**:
-   - Continue to next item
-
-6. If **Quit**:
-   - Mark remaining items back to `status: "open"`, remove `mvpBatch`
-   - Display: "MVP workflow cancelled. Completed items preserved."
-   - Exit
+4. If session is interrupted (Ctrl+C, timeout, error):
+   - Remaining items stay as `in-progress` with `mvpBatch: true`
+   - Use `/pro:backlog.resume` to continue later
 
 ### Step 8: MVP Complete
 
@@ -224,8 +216,9 @@ When `phase` is not set, infer from severity:
 
 ## Definition of Done
 
-- [ ] User confirmed MVP scope
+- [ ] Command ran unattended (no user prompts)
 - [ ] Branch created with `mvp/` prefix
-- [ ] All MVP items worked through or paused
+- [ ] Each item committed after completion
+- [ ] All MVP items resolved (or session interrupted for resume)
 - [ ] Backlog updated with correct statuses
 - [ ] Progress tracked for resume capability
