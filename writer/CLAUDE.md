@@ -50,8 +50,8 @@ Chapters are numbered Markdown files in `chapters/`:
 
 ## Compilation Targets
 
-| Target | Output | Use Case |
+| Target | Format | Use Case |
 |--------|--------|----------|
-| SpecMD | Single bundled Markdown | Web publishing |
-| LaTeX | PDF via LaTeX | Print publishing |
-| Markdown Bundle | Directory of linked files | Documentation sites |
+| Web | Bundled Markdown (SpecMD) | Web publishing |
+| PDF | LaTeX | Print publishing |
+| Markdown | Linked files | Documentation sites |

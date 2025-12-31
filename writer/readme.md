@@ -79,18 +79,18 @@ book/
 ├── front-matter/          # Title, dedication, preface
 ├── back-matter/           # Appendix, bibliography
 └── dist/                  # Compiled outputs
-    ├── specmd/            # Bundled Markdown
-    ├── latex/             # LaTeX/PDF
+    ├── web/               # Bundled Markdown
+    ├── pdf/               # LaTeX/PDF
     └── markdown/          # Linked files
 ```
 
 ## Compilation Targets
 
-| Target | Output | Use Case |
+| Target | Format | Use Case |
 |--------|--------|----------|
-| SpecMD | Single bundled Markdown | Web publishing |
-| LaTeX | PDF via LaTeX | Print publishing |
-| Markdown Bundle | Directory of linked files | Documentation sites |
+| Web | Bundled Markdown (SpecMD) | Web publishing |
+| PDF | LaTeX | Print publishing |
+| Markdown | Linked files | Documentation sites |
 
 ## Anti-Features
 
