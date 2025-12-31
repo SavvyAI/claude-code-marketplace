@@ -11,16 +11,15 @@ Plugins that extend Claude Code with powerful development workflows.
 | Plugin | Description |
 |--------|-------------|
 | [Pro](./pro/readme.md) | Professional development workflows with planning, branch management, and PR automation |
+| [Writer](./writer/readme.md) | Markdown-native authoring and publishing for long-form writing |
 
 ## Installation
 
 ```bash
-# Add the marketplace
 /plugin marketplace add SavvyAI/ccplugins
-
-# Install a plugin
-/plugin install pro@ccplugins
 ```
+
+See each plugin's README for specific install commands.
 
 ---
 

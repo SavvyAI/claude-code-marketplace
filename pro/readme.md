@@ -2,6 +2,13 @@
 
 Professional development workflows with intelligent planning and automation.
 
+## Installation
+
+```bash
+/plugin marketplace add SavvyAI/ccplugins
+/plugin install pro@ccplugins
+```
+
 ## What This Plugin Provides
 
 Installing this plugin gives Claude Code:

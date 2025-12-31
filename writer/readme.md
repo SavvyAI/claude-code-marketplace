@@ -2,6 +2,13 @@
 
 Markdown-native authoring and publishing for long-form writing workflows.
 
+## Installation
+
+```bash
+/plugin marketplace add SavvyAI/ccplugins
+/plugin install writer@ccplugins
+```
+
 ## Overview
 
 Writer is a Claude Code plugin for authors who want to write books, essays, and guides using Markdown as their single source of truth. It prioritizes voice-first input, incremental drafting, and Git-based version control.
