@@ -1,6 +1,18 @@
 {
-  "lastSequence": 41,
+  "lastSequence": 42,
   "items": [
+    {
+      "id": 42,
+      "title": "Writer milestones and progress tracking",
+      "description": "Add milestone-based progress tracking to the Writer plugin. Features: (1) /writer:status command - read-only inference dashboard showing progress against targets and milestones, (2) /writer:targets.view and /writer:targets.edit - manage chapter count, word count, and other authoring goals, (3) Book type defaults - infer sensible targets from book type (business, technical, memoir, etc.), (4) Milestone inference - compute which milestones are reached based on content analysis, not explicit marking. Integrates with /writer:init to ask about book type and set initial targets. Design principles: milestones are inferred not declared, no locking, ranges supported for targets, author agency preserved.",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|42|writer-milestones-progress-tracking",
+      "source": "/pro:feature",
+      "sourceBranch": "feature/writer-milestones-progress-tracking",
+      "createdAt": "2025-12-31T18:00:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 41,
       "title": "Writer compile command not generating PDF",

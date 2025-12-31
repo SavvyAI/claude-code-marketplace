@@ -1,6 +1,10 @@
 {
-  "lastSequence": 27,
+  "lastSequence": 28,
   "entries": [
+    {
+      "branch": "feature/writer-milestones-progress-tracking",
+      "adrs": ["028-writer-milestone-tracking-design.md"]
+    },
     {
       "branch": "main",
       "adrs": ["027-documentation-user-centric-refactor.md"]

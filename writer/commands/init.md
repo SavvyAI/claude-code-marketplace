@@ -40,7 +40,7 @@ If "Yes, I have a draft to import":
 - Exit this command (import handles everything)
 
 If "No, start fresh":
-- Continue with Steps 3-7 below
+- Continue with Steps 3-9 below
 
 ### Step 3: Gather Book Metadata
 
@@ -60,7 +60,51 @@ options:
   - Use git config user.name
 ```
 
-### Step 4: Create Directory Structure
+### Step 4: Select Book Type and Targets
+
+Use `AskUserQuestion`:
+
+```
+question: "What type of book are you writing?"
+header: "Book Type"
+options:
+  - "Business/Leadership" (40-60k words, 8-12 chapters)
+  - "Technical Manual" (60-100k words, 15-25 chapters)
+  - "Field Guide" (20-40k words, 5-10 chapters)
+  - "Memoir" (60-80k words, 12-20 chapters)
+  - "Academic" (80-100k words, 8-12 chapters)
+  - "General" (50-75k words, 10-15 chapters)
+multiSelect: false
+```
+
+Map selection to `bookType` and default targets:
+
+| Selection | bookType | Chapters | Words/Chapter | Total Words |
+|-----------|----------|----------|---------------|-------------|
+| Business/Leadership | business | 8-12 | 4,000-6,000 | 40,000-60,000 |
+| Technical Manual | technical | 15-25 | 3,000-5,000 | 60,000-100,000 |
+| Field Guide | field-guide | 5-10 | 3,000-5,000 | 20,000-40,000 |
+| Memoir | memoir | 12-20 | 4,000-6,000 | 60,000-80,000 |
+| Academic | academic | 8-12 | 6,000-10,000 | 80,000-100,000 |
+| General | general | 10-15 | 4,000-6,000 | 50,000-75,000 |
+
+Then ask:
+
+```
+question: "Accept these targets or customize?"
+header: "Targets"
+options:
+  - "Accept defaults (Recommended)" (use defaults for selected book type)
+  - "Customize targets" (modify chapter count and word counts)
+multiSelect: false
+```
+
+If "Customize targets":
+- Ask for chapter count range (see `/writer:targets.edit` for options)
+- Ask for words per chapter range
+- Ask for total word count range
+
+### Step 5: Create Directory Structure
 
 ```bash
 mkdir -p book/chapters
@@ -71,7 +115,7 @@ mkdir -p book/dist/latex
 mkdir -p book/dist/markdown
 ```
 
-### Step 5: Create Book Manifest
+### Step 6: Create Book Manifest
 
 Write `book/book.json`:
 
@@ -81,6 +125,12 @@ Write `book/book.json`:
   "author": "<user-provided or git config author>",
   "version": "0.1.0",
   "created": "<ISO 8601 timestamp>",
+  "bookType": "<selected book type>",
+  "targets": {
+    "chapters": { "min": <N>, "max": <N> },
+    "wordsPerChapter": { "min": <N>, "max": <N> },
+    "totalWords": { "min": <N>, "max": <N> }
+  },
   "chapters": [],
   "frontMatter": [],
   "backMatter": [],
@@ -88,7 +138,7 @@ Write `book/book.json`:
 }
 ```
 
-### Step 6: Create Starter Content
+### Step 7: Create Starter Content
 
 Write `book/front-matter/title.md`:
 
@@ -110,7 +160,7 @@ Write `book/chapters/00-preface.md`:
 [Your preface goes here. This chapter explains the motivation behind the book, who it's for, and what readers will learn.]
 ```
 
-### Step 7: Update .gitignore
+### Step 8: Update .gitignore
 
 If `.gitignore` exists, append (if not already present):
 
@@ -119,7 +169,7 @@ If `.gitignore` exists, append (if not already present):
 book/dist/
 ```
 
-### Step 8: Display Confirmation
+### Step 9: Display Confirmation
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -128,6 +178,12 @@ book/dist/
 ║                                                                 ║
 ║  Title: <Book Title>                                            ║
 ║  Author: <Author Name>                                          ║
+║  Type: <Book Type>                                              ║
+║                                                                 ║
+║  Targets:                                                       ║
+║  - Chapters: <min>-<max>                                        ║
+║  - Words/Chapter: <min>-<max>                                   ║
+║  - Total Words: <min>-<max>                                     ║
 ║                                                                 ║
 ║  Structure created:                                             ║
 ║  book/                                                          ║
@@ -141,6 +197,7 @@ book/dist/
 ║                                                                 ║
 ║  Next steps:                                                    ║
 ║  - Add chapters: /writer:chapter "Chapter Title"                ║
+║  - View progress: /writer:status                                ║
 ║  - Compile book: /writer:compile                                ║
 ║                                                                 ║
 ╚════════════════════════════════════════════════════════════════╝

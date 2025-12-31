@@ -45,3 +45,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [025. Writer Weave Command for Reference Integration](025-writer-weave-command-for-reference-integration.md)
 - [026. Subagent-Skill Dual Architecture for Proactive Features](026-subagent-skill-dual-architecture-for-proactive-features.md)
 - [027. Documentation User-Centric Refactor](027-documentation-user-centric-refactor.md)
+- [028. Writer Milestone Tracking Design](028-writer-milestone-tracking-design.md)

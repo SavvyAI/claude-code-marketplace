@@ -32,6 +32,9 @@ book/
 | `/writer:chapter` | Create or edit chapters |
 | `/writer:revise` | Revision operations (clarity, tone) |
 | `/writer:compile` | Compile to publishing targets |
+| `/writer:status` | View progress dashboard with inferred milestones |
+| `/writer:targets` | View targets vs. current progress |
+| `/writer:targets.edit` | Modify chapter and word count targets |
 
 ## Anti-Features
 
@@ -47,6 +50,40 @@ Chapters are numbered Markdown files in `chapters/`:
 - Filename pattern: `{NN}-{slug}.md` (e.g., `01-introduction.md`)
 - Title comes from first H1 heading in file
 - Order determined by numeric prefix
+
+## Progress Tracking
+
+The Writer plugin tracks progress through **inferred milestones**, not explicit declarations.
+
+### Milestones
+
+| Milestone | What It Means |
+|-----------|---------------|
+| thesis-locked | Central argument and scope are settled |
+| frame-locked | Book identity and tone established |
+| outline-locked | Chapter structure is stable |
+| how-to-read-locked | Reader expectations are set |
+| sample-chapters-exist | 2-3 chapters at target depth |
+| pitch-ready | Sufficient for publisher outreach |
+| manuscript-complete | All chapters drafted |
+| production-ready | Ready for distribution |
+
+### Targets
+
+Books have configurable targets stored in `book.json`:
+
+```json
+{
+  "bookType": "business",
+  "targets": {
+    "chapters": { "min": 8, "max": 12 },
+    "wordsPerChapter": { "min": 4000, "max": 6000 },
+    "totalWords": { "min": 40000, "max": 60000 }
+  }
+}
+```
+
+Default targets are set based on book type during `/writer:init`.
 
 ## Compilation Targets
 
