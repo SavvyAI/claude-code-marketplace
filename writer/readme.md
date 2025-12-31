@@ -11,15 +11,14 @@ Markdown-native authoring and publishing for long-form writing workflows.
 
 ## Overview
 
-Writer is a Claude Code plugin for authors who want to write books, essays, and guides using Markdown as their single source of truth. It prioritizes voice-first input, incremental drafting, and Git-based version control.
+Writer is a Claude Code plugin for authors who want to write books, essays, and guides using Markdown as their single source of truth. It prioritizes incremental drafting and Git-based version control.
 
 ## Design Principles
 
 1. **Markdown as single source of truth** - No proprietary formats
-2. **Voice-first interaction** - Natural language over rigid syntax
-3. **Write once, compile many** - Web, print, and documentation targets
-4. **Low ceremony, repo-first** - Git-native workflows
-5. **No runtime state** - Everything persists in the repository
+2. **Write once, compile many** - Web, print, and documentation targets
+3. **Low ceremony, repo-first** - Git-native workflows
+4. **No runtime state** - Everything persists in the repository
 
 ## Commands
 

@@ -5,10 +5,9 @@
 ## Design Principles
 
 1. **Markdown as single source of truth** - All content lives in `.md` files
-2. **Voice-first interaction** - Commands accept natural language, not rigid syntax
-3. **Write once, compile many** - Single source compiles to web, print, and more
-4. **Low ceremony, repo-first** - Minimal overhead, Git-native workflows
-5. **No runtime state** - All state persists in the repository
+2. **Write once, compile many** - Single source compiles to web, print, and more
+3. **Low ceremony, repo-first** - Minimal overhead, Git-native workflows
+4. **No runtime state** - All state persists in the repository
 
 ## Book Project Structure
 
