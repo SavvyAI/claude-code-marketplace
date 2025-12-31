@@ -1,6 +1,20 @@
 {
-  "lastSequence": 36,
+  "lastSequence": 37,
   "items": [
+    {
+      "id": 37,
+      "title": "Weave reference material into book chapters",
+      "description": "Add /writer:weave command for incorporating external reference material into a book project. Supports multiple input formats (text, images, PDFs, URLs). Features: (1) Extract and analyze reference content, (2) Source verification via web research, (3) Propose placement with before/after preview, (4) Interactive dialogue for refinement, (5) Citation generation (footnotes or inline), (6) Hybrid reference storage (important refs archived, minor ones cited). Enables pulling inspiration and facts into the book without manual copy-paste and outside weaving.",
+      "category": "spike",
+      "severity": "medium",
+      "fingerprint": "spike|37|writer-weave-command",
+      "source": "/pro:spike",
+      "sourceBranch": "spike/writer-weave-command",
+      "createdAt": "2025-12-30T19:00:00Z",
+      "status": "resolved",
+      "resolvedAt": "2025-12-30T20:00:00Z",
+      "resolvedBranch": "spike/writer-weave-command"
+    },
     {
       "id": 36,
       "title": "Import existing content into Writer book project",

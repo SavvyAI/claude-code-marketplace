@@ -29,6 +29,7 @@ book/
 |---------|---------|
 | `/writer:init` | Initialize a new book project |
 | `/writer:import` | Import existing markdown content into book structure |
+| `/writer:weave` | Incorporate reference material with collaborative dialogue |
 | `/writer:chapter` | Create or edit chapters |
 | `/writer:revise` | Revision operations (clarity, tone) |
 | `/writer:compile` | Compile to publishing targets |
