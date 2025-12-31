@@ -1,6 +1,10 @@
 {
-  "lastSequence": 24,
+  "lastSequence": 25,
   "entries": [
+    {
+      "branch": "spike/writer-weave-command",
+      "adrs": ["025-writer-weave-command-for-reference-integration.md"]
+    },
     {
       "branch": "spike/writer-import-existing-content",
       "adrs": ["024-writer-import-command-for-existing-content.md"]
