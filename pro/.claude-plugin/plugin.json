@@ -5,7 +5,11 @@
   "author": {
     "name": "Wil Moore III"
   },
+  "repository": "https://github.com/SavvyAI/ccplugins",
+  "license": "MIT",
+  "keywords": ["workflow", "planning", "pr", "backlog", "audit"],
   "commands": "./commands/",
   "skills": "./skills/",
-  "agents": "./agents/*.md"
+  "agents": "./agents/*.md",
+  "mcpServers": "./.mcp.json"
 }
