@@ -22,7 +22,27 @@ If `book/` exists and contains files:
 - Display: "A book project already exists. Use `/writer:chapter` to add content."
 - Exit
 
-### Step 2: Gather Book Metadata
+### Step 2: Check for Existing Content
+
+Use `AskUserQuestion`:
+
+```
+question: "Do you have existing content to import?"
+header: "Import"
+options:
+  - "No, start fresh (Recommended)" (create empty project structure)
+  - "Yes, I have a draft to import" (import existing markdown)
+```
+
+If "Yes, I have a draft to import":
+- Display: "Great! Let's import your existing content."
+- Delegate to `/writer:import` command logic (the import command will handle metadata, structure creation, and content parsing)
+- Exit this command (import handles everything)
+
+If "No, start fresh":
+- Continue with Steps 3-7 below
+
+### Step 3: Gather Book Metadata
 
 Use `AskUserQuestion` to collect:
 
@@ -40,7 +60,7 @@ options:
   - Use git config user.name
 ```
 
-### Step 3: Create Directory Structure
+### Step 4: Create Directory Structure
 
 ```bash
 mkdir -p book/chapters
@@ -51,7 +71,7 @@ mkdir -p book/dist/latex
 mkdir -p book/dist/markdown
 ```
 
-### Step 4: Create Book Manifest
+### Step 5: Create Book Manifest
 
 Write `book/book.json`:
 
@@ -68,7 +88,7 @@ Write `book/book.json`:
 }
 ```
 
-### Step 5: Create Starter Content
+### Step 6: Create Starter Content
 
 Write `book/front-matter/title.md`:
 
@@ -90,7 +110,7 @@ Write `book/chapters/00-preface.md`:
 [Your preface goes here. This chapter explains the motivation behind the book, who it's for, and what readers will learn.]
 ```
 
-### Step 6: Update .gitignore
+### Step 7: Update .gitignore
 
 If `.gitignore` exists, append (if not already present):
 
@@ -99,7 +119,7 @@ If `.gitignore` exists, append (if not already present):
 book/dist/
 ```
 
-### Step 7: Display Confirmation
+### Step 8: Display Confirmation
 
 ```
 ╔════════════════════════════════════════════════════════════════╗

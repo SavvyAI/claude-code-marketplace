@@ -1,6 +1,10 @@
 {
-  "lastSequence": 23,
+  "lastSequence": 24,
   "entries": [
+    {
+      "branch": "spike/writer-import-existing-content",
+      "adrs": ["024-writer-import-command-for-existing-content.md"]
+    },
     {
       "branch": "feat/adr-integration-workflow",
       "adrs": ["001-integrate-adrs-into-pr-workflow.md"]

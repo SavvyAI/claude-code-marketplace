@@ -19,11 +19,14 @@ Writer is a Claude Code plugin for authors who want to write books, essays, and 
 | Command | Purpose |
 |---------|---------|
 | `/writer:init` | Initialize a new book project |
+| `/writer:import` | Import existing markdown content into book structure |
 | `/writer:chapter` | Create or edit chapters |
 | `/writer:revise` | Revision operations (clarity, tone) |
 | `/writer:compile` | Compile to publishing targets |
 
 ## Quick Start
+
+### Starting Fresh
 
 ```bash
 # Initialize a book project
@@ -38,6 +41,25 @@ Writer is a Claude Code plugin for authors who want to write books, essays, and 
 # Compile to all targets
 /writer:compile all
 ```
+
+### Importing Existing Content
+
+```bash
+# Import from a markdown file
+/writer:import draft.md
+
+# Import from a directory of markdown files
+/writer:import ./drafts/
+
+# Interactive import (paste content)
+/writer:import
+```
+
+The import command detects chapter boundaries from H1 headings and automatically:
+- Creates the book directory structure
+- Splits content into chapter files
+- Classifies front-matter (preface) and back-matter (appendix)
+- Populates the book manifest
 
 ## Book Project Structure
 
