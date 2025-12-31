@@ -1,6 +1,18 @@
 {
-  "lastSequence": 40,
+  "lastSequence": 41,
   "items": [
+    {
+      "id": 41,
+      "title": "Writer compile command not generating PDF",
+      "description": "The /writer:compile command generates LaTeX .tex files but does not automatically compile them to PDF via pdflatex, even when pdflatex is installed.\n\n**Steps to reproduce:**\n1. Run `/writer:compile all` on a book project\n2. Compilation completes, outputs SpecMD, LaTeX, and Markdown Bundle\n\n**Expected behavior:**\n- PDF generated at `book/dist/latex/book.pdf` via automatic pdflatex execution\n\n**Actual behavior:**\n- Only `.tex` file generated\n- Message says \"Ready for PDF compilation with pdflatex\" implying manual step needed\n- LaTeX treated as final output instead of intermediate format\n\n**Environment:**\n- macOS, pdflatex installed (`/opt/homebrew/bin/pdflatex`, TeX Live 2025)\n\n**Root cause:**\n- The compile command implementation is not executing the pdflatex compilation step defined in the specification (compile.md lines 203-209)",
+      "category": "bug",
+      "severity": "high",
+      "fingerprint": "bug|41|writer-compile-pdf-generation",
+      "source": "/pro:bug",
+      "sourceBranch": "fix/writer-compile-pdf-generation",
+      "createdAt": "2025-12-31T12:00:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 40,
       "title": "MVP command prompts instead of running unattended",

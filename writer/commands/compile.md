@@ -199,25 +199,31 @@ LaTeX compilation produces print-ready PDF.
 | `> quote` | `\begin{quote}...\end{quote}` |
 | `` `code` `` | `\texttt{code}` |
 
-**PDF Compilation:**
-```bash
-# Check if pdflatex is available
-which pdflatex >/dev/null 2>&1 && echo "available" || echo "missing"
+**Process:**
+1. Create `book/dist/latex/` directory if it doesn't exist
+2. Convert all Markdown content to LaTeX using the conversion table above
+3. Generate the LaTeX document using the template structure
+4. Write LaTeX source to `book/dist/latex/book.tex`
+5. Check if pdflatex is available:
+   ```bash
+   which pdflatex >/dev/null 2>&1 && echo "available" || echo "missing"
+   ```
+6. **If pdflatex is available:** Execute PDF compilation:
+   ```bash
+   cd book/dist/latex && pdflatex -interaction=nonstopmode book.tex
+   ```
+   - Run pdflatex twice if document has table of contents (for proper TOC generation)
+   - Report: `✔ book/dist/latex/book.pdf` in output summary
+7. **If pdflatex is NOT available:** Report fallback message:
+   ```
+   ✔ LaTeX source generated: book/dist/latex/book.tex
 
-# If available, compile
-cd book/dist/latex && pdflatex -interaction=nonstopmode book.tex
-```
+   ⚠ pdflatex not found. To generate PDF:
+     1. Install TeX distribution (MacTeX, TeX Live, MiKTeX)
+     2. Run: cd book/dist/latex && pdflatex book.tex
+   ```
 
-If pdflatex not available:
-```
-[ writer:compile ]
-------------------
-✔ LaTeX source generated: book/dist/latex/book.tex
-
-⚠ pdflatex not found. To generate PDF:
-  1. Install TeX distribution (MacTeX, TeX Live, MiKTeX)
-  2. Run: cd book/dist/latex && pdflatex book.tex
-```
+**IMPORTANT:** The PDF is the primary deliverable for the LaTeX target. LaTeX source (.tex) is an intermediate format, not a final output. Always attempt PDF generation when pdflatex is available.
 
 ### Step 5C: Compile to Markdown Bundle
 
@@ -258,6 +264,11 @@ Each chapter file includes:
 
 ### Step 6: Display Summary
 
+Show only the outputs that were actually generated. For LaTeX target:
+- Show `book.pdf` line only if PDF was successfully generated
+- Show `book.tex` line only if pdflatex was unavailable (fallback case)
+- Never show both .tex and .pdf in outputs (PDF supersedes .tex)
+
 ```
 ╔════════════════════════════════════════════════════════════════╗
 ║  COMPILATION COMPLETE                                           ║
@@ -269,7 +280,6 @@ Each chapter file includes:
 ║                                                                 ║
 ║  Outputs:                                                       ║
 ║  ✔ book/dist/specmd/book.md (142 KB)                            ║
-║  ✔ book/dist/latex/book.tex (156 KB)                            ║
 ║  ✔ book/dist/latex/book.pdf (1.2 MB)                            ║
 ║  ✔ book/dist/markdown/ (14 files)                               ║
 ║                                                                 ║
