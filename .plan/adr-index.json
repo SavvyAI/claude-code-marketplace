@@ -1,6 +1,10 @@
 {
-  "lastSequence": 26,
+  "lastSequence": 27,
   "entries": [
+    {
+      "branch": "main",
+      "adrs": ["027-documentation-user-centric-refactor.md"]
+    },
     {
       "branch": "fix/build-in-public-missing-subagent",
       "adrs": ["026-subagent-skill-dual-architecture-for-proactive-features.md"]
