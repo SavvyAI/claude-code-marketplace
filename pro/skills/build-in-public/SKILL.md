@@ -97,7 +97,11 @@ Read user preferences from `.plan/build-in-public/config.json`:
 {
   "threshold": "medium",
   "platforms": ["x", "linkedin"],
-  "autoSuggest": true
+  "autoSuggest": true,
+  "voice": {
+    "source": "preset",
+    "preset": "casual-technical"
+  }
 }
 ```
 
@@ -105,8 +109,31 @@ Read user preferences from `.plan/build-in-public/config.json`:
 - `threshold`: `high`, `medium`, or `low` - controls sensitivity
 - `platforms`: target platforms for drafts
 - `autoSuggest`: when `true` (default), surface suggestions inline during work; when `false`, only write to pending queue silently
+- `voice`: tone and style settings (configured via `/pro:bip.setup`)
 
 If file doesn't exist, use defaults and create on first write.
+
+### Voice Configuration
+
+If `voice` is configured, adapt draft style accordingly:
+
+| Source | Behavior |
+|--------|----------|
+| `preset` | Use the named preset style (see presets below) |
+| `examples` | Match the tone, length, and traits from user's examples |
+
+**Presets:**
+- `casual-technical`: Relaxed but knowledgeable. Uses jargon naturally.
+- `professional`: Polished but human. Appropriate for LinkedIn.
+- `minimal`: Extremely concise. One insight, few words.
+- `storyteller`: Narrative arc. Problem → journey → insight.
+- `teacher`: Educational tone. Explains concepts helpfully.
+
+**Custom voice traits** (from examples):
+- Check `voice.traits` array for specific style notes
+- Check `voice.examples` for reference posts to match
+
+If no voice config exists, use the default guidelines in "Draft Writing Guidelines" below.
 
 ### Event Tracking
 

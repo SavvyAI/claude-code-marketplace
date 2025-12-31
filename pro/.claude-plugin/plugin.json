@@ -1,9 +1,10 @@
 {
   "name": "pro",
   "description": "Product Owner",
-  "version": "1.20.1",
+  "version": "1.21.0",
   "author": {
     "name": "Wil Moore III"
   },
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "agents": "./agents/"
 }
