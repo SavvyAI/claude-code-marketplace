@@ -6,5 +6,5 @@
     "name": "Wil Moore III"
   },
   "skills": "./skills/",
-  "agents": "./agents/"
+  "agents": "./agents/*.md"
 }
