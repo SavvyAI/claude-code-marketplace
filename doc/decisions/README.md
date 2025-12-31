@@ -42,3 +42,5 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [022. Ultrathink Integration for Complex Commands](022-ultrathink-integration-for-complex-commands.md)
 - [023. Writer Plugin Multi-Plugin Architecture](023-writer-plugin-multi-plugin-architecture.md)
 - [024. Writer Import Command for Existing Content](024-writer-import-command-for-existing-content.md)
+- [025. Writer Weave Command for Reference Integration](025-writer-weave-command-for-reference-integration.md)
+- [026. Subagent-Skill Dual Architecture for Proactive Features](026-subagent-skill-dual-architecture-for-proactive-features.md)

@@ -1,6 +1,30 @@
 {
-  "lastSequence": 37,
+  "lastSequence": 39,
   "items": [
+    {
+      "id": 39,
+      "title": "Build in Public - API access for performance tracking",
+      "description": "Add optional X/LinkedIn API integration to track engagement on posted content. Would enable: (1) automatic engagement metrics collection (likes, retweets, comments), (2) learning which content types perform best, (3) adjusting suggestions based on what resonates, (4) analytics dashboard in /pro:bip. Requires OAuth setup and API key management. Deferred until core feature is proven.",
+      "category": "feature",
+      "severity": "low",
+      "fingerprint": "feature|39|bip-api-performance-tracking",
+      "source": "/pro:bug",
+      "sourceBranch": "fix/build-in-public-missing-subagent",
+      "createdAt": "2025-12-30T21:30:00Z",
+      "status": "open"
+    },
+    {
+      "id": 38,
+      "title": "Build-in-public missing subagent component",
+      "description": "The build-in-public feature was implemented as a skill only, but skills are 'soft invoked' (user still says something). For true zero-friction background content surfacing, a SUBAGENT is required that runs proactively. The skill provides the detailed instructions; the subagent is the background worker that gets invoked automatically.\n\n**Root cause:** Misunderstanding of skill vs subagent semantics. User explicitly requested both components but only skill was created.\n\n**Fix:** Create pro/agents/build-in-public.md subagent definition with 'use PROACTIVELY' in description, update plugin.json with agents directory reference.",
+      "category": "bug",
+      "severity": "high",
+      "fingerprint": "bug|38|build-in-public-missing-subagent",
+      "source": "/pro:bug",
+      "sourceBranch": "fix/build-in-public-missing-subagent",
+      "createdAt": "2025-12-30T21:00:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 37,
       "title": "Weave reference material into book chapters",
@@ -298,9 +322,11 @@
       "severity": "low",
       "fingerprint": "feature|19|bip-voice-calibration",
       "source": "/pro:feature",
-      "sourceBranch": "feat/build-in-public",
+      "sourceBranch": "fix/build-in-public-missing-subagent",
       "createdAt": "2025-12-29T12:00:00Z",
-      "status": "open"
+      "status": "resolved",
+      "resolvedAt": "2025-12-30T21:30:00Z",
+      "resolvedBranch": "fix/build-in-public-missing-subagent"
     },
     {
       "id": 18,

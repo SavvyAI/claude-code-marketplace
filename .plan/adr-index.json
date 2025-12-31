@@ -1,6 +1,10 @@
 {
-  "lastSequence": 25,
+  "lastSequence": 26,
   "entries": [
+    {
+      "branch": "fix/build-in-public-missing-subagent",
+      "adrs": ["026-subagent-skill-dual-architecture-for-proactive-features.md"]
+    },
     {
       "branch": "spike/writer-weave-command",
       "adrs": ["025-writer-weave-command-for-reference-integration.md"]

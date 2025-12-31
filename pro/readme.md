@@ -9,6 +9,7 @@ Installing this plugin gives Claude Code:
 - **Slash Commands** - Workflow commands (`/pro:feature`, `/pro:pr`, etc.) that guide you through planning, development, and PR workflows
 - **MCP Servers** - Pre-configured servers: Playwright, Context7, Supabase, Chrome DevTools, Figma, and shadcn-ui
 - **Skills** - Bundled agent skills that enhance Claude's capabilities
+- **Subagents** - Background workers that run proactively during development
 
 ## Commands
 
@@ -42,6 +43,7 @@ Installing this plugin gives Claude Code:
 | `/pro:copy.questions` | Copy recent clarifying questions to clipboard |
 | `/pro:git.main` | Standardize default branch to `main` with explicit confirmation |
 | `/pro:bip` | Review and manage your "build in public" content queue |
+| `/pro:bip.setup` | Configure your voice/tone for build-in-public drafts |
 
 ## Workflow
 
@@ -123,17 +125,31 @@ Skills are automatically available when the plugin is installed. Claude uses the
 
 > The `frontend-design` skill is sourced from [Anthropic's skills repository](https://github.com/anthropics/skills) (Apache 2.0).
 
+## Bundled Subagents
+
+| Subagent | Description |
+|----------|-------------|
+| **build-in-public** | Runs proactively after feature completions, bug fixes, PRs, and milestones to surface shareable content. |
+
+Subagents appear in `/agents` alongside your custom agents. They run automatically when Claude detects relevant moments.
+
 ### Build in Public
 
-The `build-in-public` skill watches your development work and proposes shareable content when notable moments occur:
+The `build-in-public` subagent + skill work together:
 
+- **Subagent** runs proactively after completing features, fixing bugs, creating PRs, or reaching milestones
+- **Skill** provides detailed instructions for drafting platform-specific content
+
+When notable moments occur, content is proposed inline:
 - Feature shipped
 - Bug solved
 - Milestone reached
 - Design decision made
 - Learning discovered
 
-Content is drafted inline during work. You can approve, edit, defer, or skip. Use `/pro:bip` to review your pending queue.
+You can approve, edit, defer, or skip. Use `/pro:bip` to review your pending queue.
+
+**Voice calibration:** Run `/pro:bip.setup` to configure your tone. Choose from presets (casual-technical, professional, minimal, storyteller, teacher) or provide example posts to match your style.
 
 ---
 
