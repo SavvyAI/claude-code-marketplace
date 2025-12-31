@@ -15,12 +15,8 @@ Plugins that extend Claude Code with powerful development workflows.
 ## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/SavvyAI/ccplugins.git
-cd ccplugins
-
 # Add the marketplace
-claude plugin marketplace add .
+claude plugin marketplace add https://github.com/SavvyAI/ccplugins
 
 # Install a plugin (e.g., pro)
 claude plugin install pro@ccplugins
@@ -28,13 +24,6 @@ claude plugin install pro@ccplugins
 # Restart Claude Code to load the plugin
 ```
 
-## Contributing
-
-1. Fork this repository
-2. Create your plugin directory with a `commands/` folder
-3. Add `.md` command files
-4. Submit a pull request
-
 ---
 
-Maintained by [Savvy AI](https://github.com/SavvyAI)
+[Contributing](./CONTRIBUTING.md) | Maintained by [Savvy AI](https://github.com/SavvyAI)
