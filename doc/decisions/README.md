@@ -41,3 +41,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [021. Build in Public Skill Architecture](021-build-in-public-skill-architecture.md)
 - [022. Ultrathink Integration for Complex Commands](022-ultrathink-integration-for-complex-commands.md)
 - [023. Writer Plugin Multi-Plugin Architecture](023-writer-plugin-multi-plugin-architecture.md)
+- [024. Writer Import Command for Existing Content](024-writer-import-command-for-existing-content.md)

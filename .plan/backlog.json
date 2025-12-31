@@ -1,6 +1,20 @@
 {
-  "lastSequence": 35,
+  "lastSequence": 36,
   "items": [
+    {
+      "id": 36,
+      "title": "Import existing content into Writer book project",
+      "description": "Add /writer:import command for bulk-importing existing markdown content into a book project. Also enhance /writer:init to ask if user has existing content and delegate to import logic. Supports: (1) single markdown file with H1 chapter boundaries, (2) multiple markdown files, (3) auto-detection of preface, chapters, appendix. Creates book structure and populates manifest automatically.",
+      "category": "spike",
+      "severity": "medium",
+      "fingerprint": "spike|36|writer-import-existing-content",
+      "source": "/pro:spike",
+      "sourceBranch": "spike/writer-import-existing-content",
+      "createdAt": "2025-12-30T18:00:00Z",
+      "status": "resolved",
+      "resolvedAt": "2025-12-30T18:30:00Z",
+      "resolvedBranch": "spike/writer-import-existing-content"
+    },
     {
       "id": 35,
       "title": "Marketplace install missing Writer plugin",
