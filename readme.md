@@ -16,12 +16,10 @@ Plugins that extend Claude Code with powerful development workflows.
 
 ```bash
 # Add the marketplace
-claude plugin marketplace add https://github.com/SavvyAI/ccplugins
+/plugin marketplace add SavvyAI/ccplugins
 
-# Install a plugin (e.g., pro)
-claude plugin install pro@ccplugins
-
-# Restart Claude Code to load the plugin
+# Install a plugin
+/plugin install pro@ccplugins
 ```
 
 ---

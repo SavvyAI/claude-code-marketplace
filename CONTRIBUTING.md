@@ -8,10 +8,10 @@ git clone https://github.com/SavvyAI/ccplugins.git
 cd ccplugins
 
 # Add your local clone as a marketplace
-claude plugin marketplace add .
+/plugin marketplace add .
 
 # Install a plugin to test
-claude plugin install pro@ccplugins
+/plugin install pro@ccplugins
 ```
 
 ## Creating a Plugin
