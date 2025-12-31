@@ -1,6 +1,18 @@
 {
-  "lastSequence": 34,
+  "lastSequence": 35,
   "items": [
+    {
+      "id": 35,
+      "title": "Marketplace install missing Writer plugin",
+      "description": "When installing ccplugins from the marketplace, only the Pro plugin is installed. The Writer plugin is missing because `.claude-plugin/marketplace.json` only lists the `pro` plugin in its `plugins` array.\n\n**Steps to reproduce:**\n1. Uninstall ccplugins from Claude Code\n2. Reinstall from the marketplace\n3. Check installed plugins\n\n**Expected:** Both pro and writer plugins installed\n**Actual:** Only pro plugin installed\n\n**Root cause:** marketplace.json was not updated when writer plugin was added in PR #40.",
+      "category": "bug",
+      "severity": "high",
+      "fingerprint": "bug|35|marketplace-missing-writer-plugin",
+      "source": "/pro:bug",
+      "sourceBranch": "fix/marketplace-missing-writer-plugin",
+      "createdAt": "2025-12-30T17:20:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 34,
       "title": "Prepare distribution artifacts",
