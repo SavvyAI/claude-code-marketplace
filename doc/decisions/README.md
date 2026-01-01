@@ -47,3 +47,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [027. Documentation User-Centric Refactor](027-documentation-user-centric-refactor.md)
 - [028. Writer Milestone Tracking Design](028-writer-milestone-tracking-design.md)
 - [029. Author Plugin Rename and Weave Consolidation](029-author-plugin-rename-and-weave-consolidation.md)
+- [030. Audit Repo Command and Secrets Consolidation](030-audit-repo-secrets-consolidation.md)

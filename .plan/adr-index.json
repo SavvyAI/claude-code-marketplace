@@ -1,6 +1,10 @@
 {
-  "lastSequence": 29,
+  "lastSequence": 30,
   "entries": [
+    {
+      "branch": "feat/audit-repo-command",
+      "adrs": ["030-audit-repo-secrets-consolidation.md"]
+    },
     {
       "branch": "chore/rename-writer-to-author",
       "adrs": ["029-author-plugin-rename-and-weave-consolidation.md"]
