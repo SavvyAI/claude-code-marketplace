@@ -37,7 +37,12 @@ Execute all checks from `/pro:audit.security`:
 - **Project Detection**: Package managers, frameworks, infrastructure files
 - **CVE Scanning**: Run available audit tools (npm/pip/cargo/etc.)
 - **OWASP Top 10**: Static analysis for all categories
-- **Secrets Scanning**: Current files + git history (if truffleHog/gitleaks available)
+- **Repository Audit** (via `/pro:audit.repo`):
+  - Secrets in current files + git history
+  - .gitignore hygiene validation
+  - Environment file audit
+  - CI/CD secrets hygiene
+  - Public readiness assessment
 - **Framework Analysis**: Targeted checks for detected frameworks
 
 Collect all findings with their fingerprints.
@@ -97,7 +102,7 @@ Collect all findings with their fingerprints.
   OWASP A08 - Integrity Failures        {xx}/100   {PASS/WARN/FAIL}   {n}
   OWASP A09 - Logging Failures          {xx}/100   {PASS/WARN/FAIL}   {n}
   OWASP A10 - SSRF                      {xx}/100   {PASS/WARN/FAIL}   {n}
-  Secrets                               {xx}/100   {PASS/WARN/FAIL}   {n}
+  Repository (audit.repo)               {xx}/100   {PASS/WARN/FAIL}   {n}
   Framework: {name}                     {xx}/100   {PASS/WARN/FAIL}   {n}
 
 ═══════════════════════════════════════════════════════════════════════════════
@@ -187,6 +192,7 @@ Present ALL findings for selection (from both audits):
 | `/pro:audit` | Pre-release, comprehensive review, new team member onboarding |
 | `/pro:audit.quality` | Quick completeness check during development |
 | `/pro:audit.security` | Security-focused review, compliance prep, before public release |
+| `/pro:audit.repo` | Quick public readiness check, .gitignore validation, secrets hygiene |
 
 ---
 
@@ -194,6 +200,7 @@ Present ALL findings for selection (from both audits):
 
 - [ ] Quality audit completed (all categories checked)
 - [ ] Security audit completed (all available scans run)
+  - [ ] Including repository audit (via audit.repo)
 - [ ] Unified scorecard displayed
 - [ ] Combined report saved to temp file
 - [ ] User prompted for backlog capture

@@ -1,6 +1,31 @@
 {
-  "lastSequence": 43,
+  "lastSequence": 45,
   "items": [
+    {
+      "id": 45,
+      "title": "Repository health audit command (audit.repo)",
+      "description": "Add /pro:audit.repo command for repository-level security and hygiene auditing. Features: (1) Secrets in git history - scan full history for committed secrets using truffleHog/gitleaks, (2) Sensitive file tracking - verify .gitignore covers common sensitive patterns, (3) Environment file audit - .env vs .env.example consistency, (4) GitHub Actions secrets hygiene - inline credentials in CI config, (5) Public Readiness Score - aggregate go/no-go recommendation. Becomes the single source of truth for secrets scanning - audit.security will call audit.repo instead of duplicating Phase 4.",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|45|audit-repo-command",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/audit-repo-command",
+      "createdAt": "2026-01-01T18:00:00Z",
+      "status": "in-progress"
+    },
+    {
+      "id": 44,
+      "title": "PreCompact hook for auto-clear and resume",
+      "description": "Add PreCompact hook that automatically clears session and resumes via /pro:backlog.resume when auto-compact is about to trigger. Goal: eliminate manual context monitoring and lossy compaction.\n\n**Desired flow:**\n1. PreCompact (auto) hook triggers\n2. Brief message displayed\n3. Session clears automatically\n4. /pro:backlog.resume runs automatically\n\n**Blocker:** Claude Code hooks cannot invoke built-in commands like /clear. Feature request submitted to @bcherny on X.\n\n**Fallback (if upstream doesn't support):** Option B - breadcrumb file + SessionStart hook for semi-automatic flow (user types /clear, resume is automatic).",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|44|precompact-auto-clear-resume",
+      "source": "/pro:feature",
+      "sourceBranch": null,
+      "createdAt": "2026-01-01T12:00:00Z",
+      "status": "open",
+      "blockedReason": "Waiting on Claude Code feature request - hooks invoking built-in commands"
+    },
     {
       "id": 43,
       "title": "Rename writer plugin to author and consolidate import into weave",
@@ -76,7 +101,9 @@
       "source": "/pro:bug",
       "sourceBranch": "fix/build-in-public-missing-subagent",
       "createdAt": "2025-12-30T21:00:00Z",
-      "status": "in-progress"
+      "status": "resolved",
+      "resolvedAt": "2026-01-01T12:00:00Z",
+      "resolvedBranch": "main"
     },
     {
       "id": 37,

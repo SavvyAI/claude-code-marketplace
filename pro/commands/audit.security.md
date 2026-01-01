@@ -276,45 +276,31 @@ grep -rn "requests\.get.*request\.\|urllib.*request\." --include="*.py"
 
 ---
 
-## Phase 4: Secrets Scanning
+## Phase 4: Repository Secrets & Hygiene Audit
 
-### Current File Scan
+This phase delegates to `/pro:audit.repo` for comprehensive repository-level analysis.
 
-**Patterns to detect:**
+Execute all checks from `/pro:audit.repo`:
 
-| Type | Pattern Examples |
-|------|-----------------|
-| AWS Keys | AKIA[0-9A-Z]{16} |
-| GitHub Token | ghp_[a-zA-Z0-9]{36} |
-| Generic API Key | api[_-]?key.*=.*['\"][a-zA-Z0-9]{20,}['\"] |
-| Private Keys | -----BEGIN (RSA\|DSA\|EC\|OPENSSH) PRIVATE KEY----- |
-| Connection Strings | (mongodb\|postgres\|mysql)://[^:]+:[^@]+@ |
-| JWT Secrets | jwt[_-]?secret.*=.*['\"].+['\"] |
+1. **Secrets in Git History** - Full history scan using truffleHog/gitleaks
+2. **Secrets in Current Files** - Pattern-based detection across source files
+3. **Sensitive File Tracking** - Verify .gitignore covers sensitive patterns
+4. **Environment File Audit** - .env/.env.example consistency
+5. **CI/CD Secrets Hygiene** - Workflow files using proper secrets references
+6. **Public Readiness Score** - Aggregate go/no-go assessment
 
-**Files to check:**
-- All source files (.ts, .js, .py, .go, .rb, .java)
-- Configuration files (.env*, config.*, settings.*)
-- CI/CD files (.github/workflows/*, .gitlab-ci.yml)
+Collect all findings with their fingerprints. The fingerprint formats from audit.repo are:
 
-### Git History Scan
+| Finding Type | Fingerprint Format |
+|--------------|-------------------|
+| Secret (current) | `{file}:{line}\|secret-{type}` |
+| Secret (historical) | `git\|{commit}\|{file}\|secret-{type}` |
+| Tracked sensitive file | `tracked\|{file}\|sensitive-file` |
+| Missing gitignore pattern | `gitignore\|missing-{pattern}` |
+| Env example issue | `.env.example:{line}\|real-value` |
+| CI inline secret | `{workflow-file}:{line}\|ci-inline-secret` |
 
-Check if truffleHog or gitleaks is available:
-
-```bash
-# Prefer truffleHog
-if command -v trufflehog &>/dev/null; then
-  trufflehog git file://. --json --no-update 2>/dev/null
-# Fallback to gitleaks
-elif command -v gitleaks &>/dev/null; then
-  gitleaks detect --source . --report-format json 2>/dev/null
-fi
-```
-
-For each finding, record:
-- Secret type
-- File path
-- Commit SHA (for history findings)
-- Whether currently exposed or historical only
+**Note:** When running as part of `/pro:audit.security`, audit.repo skips its own backlog capture phase - findings are collected here for the unified security report.
 
 ---
 
@@ -373,7 +359,7 @@ Category weights:
 - CVE Scanning: 25%
 - OWASP A01-A03 (Critical Security): 35% (split evenly)
 - OWASP A04-A10: 25% (split evenly)
-- Secrets: 15%
+- Repository Secrets (from audit.repo): 15%
 
 Overall = sum(category_score * weight)
 
@@ -409,11 +395,12 @@ Reuse the `/pro:audit.quality` backlog capture pattern:
 1. Ask: "Would you like to capture any findings to the backlog?"
 
 2. Present findings for selection:
-   - Group by category (CVE, OWASP category, Secrets, Framework)
+   - Group by category (CVE, OWASP category, Repository/Secrets, Framework)
    - Sort by severity within category
    - Show severity badge: `[critical]`, `[high]`, `[medium]`, `[low]`
    - Nothing selected by default
    - Mark items already in backlog as non-selectable
+   - Repository/Secrets includes all findings from audit.repo
 
 3. Use `AskUserQuestion` with `multiSelect: true`
 
@@ -432,9 +419,18 @@ Reuse the `/pro:audit.quality` backlog capture pattern:
 |--------------|-------------------|
 | CVE | `cve\|{package}\|{version}\|{cve-id}` |
 | OWASP | `{file}:{line}-{line}\|owasp-{category}` |
+| Framework | `{file}:{line}\|{framework}-{check}` |
+
+**From audit.repo:**
+
+| Finding Type | Fingerprint Format |
+|--------------|-------------------|
 | Secret (current) | `{file}:{line}\|secret-{type}` |
 | Secret (historical) | `git\|{commit}\|{file}\|secret-{type}` |
-| Framework | `{file}:{line}\|{framework}-{check}` |
+| Tracked sensitive file | `tracked\|{file}\|sensitive-file` |
+| Missing gitignore pattern | `gitignore\|missing-{pattern}` |
+| Env example issue | `.env.example:{line}\|real-value` |
+| CI inline secret | `{workflow-file}:{line}\|ci-inline-secret` |
 
 ---
 
@@ -461,8 +457,12 @@ Skipped Scans (tools not installed):
 - [ ] Project profile detected (package managers, frameworks, infra)
 - [ ] CVE scan completed for all available package managers
 - [ ] OWASP Top 10 static analysis completed
-- [ ] Secrets scanned in current files
-- [ ] Secrets scanned in git history (if tools available)
+- [ ] Repository audit completed (via audit.repo):
+  - [ ] Secrets scanned in current files
+  - [ ] Secrets scanned in git history (if tools available)
+  - [ ] Sensitive file tracking validated
+  - [ ] Environment file audit completed
+  - [ ] CI/CD secrets hygiene checked
 - [ ] Framework-specific checks completed
 - [ ] Security score calculated
 - [ ] Scorecard displayed on screen
