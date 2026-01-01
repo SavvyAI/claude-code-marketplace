@@ -69,7 +69,7 @@ If creating a new chapter:
 
 6. Display confirmation:
 ```
-[ writer:chapter ]
+[ author:chapter ]
 ------------------
 Created: book/chapters/{NN}-{slug}.md
 Title: <Chapter Title>
@@ -109,7 +109,7 @@ freeform: true
 2. Append content to chapter file (preserve existing content)
 3. Display:
 ```
-[ writer:chapter ]
+[ author:chapter ]
 ------------------
 Title: <Chapter Title>
 Mode: Append

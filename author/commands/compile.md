@@ -45,7 +45,7 @@ Before compiling, verify:
 
 If validation fails:
 ```
-[ writer:compile ]
+[ author:compile ]
 ------------------
 ✗ Validation failed
 
@@ -132,7 +132,7 @@ By <Author Name>
 
 ---
 
-*Compiled with Writer Plugin v1.0.0*
+*Compiled with Author Plugin v1.0.0*
 ```
 
 **Process:**
@@ -255,7 +255,7 @@ By <Author Name>
 
 ---
 
-*Compiled with Writer Plugin v1.0.0*
+*Compiled with Author Plugin v1.0.0*
 ```
 
 Each chapter file includes:

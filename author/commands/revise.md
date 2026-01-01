@@ -91,7 +91,7 @@ When revising for clarity:
 
 **Output:**
 ```
-[ writer:revise ]
+[ author:revise ]
 ------------------
 Scope: Chapter 01 - Introduction
 Mode: Clarity
@@ -122,7 +122,7 @@ When aligning tone:
 3. Display tone profile:
 
 ```
-[ writer:revise ]
+[ author:revise ]
 ------------------
 Mode: Tone Analysis
 
