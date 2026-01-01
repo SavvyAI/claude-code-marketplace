@@ -1,4 +1,4 @@
-# Writer Plugin Instructions
+# Author Plugin Instructions
 
 > Markdown-native authoring and publishing for long-form writing workflows.
 
@@ -26,15 +26,14 @@ book/
 
 | Command | Purpose |
 |---------|---------|
-| `/writer:init` | Initialize a new book project |
-| `/writer:import` | Import existing markdown content into book structure |
-| `/writer:weave` | Incorporate reference material with collaborative dialogue |
-| `/writer:chapter` | Create or edit chapters |
-| `/writer:revise` | Revision operations (clarity, tone) |
-| `/writer:compile` | Compile to publishing targets |
-| `/writer:status` | View progress dashboard with inferred milestones |
-| `/writer:targets` | View targets vs. current progress |
-| `/writer:targets.edit` | Modify chapter and word count targets |
+| `/author:init` | Initialize a new book project |
+| `/author:weave` | Weave content into book (bulk import or external references) |
+| `/author:chapter` | Create or edit chapters |
+| `/author:revise` | Revision operations (clarity, tone) |
+| `/author:compile` | Compile to publishing targets |
+| `/author:status` | View progress dashboard with inferred milestones |
+| `/author:targets` | View targets vs. current progress |
+| `/author:targets.edit` | Modify chapter and word count targets |
 
 ## Anti-Features
 
@@ -53,7 +52,7 @@ Chapters are numbered Markdown files in `chapters/`:
 
 ## Progress Tracking
 
-The Writer plugin tracks progress through **inferred milestones**, not explicit declarations.
+The Author plugin tracks progress through **inferred milestones**, not explicit declarations.
 
 ### Milestones
 
@@ -83,7 +82,7 @@ Books have configurable targets stored in `book.json`:
 }
 ```
 
-Default targets are set based on book type during `/writer:init`.
+Default targets are set based on book type during `/author:init`.
 
 ## Compilation Targets
 

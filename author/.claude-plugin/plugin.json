@@ -1,12 +1,12 @@
 {
-  "name": "writer",
+  "name": "author",
   "description": "Long-form authoring and publishing",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "author": {
     "name": "Wil Moore III"
   },
   "repository": "https://github.com/SavvyAI/ccplugins",
   "license": "MIT",
-  "keywords": ["writing", "book", "markdown", "publishing"],
+  "keywords": ["writing", "book", "markdown", "publishing", "authoring"],
   "commands": "./commands/"
 }

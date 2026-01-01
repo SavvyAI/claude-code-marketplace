@@ -4,7 +4,9 @@ Date: 2025-12-30
 
 ## Status
 
-Accepted
+Accepted → **Superseded**
+
+> **Superseded by ADR-029:** The `/writer:import` command has been absorbed into `/author:weave`. The weave command now detects context (empty vs existing book) and uses "Bulk Scaffold Mode" when the book is empty. This ADR remains as historical context for why a separate import command was originally designed.
 
 ## Context
 

@@ -6,7 +6,7 @@ Revision operations for improving manuscript content.
 
 Refine content at section, chapter, or manuscript scope. Supports clarity and tone revision modes.
 
-**US-004:** Given existing Markdown content, when `/writer:revise` with clarity mode is invoked, then meaning is preserved while improving readability.
+**US-004:** Given existing Markdown content, when `/author:revise` with clarity mode is invoked, then meaning is preserved while improving readability.
 
 **US-005:** Given a full manuscript, when tone alignment mode is selected, then stylistic consistency is improved.
 
@@ -19,9 +19,9 @@ Refine content at section, chapter, or manuscript scope. Supports clarity and to
 ## Examples
 
 ```
-/writer:revise 01 --clarity          # Revise chapter 01 for clarity
-/writer:revise manuscript --tone     # Align tone across manuscript
-/writer:revise                       # Interactive mode
+/author:revise 01 --clarity          # Revise chapter 01 for clarity
+/author:revise manuscript --tone     # Align tone across manuscript
+/author:revise                       # Interactive mode
 ```
 
 ## Your Task
@@ -33,7 +33,7 @@ test -f book/book.json && echo "exists" || echo "missing"
 ```
 
 If missing:
-- Display: "No book project found. Run `/writer:init` first."
+- Display: "No book project found. Run `/author:init` first."
 - Exit
 
 ### Step 2: Determine Scope and Mode

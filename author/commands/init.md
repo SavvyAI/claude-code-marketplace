@@ -7,7 +7,7 @@ Initialize a new book project with standard structure.
 Create the directory structure and manifest files needed for a long-form writing project.
 
 **Given** no existing `book/` directory
-**When** `/writer:init` is invoked
+**When** `/author:init` is invoked
 **Then** the directory structure and manifest files are created
 
 ## Your Task
@@ -19,7 +19,7 @@ ls book/ 2>/dev/null
 ```
 
 If `book/` exists and contains files:
-- Display: "A book project already exists. Use `/writer:chapter` to add content."
+- Display: "A book project already exists. Use `/author:chapter` to add content."
 - Exit
 
 ### Step 2: Check for Existing Content
@@ -36,8 +36,8 @@ options:
 
 If "Yes, I have a draft to import":
 - Display: "Great! Let's import your existing content."
-- Delegate to `/writer:import` command logic (the import command will handle metadata, structure creation, and content parsing)
-- Exit this command (import handles everything)
+- Delegate to `/author:weave` command (it will detect the empty book and use bulk scaffold mode)
+- Exit this command (weave handles everything)
 
 If "No, start fresh":
 - Continue with Steps 3-9 below
@@ -100,7 +100,7 @@ multiSelect: false
 ```
 
 If "Customize targets":
-- Ask for chapter count range (see `/writer:targets.edit` for options)
+- Ask for chapter count range (see `/author:targets.edit` for options)
 - Ask for words per chapter range
 - Ask for total word count range
 
@@ -165,7 +165,7 @@ Write `book/chapters/00-preface.md`:
 If `.gitignore` exists, append (if not already present):
 
 ```
-# Writer plugin build outputs
+# Author plugin build outputs
 book/dist/
 ```
 
@@ -196,9 +196,9 @@ book/dist/
 ║  └── dist/               (compiled outputs)                     ║
 ║                                                                 ║
 ║  Next steps:                                                    ║
-║  - Add chapters: /writer:chapter "Chapter Title"                ║
-║  - View progress: /writer:status                                ║
-║  - Compile book: /writer:compile                                ║
+║  - Add chapters: /author:chapter "Chapter Title"                ║
+║  - View progress: /author:status                                ║
+║  - Compile book: /author:compile                                ║
 ║                                                                 ║
 ╚════════════════════════════════════════════════════════════════╝
 ```

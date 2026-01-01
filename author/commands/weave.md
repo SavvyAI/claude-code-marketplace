@@ -1,19 +1,24 @@
 ---
-description: "Reference material to weave? → Analyze, verify, propose placement → Collaborative dialogue until approved"
+description: "Content to weave? → Bulk import or integrate references → Context-aware dialogue"
 allowed-tools: ["Bash", "Read", "Write", "Edit", "Glob", "Grep", "WebSearch", "WebFetch", "AskUserQuestion"]
 ---
 
 ## Context
 
-Weave reference material: $ARGUMENTS
+Weave content into book: $ARGUMENTS
 
 ## Purpose
 
-Incorporate external reference material into a book project through collaborative, iterative dialogue. Supports pasted text, images/screenshots, PDFs, URLs, and file paths.
+Weave content into a book project. This command is context-aware:
 
-**Given** reference material (any format)
-**When** `/writer:weave` is invoked
-**Then** material is analyzed, verified (optionally), and woven into appropriate chapters with citations
+- **Empty/new book**: Bulk scaffold mode - auto-detect chapter structure from H1 headings, minimal dialogue
+- **Existing book**: Integration mode - collaborative dialogue to place content strategically
+
+Supports pasted text, markdown files, images/screenshots, PDFs, URLs, and file paths.
+
+**Given** content to incorporate (any format)
+**When** `/author:weave` is invoked
+**Then** content is analyzed and woven into the book structure
 
 ## Arguments
 
@@ -22,26 +27,281 @@ Incorporate external reference material into a book project through collaborativ
 ## Examples
 
 ```
-/writer:weave                              # Interactive mode
-/writer:weave screenshot.png               # Weave from screenshot
-/writer:weave https://example.com/article  # Weave from URL
-/writer:weave notes.md                     # Weave from file
-/writer:weave "The key insight is..."      # Weave pasted content
+/author:weave                              # Interactive mode
+/author:weave draft.md                     # Weave from markdown file
+/author:weave screenshot.png               # Weave from screenshot
+/author:weave https://example.com/article  # Weave from URL
+/author:weave notes.md                     # Weave from file
+/author:weave "The key insight is..."      # Weave pasted content
 ```
 
 ## Your Task
 
-### Step 1: Verify Book Project Exists
+### Step 1: Check Book Project State
 
 ```bash
 test -f book/book.json && echo "exists" || echo "missing"
 ```
 
-If missing:
-- Display: "No book project found. Run `/writer:init` first."
-- Exit
+**If book.json is missing:**
+- The book project doesn't exist yet
+- Will use **Bulk Scaffold Mode** to create structure
 
-### Step 2: Intake - Collect Reference Material
+**If book.json exists:**
+- Check if chapters directory has content:
+```bash
+ls book/chapters/*.md 2>/dev/null | wc -l
+```
+
+**Determine mode:**
+- If `book/book.json` missing OR `book/chapters/` has 0-1 files → **Bulk Scaffold Mode**
+- Otherwise → **Integration Mode**
+
+Display mode:
+```
+[ author:weave ]
+----------------
+Mode: [Bulk Scaffold | Integration]
+```
+
+---
+
+## BULK SCAFFOLD MODE
+
+Use this mode when the book is empty or nearly empty. This is for importing existing drafts to create book structure.
+
+### Bulk Step 2: Collect Content
+
+**If argument provided:**
+- Detect type by pattern:
+  - Ends with `.md`, `.txt` → Text file (likely a draft)
+  - Starts with `http://` or `https://` → URL
+  - Ends with `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp` → Image
+  - Ends with `.pdf` → PDF
+  - Otherwise → Pasted content
+
+**If no argument:**
+
+Use `AskUserQuestion`:
+```
+question: "Where is your existing content?"
+header: "Source"
+options:
+  - "Single markdown file" (I'll provide the file path)
+  - "Directory of markdown files" (I'll provide the directory path)
+  - "Paste it here" (I'll paste my content)
+```
+
+### Bulk Step 3: Parse and Classify Content
+
+Split content by H1 headings (`# `):
+
+```javascript
+// Pseudo-logic for parsing
+sections = content.split(/^# /m)
+  .filter(s => s.trim())
+  .map(s => {
+    lines = s.split('\n')
+    title = lines[0].trim()
+    body = lines.slice(1).join('\n').trim()
+    return { title, body }
+  })
+```
+
+**Classification rules:**
+
+| Title Pattern | Classification | Destination |
+|---------------|----------------|-------------|
+| `Preface` | front-matter | `book/front-matter/preface.md` |
+| `Foreword` | front-matter | `book/front-matter/foreword.md` |
+| `Dedication` | front-matter | `book/front-matter/dedication.md` |
+| `Acknowledgments` | front-matter | `book/front-matter/acknowledgments.md` |
+| `Introduction` | chapter | `book/chapters/NN-introduction.md` |
+| `Chapter N: Title` | chapter | `book/chapters/NN-title.md` |
+| `Appendix` / `Appendix: Title` | back-matter | `book/back-matter/appendix.md` |
+| `Bibliography` | back-matter | `book/back-matter/bibliography.md` |
+| `Index` | back-matter | `book/back-matter/index.md` |
+| `Epilogue` | back-matter | `book/back-matter/epilogue.md` |
+| Other | chapter | `book/chapters/NN-slugified-title.md` |
+
+### Bulk Step 4: Display Analysis and Confirm
+
+```
+[ author:weave | bulk scaffold ]
+--------------------------------
+Analyzing content...
+
+Detected structure:
+  • Preface (234 words) → front-matter
+  • Introduction (156 words) → chapter 01
+  • Getting Started (89 words) → chapter 02
+  • Core Concepts (112 words) → chapter 03
+  • Appendix (45 words) → back-matter
+
+Total: 5 sections, 636 words
+
+Book project will be created at: book/
+
+Proceed with import? [Y/n]
+```
+
+Wait for confirmation before proceeding.
+
+### Bulk Step 5: Create Book Structure (if needed)
+
+If `book/` doesn't exist:
+
+```bash
+mkdir -p book/chapters
+mkdir -p book/front-matter
+mkdir -p book/back-matter
+mkdir -p book/dist/specmd
+mkdir -p book/dist/latex
+mkdir -p book/dist/markdown
+```
+
+### Bulk Step 6: Gather Metadata (if new project)
+
+If creating new project, ask for book metadata:
+
+```
+question: "What is the title of your book?"
+header: "Title"
+freeform: true
+```
+
+```
+question: "Who is the author?"
+header: "Author"
+options:
+  - Use git config user.name
+```
+
+```
+question: "What type of book are you writing?"
+header: "Book Type"
+options:
+  - "Business/Leadership" (40-60k words, 8-12 chapters)
+  - "Technical Manual" (60-100k words, 15-25 chapters)
+  - "Field Guide" (20-40k words, 5-10 chapters)
+  - "Memoir" (60-80k words, 12-20 chapters)
+  - "Academic" (80-100k words, 8-12 chapters)
+  - "General" (50-75k words, 10-15 chapters)
+```
+
+### Bulk Step 7: Write Chapter Files
+
+For each classified section:
+
+**Front matter:**
+```markdown
+# {Title}
+
+{Body content}
+```
+
+**Chapters:**
+```markdown
+# {Title}
+
+{Body content}
+```
+
+Use numbering based on order detected:
+- `01-introduction.md`
+- `02-getting-started.md`
+- etc.
+
+**Back matter:**
+```markdown
+# {Title}
+
+{Body content}
+```
+
+### Bulk Step 8: Create/Update Book Manifest
+
+Write or update `book/book.json`:
+
+```json
+{
+  "title": "<user-provided or inferred title>",
+  "author": "<user-provided or git config author>",
+  "version": "0.1.0",
+  "created": "<ISO 8601 timestamp>",
+  "bookType": "<selected book type>",
+  "targets": {
+    "chapters": { "min": <N>, "max": <N> },
+    "wordsPerChapter": { "min": <N>, "max": <N> },
+    "totalWords": { "min": <N>, "max": <N> }
+  },
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Introduction",
+      "file": "01-introduction.md",
+      "wordCount": 156,
+      "lastModified": "<ISO 8601 timestamp>"
+    }
+  ],
+  "frontMatter": [...],
+  "backMatter": [...],
+  "compilationTargets": ["specmd", "latex", "markdown"]
+}
+```
+
+### Bulk Step 9: Update .gitignore
+
+If `.gitignore` exists, append (if not already present):
+
+```
+# Author plugin build outputs
+book/dist/
+```
+
+### Bulk Step 10: Display Summary
+
+```
+╔════════════════════════════════════════════════════════════════╗
+║  WEAVE COMPLETE (Bulk Scaffold)                                 ║
+╠════════════════════════════════════════════════════════════════╣
+║                                                                 ║
+║  Book: <Title>                                                  ║
+║  Author: <Author>                                               ║
+║  Type: <Book Type>                                              ║
+║                                                                 ║
+║  Imported: 5 sections (636 words)                               ║
+║                                                                 ║
+║  Structure created:                                             ║
+║  book/                                                          ║
+║  ├── book.json                                                  ║
+║  ├── front-matter/                                              ║
+║  │   └── preface.md                                             ║
+║  ├── chapters/                                                  ║
+║  │   ├── 01-introduction.md                                     ║
+║  │   ├── 02-getting-started.md                                  ║
+║  │   └── 03-core-concepts.md                                    ║
+║  └── back-matter/                                               ║
+║      └── appendix.md                                            ║
+║                                                                 ║
+║  Next steps:                                                    ║
+║  - Edit chapters: /author:chapter 01                            ║
+║  - Add content: /author:chapter "New Chapter"                   ║
+║  - View progress: /author:status                                ║
+║  - Compile book: /author:compile                                ║
+║                                                                 ║
+╚════════════════════════════════════════════════════════════════╝
+```
+
+**Exit after bulk scaffold is complete.**
+
+---
+
+## INTEGRATION MODE
+
+Use this mode when the book already has content. This is for weaving external references and additional material into existing chapters.
+
+### Integration Step 2: Intake - Collect Reference Material
 
 **If argument provided:**
 - Detect type by pattern:
@@ -64,7 +324,7 @@ options:
   - "File" (I'll provide a file path)
 ```
 
-### Step 3: Extract Content
+### Integration Step 3: Extract Content
 
 **For images (screenshots, photos):**
 - The image should already be visible in the conversation
@@ -89,7 +349,7 @@ options:
 
 **Display extraction result:**
 ```
-[ writer:weave | intake ]
+[ author:weave | intake ]
 -------------------------
 Extracted from: [source type and name]
 Content type: [description - e.g., "Structured notes (4 sections, 22 points)"]
@@ -105,7 +365,7 @@ Is this content extracted correctly? [Y/n]
 
 Wait for confirmation before proceeding.
 
-### Step 4: Source Verification (Optional)
+### Integration Step 4: Source Verification (Optional)
 
 Use `AskUserQuestion`:
 ```
@@ -123,7 +383,7 @@ options:
 - Report findings:
 
 ```
-[ writer:weave | source ]
+[ author:weave | source ]
 -------------------------
 Search results:
 
@@ -158,7 +418,7 @@ options:
 - Use `WebSearch` for selected claims
 - Report verification results with sources
 
-### Step 5: Load Book Structure
+### Integration Step 5: Load Book Structure
 
 ```bash
 cat book/book.json
@@ -174,7 +434,7 @@ For each chapter, read the first ~50 lines to understand content:
 head -50 book/chapters/*.md
 ```
 
-### Step 6: Analyze Themes and Match to Structure
+### Integration Step 6: Analyze Themes and Match to Structure
 
 Identify distinct themes/topics in the reference material.
 
@@ -185,7 +445,7 @@ For each theme, determine:
 
 Present analysis:
 ```
-[ writer:weave | analysis ]
+[ author:weave | analysis ]
 ---------------------------
 Reference themes identified:
 1. [Theme 1]
@@ -201,12 +461,12 @@ Theme mapping:
 • [Theme 3] → [Recommendation] ([reasoning])
 ```
 
-### Step 7: Present Proposal
+### Integration Step 7: Present Proposal
 
 For each theme/section of the reference material, present a concrete proposal:
 
 ```
-[ writer:weave | proposal ]
+[ author:weave | proposal ]
 ---------------------------
 
 PROPOSAL: Weave [Reference Title]
@@ -237,7 +497,7 @@ options:
   - "Skip this" (Don't include in the book)
 ```
 
-### Step 8: Dialogue Phase
+### Integration Step 8: Dialogue Phase
 
 **For "Let's discuss":**
 
@@ -252,7 +512,7 @@ Respond naturally to questions. Use `WebSearch` if the user wants more informati
 
 Continue dialogue until user makes a decision (include, skip, or modified include).
 
-### Step 9: Draft Woven Content
+### Integration Step 9: Draft Woven Content
 
 For each approved item:
 
@@ -272,7 +532,7 @@ For each approved item:
 3. **Present with context:**
 
 ```
-[ writer:weave | draft ]
+[ author:weave | draft ]
 ------------------------
 
 Drafting: "[Section title]" for [Chapter name]
@@ -308,7 +568,7 @@ options:
   - "Skip this section" (Don't include after all)
 ```
 
-### Step 10: Refinement Loop
+### Integration Step 10: Refinement Loop
 
 **If "Needs adjustment":**
 
@@ -327,7 +587,7 @@ Apply changes and re-present draft.
 
 Repeat until user approves or skips.
 
-### Step 11: Store Reference (Conditional)
+### Integration Step 11: Store Reference (Conditional)
 
 Use `AskUserQuestion`:
 ```
@@ -386,11 +646,11 @@ Update or create `book/references/references.json`:
 }
 ```
 
-### Step 12: Commit Changes
+### Integration Step 12: Commit Changes
 
 Display summary of all changes:
 ```
-[ writer:weave | committing ]
+[ author:weave | committing ]
 -----------------------------
 
 Writing changes:
@@ -434,7 +694,7 @@ Commit these changes? [Y/n]
    - Update `lastModified` timestamps
    - Add to `revisions` array if it exists
 
-### Step 13: Display Completion
+### Integration Step 13: Display Completion
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -452,12 +712,14 @@ Commit these changes? [Y/n]
 ║  Reference archived: [Yes/No]                                   ║
 ║                                                                 ║
 ║  Next steps:                                                    ║
-║  - Review changes: /writer:chapter [N]                          ║
-║  - Revise for tone: /writer:revise [N] --tone                   ║
-║  - Compile book: /writer:compile                                ║
+║  - Review changes: /author:chapter [N]                          ║
+║  - Revise for tone: /author:revise [N] --tone                   ║
+║  - Compile book: /author:compile                                ║
 ║                                                                 ║
 ╚════════════════════════════════════════════════════════════════╝
 ```
+
+---
 
 ## Citation Formats
 
@@ -494,6 +756,7 @@ Store preference in `book/book.json` under `"citationStyle": "footnote"` or `"in
 
 | Scenario | Handling |
 |----------|----------|
+| No H1 headings in bulk mode | Treat entire content as single chapter, prompt for title |
 | Image has no extractable text | Describe visual content, ask user how to incorporate |
 | URL returns 404 or paywall | Inform user, ask for alternative (paste content, different source) |
 | Very long reference (>5000 words) | Summarize first, let user select which parts to weave |
@@ -502,8 +765,24 @@ Store preference in `book/book.json` under `"citationStyle": "footnote"` or `"in
 | Duplicate of existing reference | Warn user, offer to add to existing citation or skip |
 | Non-English content | Translate or summarize, confirm with user |
 | Multiple distinct topics in one reference | Split into separate proposal items |
+| Existing book/ project in bulk mode | Ask "Merge with existing?" or "Abort?" |
+| Empty sections in bulk mode | Create placeholder files with `[Content to be added]` |
 
-## Voice Matching Guidelines
+## Slugification Rules (Bulk Mode)
+
+Convert titles to filenames:
+1. Lowercase
+2. Remove `Chapter N:` prefix if present
+3. Replace spaces with hyphens
+4. Remove special characters
+5. Truncate to 50 characters
+
+Examples:
+- "Getting Started with Basics" → `getting-started-with-basics`
+- "Chapter 1: Introduction" → `introduction`
+- "What's Next?" → `whats-next`
+
+## Voice Matching Guidelines (Integration Mode)
 
 Analyze existing chapters to detect:
 
@@ -518,7 +797,6 @@ Analyze existing chapters to detect:
 
 ## Relationship to Other Commands
 
-- `/writer:import` - One-time bulk structural import (no dialogue)
-- `/writer:weave` - Iterative incorporation with full dialogue
-- `/writer:chapter` - Write new content from scratch
-- `/writer:revise` - Polish woven content after the fact
+- `/author:weave` - This command (context-aware: bulk scaffold or integration)
+- `/author:chapter` - Write new content from scratch
+- `/author:revise` - Polish woven content after the fact

@@ -6,7 +6,7 @@ Compile manuscript to publishing targets.
 
 Generate publishable artifacts for web and print distribution.
 
-**US-006:** Given valid manifests, when `/writer:compile` is invoked, then SpecMD output is generated.
+**US-006:** Given valid manifests, when `/author:compile` is invoked, then SpecMD output is generated.
 
 **US-007:** Given valid content, when LaTeX target is selected, then a print-ready PDF artifact is produced.
 
@@ -17,10 +17,10 @@ Generate publishable artifacts for web and print distribution.
 ## Examples
 
 ```
-/writer:compile                    # Interactive (choose target)
-/writer:compile specmd             # Compile to SpecMD only
-/writer:compile latex              # Compile to LaTeX/PDF
-/writer:compile all                # Compile all targets
+/author:compile                    # Interactive (choose target)
+/author:compile specmd             # Compile to SpecMD only
+/author:compile latex              # Compile to LaTeX/PDF
+/author:compile all                # Compile all targets
 ```
 
 ## Your Task
@@ -32,7 +32,7 @@ test -f book/book.json && echo "exists" || echo "missing"
 ```
 
 If missing:
-- Display: "No book project found. Run `/writer:init` first."
+- Display: "No book project found. Run `/author:init` first."
 - Exit
 
 ### Step 2: Validate Manuscript

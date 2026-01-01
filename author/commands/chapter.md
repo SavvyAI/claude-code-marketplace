@@ -6,7 +6,7 @@ Create or edit chapters in a book project.
 
 Add new chapters or modify existing chapters using voice-first prompts.
 
-**US-002:** Given an initialized project, when `/writer:chapter` is invoked with a title, then a new Markdown file is created in `/chapters`.
+**US-002:** Given an initialized project, when `/author:chapter` is invoked with a title, then a new Markdown file is created in `/chapters`.
 
 **US-003:** Given an existing chapter, when append or revise mode is selected, then content is updated without deleting unrelated sections.
 
@@ -17,10 +17,10 @@ Add new chapters or modify existing chapters using voice-first prompts.
 ## Examples
 
 ```
-/writer:chapter "The Journey Begins"        # Create new chapter
-/writer:chapter 01                          # Edit chapter 01
-/writer:chapter introduction                # Edit by slug
-/writer:chapter                             # Interactive mode
+/author:chapter "The Journey Begins"        # Create new chapter
+/author:chapter 01                          # Edit chapter 01
+/author:chapter introduction                # Edit by slug
+/author:chapter                             # Interactive mode
 ```
 
 ## Your Task
@@ -32,7 +32,7 @@ test -f book/book.json && echo "exists" || echo "missing"
 ```
 
 If missing:
-- Display: "No book project found. Run `/writer:init` first."
+- Display: "No book project found. Run `/author:init` first."
 - Exit
 
 ### Step 2: Determine Mode

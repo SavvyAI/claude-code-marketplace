@@ -6,6 +6,8 @@ Date: 2025-12-30
 
 Accepted
 
+> **Amended by ADR-029:** The "Writer" plugin has been renamed to "Author" plugin. Directory `writer/` is now `author/`, and all `/writer:*` commands are now `/author:*`.
+
 ## Context
 
 The ccplugins repository initially housed the "Pro" plugin for Claude Code. A new requirement emerged to add a "Writer" plugin for long-form authoring and publishing. This raised questions about how to structure multiple plugins within a single repository and whether plugins should share infrastructure or remain isolated.
