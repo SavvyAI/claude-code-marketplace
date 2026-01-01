@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/SavvyAI/ccplugins?style=flat-square)](https://github.com/SavvyAI/ccplugins/stargazers)
 [![License](https://img.shields.io/github/license/SavvyAI/ccplugins?style=flat-square)](https://github.com/SavvyAI/ccplugins/blob/main/LICENSE)
-[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet?style=flat-square)](https://docs.anthropic.com/en/docs/claude-code/overview)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet?style=flat-square)](https://code.claude.com/docs/en/plugins)
 
 Plugins that extend Claude Code with powerful development workflows.
 
