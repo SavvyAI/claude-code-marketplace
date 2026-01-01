@@ -1,6 +1,10 @@
 {
-  "lastSequence": 28,
+  "lastSequence": 29,
   "entries": [
+    {
+      "branch": "chore/rename-writer-to-author",
+      "adrs": ["029-author-plugin-rename-and-weave-consolidation.md"]
+    },
     {
       "branch": "feature/writer-milestones-progress-tracking",
       "adrs": ["028-writer-milestone-tracking-design.md"]

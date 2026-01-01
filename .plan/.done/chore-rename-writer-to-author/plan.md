@@ -78,3 +78,7 @@ else:
     → Integration mode (existing behavior)
     → Full dialogue, placement proposals, verification option
 ```
+
+## Related ADRs
+
+- [ADR-029: Author Plugin Rename and Weave Consolidation](../../doc/decisions/029-author-plugin-rename-and-weave-consolidation.md)

@@ -11,7 +11,8 @@
       "source": "/pro:chore",
       "sourceBranch": "chore/rename-writer-to-author",
       "createdAt": "2025-12-31T22:00:00Z",
-      "status": "in-progress"
+      "status": "completed",
+      "completedAt": "2025-12-31T23:00:00Z"
     },
     {
       "id": 42,
