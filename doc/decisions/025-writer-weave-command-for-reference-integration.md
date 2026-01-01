@@ -6,6 +6,8 @@ Date: 2025-12-30
 
 Accepted
 
+> **Amended by ADR-029:** The command is now `/author:weave` (plugin renamed from Writer to Author). Additionally, weave now absorbs the functionality of the former `/writer:import` command via context-aware "Bulk Scaffold Mode" for empty books.
+
 ## Context
 
 Authors often encounter reference material during the writing process—articles, screenshots, notes, PDFs—that should be incorporated into their book. The existing `/writer:import` command handles bulk structural import of existing content, but doesn't address the ongoing need to weave external references into an existing manuscript.

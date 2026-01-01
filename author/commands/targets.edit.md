@@ -18,7 +18,7 @@ Interactively modify book targets (chapter count, word counts).
 Allow authors to adjust their goals as the book evolves.
 
 **Given** an initialized book project
-**When** `/writer:targets.edit` is invoked
+**When** `/author:targets.edit` is invoked
 **Then** targets are updated in `book.json`
 
 ## Your Task
@@ -30,7 +30,7 @@ ls book/book.json 2>/dev/null
 ```
 
 If no `book.json`:
-- Display: "No book project found. Use `/writer:init` to create one."
+- Display: "No book project found. Use `/author:init` to create one."
 - Exit
 
 ### Step 2: Load Current State
@@ -182,7 +182,7 @@ Update the manifest with new values:
 ║  Words/Chapter:    <min>-<max>                                ║
 ║  Total Words:      <min>-<max>                                ║
 ║                                                               ║
-║  Use /writer:status to see progress against these targets    ║
+║  Use /author:status to see progress against these targets    ║
 ║                                                               ║
 ╚══════════════════════════════════════════════════════════════╝
 ```

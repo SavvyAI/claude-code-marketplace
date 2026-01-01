@@ -16,7 +16,7 @@ Display a read-only dashboard showing book progress against targets and inferred
 Help authors understand where they are in the book lifecycle without explicit tracking.
 
 **Given** an initialized book project
-**When** `/writer:status` is invoked
+**When** `/author:status` is invoked
 **Then** a dashboard shows progress metrics and milestone status
 
 ## Your Task
@@ -28,7 +28,7 @@ ls book/book.json 2>/dev/null
 ```
 
 If no `book.json`:
-- Display: "No book project found. Use `/writer:init` to create one."
+- Display: "No book project found. Use `/author:init` to create one."
 - Exit
 
 ### Step 2: Load Book Manifest
@@ -118,7 +118,7 @@ Find the first milestone that is NOT reached:
 5. If not sample-chapters-exist → suggest drafting 2+ chapters to target depth
 6. If not pitch-ready → identify which prerequisite is missing
 7. If not manuscript-complete → suggest completing remaining chapters
-8. If not production-ready → suggest running `/writer:compile`
+8. If not production-ready → suggest running `/author:compile`
 9. If all reached → "Your book is production-ready!"
 
 ### Step 6: Display Dashboard

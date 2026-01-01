@@ -9,8 +9,8 @@
       "source": "./pro"
     },
     {
-      "name": "writer",
-      "source": "./writer"
+      "name": "author",
+      "source": "./author"
     }
   ]
 }

@@ -6,6 +6,8 @@ Date: 2025-12-31
 
 Accepted
 
+> **Amended by ADR-029:** The "Writer" plugin has been renamed to "Author" plugin. All `/writer:*` commands referenced in this document are now `/author:*`.
+
 ## Context
 
 The Writer plugin excels at local execution (drafting, structuring, compiling), but lacked a way to track macro-level progress through a book's lifecycle. This created two problems:

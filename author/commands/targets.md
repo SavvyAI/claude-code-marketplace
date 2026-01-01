@@ -10,14 +10,14 @@ allowed-tools:
 
 Display current book targets compared to actual progress.
 
-This is an alias for `/writer:targets.view`.
+This is an alias for `/author:targets.view`.
 
 ## Purpose
 
 Help authors see their goals and current progress at a glance.
 
 **Given** an initialized book project
-**When** `/writer:targets` is invoked
+**When** `/author:targets` is invoked
 **Then** targets and current metrics are displayed
 
 ## Your Task
@@ -29,7 +29,7 @@ ls book/book.json 2>/dev/null
 ```
 
 If no `book.json`:
-- Display: "No book project found. Use `/writer:init` to create one."
+- Display: "No book project found. Use `/author:init` to create one."
 - Exit
 
 ### Step 2: Load Book Manifest
@@ -71,7 +71,7 @@ For each target, compare current value to range:
 ║  Words/Chapter       <min>-<max>     avg <N>       <status>  ║
 ║  Total Words         <min>-<max>     <N>           <status>  ║
 ║                                                               ║
-║  Use /writer:targets.edit to modify                           ║
+║  Use /author:targets.edit to modify                           ║
 ║                                                               ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
