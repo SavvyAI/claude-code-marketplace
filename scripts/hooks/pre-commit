@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#
+# Pre-commit hook: regenerate CONTRIBUTORS.md from git history
+#
+
+# Run the update script
+./scripts/update-contributors.sh
+
+# Stage the updated file if it changed
+git add CONTRIBUTORS.md 2>/dev/null || true

@@ -7,6 +7,9 @@
 git clone https://github.com/SavvyAI/ccplugins.git
 cd ccplugins
 
+# Enable git hooks (auto-updates CONTRIBUTORS.md)
+git config core.hooksPath scripts/hooks
+
 # Add your local clone as a marketplace
 /plugin marketplace add .
 
