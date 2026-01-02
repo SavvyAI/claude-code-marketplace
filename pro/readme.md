@@ -51,6 +51,9 @@ Installing this plugin gives Claude Code:
 | `/pro:git.main` | Standardize default branch to `main` with explicit confirmation |
 | `/pro:bip` | Review and manage your "build in public" content queue |
 | `/pro:bip.setup` | Configure your voice/tone for build-in-public drafts |
+| `/pro:product.brief` | Distill unstructured ideas into structured product brief |
+| `/pro:product.validate` | Brutal market validation from a harsh co-founder persona |
+| `/pro:product.pitch` | Generate investor-ready pitch deck outline from validation |
 
 ## Workflow
 
@@ -87,6 +90,11 @@ Installing this plugin gives Claude Code:
 
 # Git utilities
 /pro:git.main                   # Standardize default branch to 'main'
+
+# Product validation (pre-repo, idea stage)
+/pro:product.brief "idea here"  # Distill chaos into structured brief
+/pro:product.validate           # Brutal market validation
+/pro:product.pitch              # Generate pitch deck outline
 ```
 
 ## Bundled MCP Servers
@@ -120,6 +128,42 @@ export GITHUB_TOKEN=ghp_your_token_here
 ```
 
 The server provides access to shadcn/ui v4 components across React, Vue, Svelte, and React Native frameworks.
+
+## Product Validation Pipeline
+
+A three-command pipeline for early-stage idea validation:
+
+```
+Raw Idea → /pro:product.brief → /pro:product.validate → /pro:product.pitch
+```
+
+### The Harsh Co-Founder
+
+`/pro:product.validate` acts like a brutal but fair technical co-founder:
+- Destroys weak ideas with evidence-based criticism
+- Confirms strong ideas with clear GO signal
+- Uses deep web research to back every claim
+- Produces GO / CAUTION / NO-GO verdict
+
+### Works Pre-Repo
+
+These commands work in any directory, even before git init:
+- Perfect for validating ideas before committing to a project
+- Storage at `.plan/product/` with timestamped versioning
+- Brief, validation reports, and pitch outlines all persist for reference
+
+### Workflow
+
+```bash
+# 1. Dump your unstructured idea
+/pro:product.brief "I want to build a TurboTax for energy rebates..."
+
+# 2. Get brutal market validation
+/pro:product.validate
+
+# 3. Generate pitch deck outline (if validated)
+/pro:product.pitch
+```
 
 ## Bundled Skills
 
