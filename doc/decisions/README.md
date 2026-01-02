@@ -49,3 +49,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [029. Author Plugin Rename and Weave Consolidation](029-author-plugin-rename-and-weave-consolidation.md)
 - [030. Audit Repo Command and Secrets Consolidation](030-audit-repo-secrets-consolidation.md)
 - [031. Product Validation Pipeline Architecture](031-product-validation-pipeline-architecture.md)
+- [032. Tiered Extraction Strategy and Image Intelligence](032-tiered-extraction-and-image-intelligence.md)

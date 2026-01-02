@@ -1,6 +1,18 @@
 {
-  "lastSequence": 46,
+  "lastSequence": 47,
   "items": [
+    {
+      "id": 47,
+      "title": "Robust content intake for /author:weave",
+      "description": "Enhance /author:weave to robustly handle diverse content sources:\n\n**URL Capture (Robust):**\n- LinkedIn, X/Twitter, blog posts, article URLs\n- Per-URL option for extraction depth (main content vs include comments)\n- Tiered fallback: WebFetch → Browser automation (Playwright) → Ask user to paste\n- Image URLs downloaded and processed\n\n**Image/Screenshot Handling:**\n- Auto-analyze image content, match to chapters, propose placement\n- Generate 3 caption suggestions for user selection\n- Copy images to book/assets/ with manifest.json\n- Caption format choice: Markdown or HTML figure\n\n**PDF Support:**\n- Full extraction with structure preservation\n- Handle multi-page documents\n\n**Google Docs Support (Tiered):**\n- Public link access → Browser automation → Export guidance fallback",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|47|weave-robust-content-intake",
+      "source": "/pro:feature",
+      "sourceBranch": "feature/weave-robust-content-intake",
+      "createdAt": "2026-01-02T00:00:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 46,
       "title": "Product validation pipeline (brief + validate + pitch)",

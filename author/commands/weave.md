@@ -1,6 +1,6 @@
 ---
 description: "Content to weave? → Bulk import or integrate references → Context-aware dialogue"
-allowed-tools: ["Bash", "Read", "Write", "Edit", "Glob", "Grep", "WebSearch", "WebFetch", "AskUserQuestion"]
+allowed-tools: ["Bash", "Read", "Write", "Edit", "Glob", "Grep", "WebSearch", "WebFetch", "AskUserQuestion", "mcp__plugin_pro_playwright__browser_navigate", "mcp__plugin_pro_playwright__browser_snapshot", "mcp__plugin_pro_playwright__browser_click", "mcp__plugin_pro_playwright__browser_wait_for"]
 ---
 
 ## Context
@@ -14,7 +14,7 @@ Weave content into a book project. This command is context-aware:
 - **Empty/new book**: Bulk scaffold mode - auto-detect chapter structure from H1 headings, minimal dialogue
 - **Existing book**: Integration mode - collaborative dialogue to place content strategically
 
-Supports pasted text, markdown files, images/screenshots, PDFs, URLs, and file paths.
+Supports pasted text, markdown files, images/screenshots, PDFs, URLs (including social media), and Google Docs.
 
 **Given** content to incorporate (any format)
 **When** `/author:weave` is invoked
@@ -27,12 +27,16 @@ Supports pasted text, markdown files, images/screenshots, PDFs, URLs, and file p
 ## Examples
 
 ```
-/author:weave                              # Interactive mode
-/author:weave draft.md                     # Weave from markdown file
-/author:weave screenshot.png               # Weave from screenshot
-/author:weave https://example.com/article  # Weave from URL
-/author:weave notes.md                     # Weave from file
-/author:weave "The key insight is..."      # Weave pasted content
+/author:weave                                        # Interactive mode
+/author:weave draft.md                               # Weave from markdown file
+/author:weave screenshot.png                         # Weave from local screenshot
+/author:weave https://example.com/article            # Weave from blog/article URL
+/author:weave https://linkedin.com/posts/user/...    # Weave from LinkedIn post
+/author:weave https://x.com/user/status/123456       # Weave from X/Twitter post
+/author:weave https://docs.google.com/document/d/... # Weave from Google Doc
+/author:weave https://example.com/image.png          # Weave from image URL
+/author:weave notes.pdf                              # Weave from PDF
+/author:weave "The key insight is..."                # Weave pasted content
 ```
 
 ## Your Task
@@ -63,6 +67,315 @@ Display mode:
 ----------------
 Mode: [Bulk Scaffold | Integration]
 ```
+
+---
+
+## INPUT TYPE DETECTION
+
+Before processing, detect the input type using these patterns:
+
+### URL Type Detection
+
+When input starts with `http://` or `https://`, classify by pattern:
+
+| Pattern | Type | Handler |
+|---------|------|---------|
+| `linkedin.com/(posts\|feed\|pulse)` | Social Media (LinkedIn) | Social media extraction with tiered fallback |
+| `(twitter\|x).com/\w+/status` | Social Media (X/Twitter) | Social media extraction with tiered fallback |
+| `docs.google.com/document` | Google Doc | Google Docs tiered strategy |
+| `docs.google.com/spreadsheets` | Google Sheet | Google Docs tiered strategy |
+| `youtube.com/watch` or `youtu.be` | Video | Extract transcript/description |
+| `medium.com` | Blog (Medium) | WebFetch with paywall handling |
+| `*.substack.com` | Blog (Substack) | WebFetch |
+| `\.(png\|jpg\|jpeg\|gif\|webp\|svg)(\?.*)?$` | Image URL | Download and process as image |
+| Other | General Web | Standard WebFetch |
+
+### File Type Detection
+
+When input is a file path:
+
+| Pattern | Type | Handler |
+|---------|------|---------|
+| `.md`, `.txt` | Text file | Read directly |
+| `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp` | Local image | Image analysis flow |
+| `.pdf` | PDF | PDF extraction flow |
+| Other | Unknown file | Attempt to read as text |
+
+---
+
+## EXTRACTION HANDLERS
+
+### Social Media Extraction (LinkedIn, X/Twitter)
+
+**Tiered fallback strategy:**
+
+1. **Tier 1: WebFetch** - Try standard fetch first
+   ```
+   Use WebFetch with the URL
+   If successful → proceed with content
+   If blocked/rate-limited → proceed to Tier 2
+   ```
+
+2. **Tier 2: Browser Automation** - Use Playwright MCP
+   ```
+   mcp__plugin_pro_playwright__browser_navigate to the URL
+   mcp__plugin_pro_playwright__browser_wait_for content to load
+   mcp__plugin_pro_playwright__browser_snapshot to capture content
+   If successful → proceed with content
+   If still blocked → proceed to Tier 3
+   ```
+
+3. **Tier 3: User Paste** - Ask user to paste content
+   ```
+   "I couldn't access this URL directly. Please paste the content you'd like to weave:"
+   ```
+
+**Per-URL engagement depth question:**
+
+After successful extraction, ask:
+```
+question: "What content should I extract from this post?"
+header: "Extract"
+options:
+  - "Post only" (Just the main post content)
+  - "Post + comments" (Include replies and engagement if available)
+```
+
+**Display social media extraction result:**
+```
+[ author:weave | social media ]
+-------------------------------
+Source: LinkedIn post by [Author]
+Posted: [Date if available]
+
+Content:
+─────────────────────────────────────────
+[Extracted post content]
+─────────────────────────────────────────
+
+[If comments included:]
+Top comments:
+• [Comment 1]
+• [Comment 2]
+─────────────────────────────────────────
+
+Proceed with this content? [Y/n]
+```
+
+### Google Docs Extraction
+
+**Tiered strategy:**
+
+1. **Tier 1: Public Link** - Check if document is publicly shared
+   ```
+   Use WebFetch with the Google Docs URL
+   If content is accessible → proceed
+   If "Sign in required" or access denied → proceed to Tier 2
+   ```
+
+2. **Tier 2: Browser Automation** - Use Playwright with user's session
+   ```
+   mcp__plugin_pro_playwright__browser_navigate to the Google Docs URL
+   mcp__plugin_pro_playwright__browser_wait_for document to load
+   mcp__plugin_pro_playwright__browser_snapshot to capture content
+   If successful → proceed with content
+   If still blocked → proceed to Tier 3
+   ```
+
+3. **Tier 3: Export Guidance** - Guide user to export
+   ```
+   "I couldn't access this Google Doc directly. Please try one of these options:
+
+   Option A: Make the document publicly viewable
+   - File → Share → Change to 'Anyone with the link'
+
+   Option B: Export and provide the file
+   - File → Download → PDF or Markdown
+   - Then run: /author:weave path/to/exported-file"
+   ```
+
+### Image URL Download
+
+When input matches an image URL pattern:
+
+1. **Download image** using WebFetch or browser automation
+2. **Save to assets directory:**
+   ```bash
+   mkdir -p book/assets/images
+   ```
+3. **Generate unique filename:**
+   - Format: `fig-{NNN}-{slugified-original-name}.{ext}`
+   - Get next figure number from existing assets
+4. **Proceed with image analysis flow** (see Image Intelligence section)
+
+**Display image URL download result:**
+```
+[ author:weave | image download ]
+---------------------------------
+Downloaded: [original URL]
+Saved as: book/assets/images/fig-001-diagram.png
+Size: [X]KB
+
+[Proceed to image analysis...]
+```
+
+### PDF Extraction
+
+Claude can read PDFs natively. For enhanced handling:
+
+1. **Read entire PDF** using the Read tool
+2. **Detect structure:**
+   - Look for formatting that indicates H1/H2 headings
+   - Identify logical sections
+   - Note page breaks and chapters
+3. **Present structure preview:**
+
+```
+[ author:weave | PDF analysis ]
+-------------------------------
+Document: [filename]
+Pages: [N]
+
+Detected structure:
+  • Section 1: [Title] (pages 1-3)
+  • Section 2: [Title] (pages 4-7)
+  • Section 3: [Title] (pages 8-12)
+
+Content preview:
+─────────────────────────────────────────
+[First ~500 chars]
+─────────────────────────────────────────
+
+Extract all content? [Y/n]
+```
+
+---
+
+## IMAGE INTELLIGENCE
+
+When the input is an image (local file or downloaded from URL):
+
+### Image Analysis Flow
+
+1. **Read image** using Claude's vision capability
+2. **Extract semantic content:**
+   - What does the image show?
+   - Is there text to OCR?
+   - What concepts/themes are present?
+3. **Load book structure** from `book/book.json`
+4. **Match themes** to existing chapters
+5. **Propose placement** with rationale
+
+### Auto-Placement Analysis
+
+```
+[ author:weave | image analysis ]
+---------------------------------
+Image: [filename or URL]
+Type: [screenshot/diagram/photo/chart]
+
+Content detected:
+─────────────────────────────────────────
+[Description of what the image shows]
+[OCR text if applicable]
+─────────────────────────────────────────
+
+Placement recommendation:
+→ Chapter: [Chapter N - Title]
+→ Section: "[Section heading]"
+→ Rationale: [Why this placement makes sense]
+```
+
+### Caption Suggestions
+
+Generate 3 contextually relevant caption suggestions:
+
+```
+Caption suggestions:
+1. "[Caption 1 - descriptive]"
+2. "[Caption 2 - conceptual]"
+3. "[Caption 3 - contextual to chapter]"
+
+Choose a caption or write your own:
+```
+
+Use `AskUserQuestion`:
+```
+question: "Which caption do you prefer?"
+header: "Caption"
+options:
+  - "[Caption 1]"
+  - "[Caption 2]"
+  - "[Caption 3]"
+```
+
+User can select "Other" to write a custom caption.
+
+### Caption Format Selection
+
+```
+question: "What format for this figure?"
+header: "Format"
+options:
+  - "Markdown (Recommended)" (![caption](assets/images/fig-001.png))
+  - "HTML figure" (<figure> with <figcaption> for richer semantics)
+```
+
+**Markdown format output:**
+```markdown
+![Caption text](assets/images/fig-001-diagram.png)
+```
+
+**HTML figure format output:**
+```html
+<figure>
+  <img src="assets/images/fig-001-diagram.png" alt="Caption text">
+  <figcaption>Caption text</figcaption>
+</figure>
+```
+
+### Asset Management
+
+When processing images:
+
+1. **Create assets directory** if needed:
+   ```bash
+   mkdir -p book/assets/images
+   ```
+
+2. **Copy/download image** to `book/assets/images/`:
+   - Local file: Copy with new name
+   - URL: Download and save
+   - Format: `fig-{NNN}-{slug}.{ext}`
+
+3. **Update asset manifest** at `book/assets/manifest.json`:
+   ```json
+   {
+     "assets": [
+       {
+         "id": "fig-001",
+         "filename": "fig-001-architecture.png",
+         "originalPath": "/path/to/original.png",
+         "originalUrl": "https://example.com/image.png",
+         "caption": "High-level system architecture",
+         "format": "markdown",
+         "usedIn": ["04-system-design.md"],
+         "addedAt": "2026-01-02T12:00:00Z"
+       }
+     ]
+   }
+   ```
+
+4. **Display asset management result:**
+   ```
+   [ author:weave | asset saved ]
+   ------------------------------
+   ✓ Saved: book/assets/images/fig-001-architecture.png
+   ✓ Updated: book/assets/manifest.json
+
+   Reference in chapter:
+   ![High-level system architecture](assets/images/fig-001-architecture.png)
+   ```
 
 ---
 
@@ -304,12 +617,16 @@ Use this mode when the book already has content. This is for weaving external re
 ### Integration Step 2: Intake - Collect Reference Material
 
 **If argument provided:**
-- Detect type by pattern:
-  - Starts with `http://` or `https://` → URL
-  - Ends with `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp` → Image
-  - Ends with `.pdf` → PDF
-  - Ends with `.md`, `.txt`, or other text extension → Text file
-  - Otherwise → Pasted content
+
+Use the INPUT TYPE DETECTION rules above to classify, then route to the appropriate EXTRACTION HANDLER:
+- Social media URLs → Social Media Extraction (tiered fallback)
+- Google Docs URLs → Google Docs Extraction (tiered fallback)
+- Image URLs → Image URL Download → Image Intelligence
+- General URLs → WebFetch
+- Local images → Image Intelligence
+- PDFs → PDF Extraction
+- Text files → Read directly
+- Otherwise → Pasted content
 
 **If no argument:**
 
@@ -320,34 +637,33 @@ header: "Source"
 options:
   - "Paste text" (I'll paste the content directly)
   - "Image/screenshot" (I'll provide a file path or it's already in the conversation)
-  - "URL" (I'll provide a web link)
-  - "File" (I'll provide a file path)
+  - "URL" (I'll provide a web link - works with social media, Google Docs, blogs, etc.)
+  - "File" (I'll provide a file path - PDF, markdown, etc.)
 ```
 
 ### Integration Step 3: Extract Content
 
-**For images (screenshots, photos):**
-- The image should already be visible in the conversation
-- Extract all text content using vision
-- Note any structural elements (headers, bullets, tables)
-- Describe any non-text visual information
+**Route to appropriate extraction handler based on detected type:**
 
-**For URLs:**
-- Use `WebFetch` to retrieve page content
-- Extract main article/content, strip navigation and ads
-- Capture title, author, publication date if available
+| Input Type | Handler Reference |
+|------------|-------------------|
+| LinkedIn/X post | See "Social Media Extraction" - uses tiered fallback |
+| Google Doc | See "Google Docs Extraction" - uses tiered fallback |
+| Image URL | See "Image URL Download" then "Image Intelligence" |
+| Local image | See "Image Intelligence" - auto-analyze and suggest placement |
+| PDF | See "PDF Extraction" - preserve structure |
+| General URL | Use `WebFetch`, extract main content |
+| Text file | Read file content directly |
+| Pasted text | Use content as-is |
 
-**For PDFs:**
-- Read the PDF file (Claude can read PDFs directly)
-- Extract structured content
+**For images (local or downloaded from URL):**
+- Follow the IMAGE INTELLIGENCE flow above
+- Auto-analyze content and propose placement
+- Generate 3 caption suggestions
+- Ask for caption format preference (Markdown or HTML figure)
+- Save to `book/assets/images/` and update manifest
 
-**For text files:**
-- Read file content directly
-
-**For pasted text:**
-- Use content as-is
-
-**Display extraction result:**
+**Display extraction result (for non-image content):**
 ```
 [ author:weave | intake ]
 -------------------------
@@ -767,6 +1083,17 @@ Store preference in `book/book.json` under `"citationStyle": "footnote"` or `"in
 | Multiple distinct topics in one reference | Split into separate proposal items |
 | Existing book/ project in bulk mode | Ask "Merge with existing?" or "Abort?" |
 | Empty sections in bulk mode | Create placeholder files with `[Content to be added]` |
+| **LinkedIn/X rate limited** | Auto-fallback to browser automation, then ask for paste |
+| **Google Doc requires auth** | Try browser automation, then guide export steps |
+| **Image URL download fails** | Try browser automation, then ask for local file |
+| **Social media post deleted** | Inform user, suggest finding cached/archived version |
+| **Twitter/X thread (multi-post)** | Extract all posts in thread, present as unified content |
+| **LinkedIn article vs post** | Detect type and extract appropriately (articles are longer) |
+| **Image too large for chapter** | Suggest resizing or recommend placement as figure |
+| **Duplicate image filename** | Generate unique filename with incrementing suffix |
+| **PDF is scanned (image-only)** | Use OCR capabilities, warn about potential quality issues |
+| **Google Sheets URL** | Guide user to export as CSV or copy specific data range |
+| **YouTube URL** | Extract video title, description; offer to fetch transcript if available |
 
 ## Slugification Rules (Bulk Mode)
 
@@ -800,3 +1127,39 @@ Analyze existing chapters to detect:
 - `/author:weave` - This command (context-aware: bulk scaffold or integration)
 - `/author:chapter` - Write new content from scratch
 - `/author:revise` - Polish woven content after the fact
+
+## Supported Input Types Summary
+
+| Input | Detection | Extraction Method | Special Features |
+|-------|-----------|-------------------|------------------|
+| **LinkedIn post** | URL pattern | Tiered: WebFetch → Browser → Paste | Per-URL engagement depth |
+| **X/Twitter post** | URL pattern | Tiered: WebFetch → Browser → Paste | Thread extraction support |
+| **Google Doc** | URL pattern | Tiered: Public → Browser → Export guidance | Full document extraction |
+| **Blog/article URL** | URL pattern | WebFetch | Title, author, date capture |
+| **Medium article** | URL pattern | WebFetch with paywall handling | Content extraction |
+| **Image URL** | Extension pattern | Download → Image Intelligence | Auto-caption, placement |
+| **Local image** | Extension pattern | Read → Image Intelligence | Auto-caption, placement |
+| **PDF** | Extension pattern | Native PDF reading | Structure preservation |
+| **Markdown/text** | Extension pattern | Direct read | Standard text processing |
+| **Pasted content** | Default | Use as-is | Standard text processing |
+
+## Assets Directory Structure
+
+When images are processed, this structure is created:
+
+```
+book/
+├── assets/
+│   ├── images/
+│   │   ├── fig-001-architecture.png
+│   │   ├── fig-002-workflow.png
+│   │   └── ...
+│   └── manifest.json
+├── chapters/
+├── front-matter/
+├── back-matter/
+├── references/
+└── book.json
+```
+
+The `manifest.json` tracks all assets with metadata for portability and reference management.
