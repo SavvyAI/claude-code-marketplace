@@ -1,6 +1,10 @@
 {
-  "lastSequence": 31,
+  "lastSequence": 32,
   "entries": [
+    {
+      "branch": "feature/weave-robust-content-intake",
+      "adrs": ["032-tiered-extraction-and-image-intelligence.md"]
+    },
     {
       "branch": "feat/product-validation-pipeline",
       "adrs": ["031-product-validation-pipeline-architecture.md"]
