@@ -1,6 +1,18 @@
 {
-  "lastSequence": 47,
+  "lastSequence": 48,
   "items": [
+    {
+      "id": 48,
+      "title": "Comprehensive social sharing setup command",
+      "description": "/pro:social - Meta-command that handles complete social sharing setup across all major platforms. Phases: (1) Audit existing metadata, (2) Generate OG image via /pro:og logic, (3) Configure all platform-specific meta tags, (4) Add structured data (JSON-LD) with full schema.org detection, (5) Generate favicon/touch icons from logo if missing, (6) Provide validation links and cache-busting guidance. Supports Next.js, Vite, and plain HTML. Runs unattended where possible.",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|48|social-sharing-setup-command",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/social-sharing-setup-command",
+      "createdAt": "2026-01-02T12:00:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 47,
       "title": "Robust content intake for /author:weave",
