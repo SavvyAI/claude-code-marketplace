@@ -1,6 +1,18 @@
 {
-  "lastSequence": 45,
+  "lastSequence": 46,
   "items": [
+    {
+      "id": 46,
+      "title": "Product validation pipeline (brief + validate + pitch)",
+      "description": "Three-command pipeline for early-stage idea validation:\n\n**`/pro:product.brief`** - Distill unstructured idea material (voice transcriptions, notes, single sentences) into a structured product brief. Extracts problem, solution, target customer, value prop, timing, business model hypothesis.\n\n**`/pro:product.validate`** - Run brutal, no-BS market validation against the brief. Acts like a harsh technical co-founder who destroys weak ideas but confirms strong ones. Uses multi-source research (WebSearch built-in, extensible to Perplexity/Gemini). Produces comprehensive validation report with: market signal analysis, gap analysis, buyer psychology, competitive reality, risk profile, and GO/CAUTION/NO-GO verdict.\n\n**`/pro:product.pitch`** - Generate pitch deck outline from validated product. Uses brief + validation to create 10-slide structure with hook, problem, solution, market, business model, traction, competition, team, ask, and vision.\n\n**Storage:** `.plan/product/` directory with timestamped versioning\n**Git required:** No - works in any directory, even pre-repo\n**Tone:** Brutally honest, not cruel\n**Research APIs:** Extension hooks for Perplexity/Gemini in v1",
+      "category": "feature",
+      "severity": "high",
+      "fingerprint": "feature|46|product-validation-pipeline",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/product-validation-pipeline",
+      "createdAt": "2026-01-01T22:00:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 45,
       "title": "Repository health audit command (audit.repo)",

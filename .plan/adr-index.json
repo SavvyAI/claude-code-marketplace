@@ -1,6 +1,10 @@
 {
-  "lastSequence": 30,
+  "lastSequence": 31,
   "entries": [
+    {
+      "branch": "feat/product-validation-pipeline",
+      "adrs": ["031-product-validation-pipeline-architecture.md"]
+    },
     {
       "branch": "feat/audit-repo-command",
       "adrs": ["030-audit-repo-secrets-consolidation.md"]
