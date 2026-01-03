@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "playwright": {
-      "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest"]
+      "command": "${CLAUDE_PLUGIN_ROOT}/bin/playwright-mcp-wrapper.sh",
+      "args": []
     },
     "context7": {
       "command": "npx",

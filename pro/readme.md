@@ -108,6 +108,44 @@ Installing this plugin gives Claude Code:
 | **Figma** | Figma design file access and integration |
 | **shadcn-ui** | Access shadcn/ui v4 components, blocks, and implementations |
 
+### Playwright Setup
+
+By default, the plugin uses standard [@playwright/mcp](https://github.com/microsoft/playwright-mcp) which launches a standalone Chrome instance for browser automation.
+
+**Alternative: playwriter (Chrome extension-based)**
+
+[playwriter](https://github.com/remorses/playwriter) offers an alternative approach using a Chrome extension instead of launching a separate browser:
+
+- Uses 90% less context window with a single `execute` tool
+- Works in your existing browser session (preserves extensions, logins)
+- Enables collaboration between user and AI on the same page
+- Requires manual Chrome extension installation
+
+To switch to playwriter:
+
+```bash
+# Set environment variable before starting Claude Code
+export USE_PLAYWRITER=1
+```
+
+**playwriter setup:**
+1. Install the [playwriter Chrome extension](https://chromewebstore.google.com/detail/playwriter) and pin it to your toolbar
+2. Click the extension icon on tabs you want to automate (turns green when connected)
+3. Set `USE_PLAYWRITER=1` in your environment
+4. Restart Claude Code
+
+The wrapper automatically enables `PLAYWRITER_AUTO_ENABLE` for automatic initial tab creation.
+
+**Comparison:**
+
+| Feature | Standard Playwright | playwriter |
+|---------|-------------------|------------|
+| Browser instance | Standalone Chrome | Your existing browser |
+| Extensions | None | Your installed extensions |
+| Context window | ~17 tools | Single `execute` tool |
+| Setup | Works out of box | Requires extension install |
+| Detection bypass | Limited | Can disconnect for login |
+
 ### Supabase Setup
 
 Use `/pro:supabase.local` to initialize and manage local Supabase instances with unique ports per project.

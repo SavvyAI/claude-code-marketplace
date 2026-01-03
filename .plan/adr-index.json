@@ -1,6 +1,10 @@
 {
-  "lastSequence": 33,
+  "lastSequence": 34,
   "entries": [
+    {
+      "branch": "feature/add-playwriter-mcp-option",
+      "adrs": ["034-playwriter-alternative-browser-mcp.md"]
+    },
     {
       "branch": "feat/social-sharing-setup-command",
       "adrs": ["033-social-sharing-meta-command.md"]
