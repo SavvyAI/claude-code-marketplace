@@ -1,5 +1,5 @@
 ---
-description: "Received review feedback? → Addresses all PR comments systematically → Resolves reviewer concerns efficiently"
+description: "PR needs attention? → Diagnoses blockers (CI, reviews, conflicts) → Resolves everything it can"
 allowed-tools: ["Bash", "Read", "Edit", "Write", "Glob", "Grep", "TodoWrite"]
 ---
 
