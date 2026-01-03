@@ -1,6 +1,18 @@
 {
-  "lastSequence": 48,
+  "lastSequence": 49,
   "items": [
+    {
+      "id": 49,
+      "title": "Add playwriter as alternative browser MCP",
+      "description": "Add playwriter (Chrome extension-based browser automation) as an optional alternative to standard Playwright MCP. Uses wrapper script pattern with USE_PLAYWRITER=1 env var to switch. When enabled, also sets PLAYWRITER_AUTO_ENABLE=1 for automatic tab creation. Default behavior unchanged (standard @playwright/mcp).",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|49|add-playwriter-mcp-option",
+      "source": "/pro:feature",
+      "sourceBranch": "feature/add-playwriter-mcp-option",
+      "createdAt": "2026-01-03T12:00:00Z",
+      "status": "in-progress"
+    },
     {
       "id": 48,
       "title": "Comprehensive social sharing setup command",

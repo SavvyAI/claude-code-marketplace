@@ -51,3 +51,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [031. Product Validation Pipeline Architecture](031-product-validation-pipeline-architecture.md)
 - [032. Tiered Extraction Strategy and Image Intelligence](032-tiered-extraction-and-image-intelligence.md)
 - [033. Social Sharing Meta-Command Architecture](033-social-sharing-meta-command.md)
+- [034. Playwriter Alternative Browser MCP](034-playwriter-alternative-browser-mcp.md)
