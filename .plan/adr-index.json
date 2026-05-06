@@ -1,6 +1,12 @@
 {
-  "lastSequence": 73,
+  "lastSequence": 74,
   "entries": [
+    {
+      "branch": "fix/clip-plugin-not-showing-in-command-list",
+      "adrs": [
+        "074-clip-plugin-command-shims-for-slash-command-discoverability.md"
+      ]
+    },
     {
       "branch": "feat/add-framework-evaluation-command",
       "adrs": [
