@@ -90,3 +90,4 @@ We use the [Michael Nygard format](https://cognitect.com/blog/2011/11/15/documen
 - [071. Clip Plugin - Content Capture Primitive](071-clip-plugin-content-capture-primitive.md)
 - [072. Backlog Lifecycle via Composable Skill](072-backlog-lifecycle-via-composable-skill.md)
 - [073. Evaluate Framework Command Architecture](073-evaluate-framework-command-architecture.md)
+- [074. Clip Plugin Command Shims for Slash Command Discoverability](074-clip-plugin-command-shims-for-slash-command-discoverability.md)
