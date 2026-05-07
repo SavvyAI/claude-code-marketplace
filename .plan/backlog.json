@@ -1,5 +1,5 @@
 {
-  "lastSequence": 116,
+  "lastSequence": 117,
   "items": [
     {
       "id": 107,
@@ -76,7 +76,7 @@
     {
       "id": 97,
       "title": "Chrome Extension Dev MCP for automated reload/reinstall",
-      "description": "Build or find an MCP that provides extension_reload(extensionId), extension_reinstall(path), and tab_refresh(tabId) tools. This would allow the agent to automatically apply the required reload action after making changes to a Chrome extension, instead of just telling the developer what to do. Uses Chrome DevTools Protocol or chrome.management API primitives. Completes the loop: agent makes changes → agent knows what reload is needed → agent does the reload automatically.",
+      "description": "Build or find an MCP that provides extension_reload(extensionId), extension_reinstall(path), and tab_refresh(tabId) tools. This would allow the agent to automatically apply the required reload action after making changes to a Chrome extension, instead of just telling the developer what to do. Uses Chrome DevTools Protocol or chrome.management API primitives. Completes the loop: agent makes changes \u2192 agent knows what reload is needed \u2192 agent does the reload automatically.",
       "category": "feature",
       "severity": "low",
       "fingerprint": "feature|97|chrome-extension-dev-mcp",
@@ -304,7 +304,7 @@
     {
       "id": 79,
       "title": "Migrate backlog IDs to short hashes",
-      "description": "Convert sequential integer IDs to collision-resistant short hashes (e.g., `b-a1f3`) after #78 is complete.\n\n**Why:** Future-proofs against multi-branch backlog edits where two branches could pick the same sequential ID.\n\n**Migration steps:**\n1. Generate 4-char hex hash for each item (from title + createdAt)\n2. Update `id` field: `78` → `b-a1f3`\n3. Update `fingerprint` fields: `spike|77|...` → `spike|b-a1f3|...`\n4. Scan `.plan/` directories for ID references, update them\n5. Update checkpoint.json files if they reference IDs\n6. Remove `lastSequence` (no longer needed)\n7. Update backlog commands to generate hashes instead of incrementing\n\n**Prerequisite:** Complete #78 first (fewer items to migrate).\n\n**Format:** `b-{4-char-hex}` - short, human-referenceable, collision-resistant.",
+      "description": "Convert sequential integer IDs to collision-resistant short hashes (e.g., `b-a1f3`) after #78 is complete.\n\n**Why:** Future-proofs against multi-branch backlog edits where two branches could pick the same sequential ID.\n\n**Migration steps:**\n1. Generate 4-char hex hash for each item (from title + createdAt)\n2. Update `id` field: `78` \u2192 `b-a1f3`\n3. Update `fingerprint` fields: `spike|77|...` \u2192 `spike|b-a1f3|...`\n4. Scan `.plan/` directories for ID references, update them\n5. Update checkpoint.json files if they reference IDs\n6. Remove `lastSequence` (no longer needed)\n7. Update backlog commands to generate hashes instead of incrementing\n\n**Prerequisite:** Complete #78 first (fewer items to migrate).\n\n**Format:** `b-{4-char-hex}` - short, human-referenceable, collision-resistant.",
       "category": "chore",
       "severity": "low",
       "fingerprint": "chore|79|backlog-hash-ids",
@@ -447,7 +447,7 @@
     {
       "id": 68,
       "title": "Expand Bounty Scout to GitHub-native sources",
-      "description": "Expand /pro:bounty.scout to discover paid/monetizable opportunities beyond Algora.io. Phase 1 adds GitHub-native discovery: (1) Paid Issue Signals - search issues with keywords like 'bounty', 'paid', 'would pay' and labels like help-wanted, (2) Sponsors-Enabled Repositories - detect repos with GitHub Sponsors and flag monetizable issues, (3) Urgency Signals - detect issues with keywords like 'regression', 'release blocker', 'urgent'. Unified list with source as metadata, confidence tiers instead of fake dollar amounts. Preserves Scout→Recon→Hunter pipeline compatibility.",
+      "description": "Expand /pro:bounty.scout to discover paid/monetizable opportunities beyond Algora.io. Phase 1 adds GitHub-native discovery: (1) Paid Issue Signals - search issues with keywords like 'bounty', 'paid', 'would pay' and labels like help-wanted, (2) Sponsors-Enabled Repositories - detect repos with GitHub Sponsors and flag monetizable issues, (3) Urgency Signals - detect issues with keywords like 'regression', 'release blocker', 'urgent'. Unified list with source as metadata, confidence tiers instead of fake dollar amounts. Preserves Scout\u2192Recon\u2192Hunter pipeline compatibility.",
       "category": "feature",
       "severity": "high",
       "fingerprint": "feature|68|bounty-scout-github-native-sources",
@@ -471,7 +471,7 @@
     {
       "id": 66,
       "title": "Bounty Hunter - automated bounty discovery and execution",
-      "description": "Add /pro:bounty.scout and /pro:bounty.hunter commands for automated OSS bounty discovery, triage, and execution. Scout mode: discovery + triage only, surfaces top candidate with TAKE/SKIP recommendation. Hunter mode: full execution including fork, implementation, tests, and PR creation with human checkpoint. Hard-coded to Algora.io for v1. Encodes maintainer psychology and decision compression, not just code generation. Goals: reduce cognitive overhead of bounty triage, compress search→decision→implementation loop from hours to minutes, establish repeatable $1-2k/month baseline.",
+      "description": "Add /pro:bounty.scout and /pro:bounty.hunter commands for automated OSS bounty discovery, triage, and execution. Scout mode: discovery + triage only, surfaces top candidate with TAKE/SKIP recommendation. Hunter mode: full execution including fork, implementation, tests, and PR creation with human checkpoint. Hard-coded to Algora.io for v1. Encodes maintainer psychology and decision compression, not just code generation. Goals: reduce cognitive overhead of bounty triage, compress search\u2192decision\u2192implementation loop from hours to minutes, establish repeatable $1-2k/month baseline.",
       "category": "feature",
       "severity": "high",
       "fingerprint": "feature|66|bounty-hunter-command",
@@ -495,7 +495,7 @@
     {
       "id": 64,
       "title": "Plugin manifest config errors (4 issues)",
-      "description": "Four errors shown in /plugin UI: (1) Missing SUPABASE_SERVICE_ROLE_KEY env var, (2) Missing GITHUB_TOKEN env var, (3) Agents path not found despite files existing, (4) Duplicate hooks file - hooks/hooks.json auto-loaded by convention but also declared explicitly.\n\n**Steps to reproduce:**\n1. Open /plugin → Installed → select 'pro'\n2. View errors section\n\n**Root causes:**\n- Errors 1-2: Optional env vars not set (not bugs)\n- Error 3: Glob pattern or path resolution issue\n- Error 4: Manifest declares hooks path that's auto-loaded by Claude Code convention",
+      "description": "Four errors shown in /plugin UI: (1) Missing SUPABASE_SERVICE_ROLE_KEY env var, (2) Missing GITHUB_TOKEN env var, (3) Agents path not found despite files existing, (4) Duplicate hooks file - hooks/hooks.json auto-loaded by convention but also declared explicitly.\n\n**Steps to reproduce:**\n1. Open /plugin \u2192 Installed \u2192 select 'pro'\n2. View errors section\n\n**Root causes:**\n- Errors 1-2: Optional env vars not set (not bugs)\n- Error 3: Glob pattern or path resolution issue\n- Error 4: Manifest declares hooks path that's auto-loaded by Claude Code convention",
       "category": "bug",
       "severity": "high",
       "fingerprint": "bug|64|plugin-manifest-config-errors",
@@ -579,7 +579,7 @@
     {
       "id": 57,
       "title": "Universal Content Retriever (UCR) skill",
-      "description": "Claude skill for reliable, deterministic retrieval of any public web content. Solves the inconsistency problem where URLs sometimes resolve fully, sometimes partially, sometimes blocked. Features: (1) Tiered retrieval pipeline (WebFetch → Playwright → user paste), (2) Platform-aware extraction for X, LinkedIn, YouTube, TikTok, Instagram, Pinterest, blogs, (3) Normalized ContentObject schema for consistent reasoning, (4) Silent on success, report only on deviation, (5) Fail-soft with actionable recovery paths. v1 scope: public content only, no caching, skill-only architecture.",
+      "description": "Claude skill for reliable, deterministic retrieval of any public web content. Solves the inconsistency problem where URLs sometimes resolve fully, sometimes partially, sometimes blocked. Features: (1) Tiered retrieval pipeline (WebFetch \u2192 Playwright \u2192 user paste), (2) Platform-aware extraction for X, LinkedIn, YouTube, TikTok, Instagram, Pinterest, blogs, (3) Normalized ContentObject schema for consistent reasoning, (4) Silent on success, report only on deviation, (5) Fail-soft with actionable recovery paths. v1 scope: public content only, no caching, skill-only architecture.",
       "category": "feature",
       "severity": "high",
       "fingerprint": "feature|57|universal-content-retriever-skill",
@@ -603,7 +603,7 @@
     {
       "id": 55,
       "title": "Permissionless Proof CHECK + DX improvements",
-      "description": "Evolve the permissionless proof system from static visual parity generator to customer-experience evidence engine.\n\nCHECK EXTENSION:\n- Interaction audit (nav, CTAs, forms, scrolling, modals)\n- Dead-end detection\n- Trust/credibility signals\n- Tablet viewport (768×1024) + optional WebKit pass\n- Operator translation layer\n- Web-accessible evidence index at /evidence/\n\nDX IMPROVEMENTS:\n- Domain-scoped output directory (proof-{domain-slug})\n- Auto git init with initial commit\n- Vite base path fix for GitHub Pages\n- npm scripts: build, deploy, deploy:init, open\n- Default .gitignore generation\n\nSuccess: 3-7 indisputable issues per proof, single-command deploy+open, evidence accessible on phone mid-conversation.",
+      "description": "Evolve the permissionless proof system from static visual parity generator to customer-experience evidence engine.\n\nCHECK EXTENSION:\n- Interaction audit (nav, CTAs, forms, scrolling, modals)\n- Dead-end detection\n- Trust/credibility signals\n- Tablet viewport (768\u00d71024) + optional WebKit pass\n- Operator translation layer\n- Web-accessible evidence index at /evidence/\n\nDX IMPROVEMENTS:\n- Domain-scoped output directory (proof-{domain-slug})\n- Auto git init with initial commit\n- Vite base path fix for GitHub Pages\n- npm scripts: build, deploy, deploy:init, open\n- Default .gitignore generation\n\nSuccess: 3-7 indisputable issues per proof, single-command deploy+open, evidence accessible on phone mid-conversation.",
       "category": "feature",
       "severity": "high",
       "fingerprint": "feature|55|permissionless-proof-check-dx",
@@ -627,7 +627,7 @@
     {
       "id": 53,
       "title": "/pro:request - Twitter feature requests to maintainers",
-      "description": "Create /pro:request command that formats feature requests as tweets and helps submit them to project maintainers on X/Twitter.\n\nFeatures:\n- Takes feature request description\n- Formats as concise tweet (≤280 chars)\n- Tags appropriate maintainer (@bcherny for Claude Code)\n- Copies to clipboard AND opens twitter.com/intent/tweet URL\n\nCould be generic (specify maintainer handle) or have presets for common projects.",
+      "description": "Create /pro:request command that formats feature requests as tweets and helps submit them to project maintainers on X/Twitter.\n\nFeatures:\n- Takes feature request description\n- Formats as concise tweet (\u2264280 chars)\n- Tags appropriate maintainer (@bcherny for Claude Code)\n- Copies to clipboard AND opens twitter.com/intent/tweet URL\n\nCould be generic (specify maintainer handle) or have presets for common projects.",
       "category": "feature",
       "severity": "low",
       "fingerprint": "feature|53|pro-request-twitter-command",
@@ -707,7 +707,7 @@
     {
       "id": 47,
       "title": "Robust content intake for /author:weave",
-      "description": "Enhance /author:weave to robustly handle diverse content sources:\n\n**URL Capture (Robust):**\n- LinkedIn, X/Twitter, blog posts, article URLs\n- Per-URL option for extraction depth (main content vs include comments)\n- Tiered fallback: WebFetch → Browser automation (Playwright) → Ask user to paste\n- Image URLs downloaded and processed\n\n**Image/Screenshot Handling:**\n- Auto-analyze image content, match to chapters, propose placement\n- Generate 3 caption suggestions for user selection\n- Copy images to book/assets/ with manifest.json\n- Caption format choice: Markdown or HTML figure\n\n**PDF Support:**\n- Full extraction with structure preservation\n- Handle multi-page documents\n\n**Google Docs Support (Tiered):**\n- Public link access → Browser automation → Export guidance fallback",
+      "description": "Enhance /author:weave to robustly handle diverse content sources:\n\n**URL Capture (Robust):**\n- LinkedIn, X/Twitter, blog posts, article URLs\n- Per-URL option for extraction depth (main content vs include comments)\n- Tiered fallback: WebFetch \u2192 Browser automation (Playwright) \u2192 Ask user to paste\n- Image URLs downloaded and processed\n\n**Image/Screenshot Handling:**\n- Auto-analyze image content, match to chapters, propose placement\n- Generate 3 caption suggestions for user selection\n- Copy images to book/assets/ with manifest.json\n- Caption format choice: Markdown or HTML figure\n\n**PDF Support:**\n- Full extraction with structure preservation\n- Handle multi-page documents\n\n**Google Docs Support (Tiered):**\n- Public link access \u2192 Browser automation \u2192 Export guidance fallback",
       "category": "feature",
       "severity": "medium",
       "fingerprint": "feature|47|weave-robust-content-intake",
@@ -1521,6 +1521,18 @@
       "createdAt": "2026-05-01T00:00:00Z",
       "status": "resolved",
       "resolvedAt": "2026-05-01T00:00:00Z"
+    },
+    {
+      "id": 117,
+      "title": "Add /pro:ops lightweight work command",
+      "description": "Add a streamlined work-initiating command for operational/executive repo tasks that are not quite chores or features. Creates ops/ branch immediately, minimal planning artifacts, backlog traceability, and supports external-only outcomes (no repo changes) via outcome note. Also extend backlog category taxonomy to include ops.",
+      "category": "feature",
+      "severity": "medium",
+      "fingerprint": "feature|117|add-pro-ops-lightweight-work-command",
+      "source": "/pro:feature",
+      "sourceBranch": "feat/lightweight-work-command",
+      "createdAt": "2026-05-07T17:01:33Z",
+      "status": "in-progress"
     }
   ]
 }

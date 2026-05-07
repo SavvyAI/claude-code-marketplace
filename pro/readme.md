@@ -27,6 +27,7 @@ Installing this plugin gives Claude Code:
 | `/pro:spike` | Time-boxed exploratory work with optional documentation |
 | `/pro:chore` | Maintenance work (infra, docs, tests, deps, CI/config) |
 | `/pro:refactor` | Create a branch for systematic refactoring |
+| `/pro:ops` | Lightweight operational/executive work (dashboards, records, statuses) |
 | `/pro:spec.import` | Ingest and persist a PRD/spec, auto-parse to backlog |
 | `/pro:spec` | View imported specifications (read-only) |
 | `/pro:audit` | Full audit: runs quality + security, unified report |
@@ -77,6 +78,9 @@ Installing this plugin gives Claude Code:
 
 # Exploratory work
 /pro:spike "evaluate auth libs" # Time-boxed exploration
+
+# Lightweight ops work
+/pro:ops "update opportunity stage" # Fast branch + minimal planning
 
 # Maintenance work
 /pro:chore "update deps"        # Infra, docs, tests, deps, CI
