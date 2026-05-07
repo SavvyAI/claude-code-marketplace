@@ -37,6 +37,7 @@ All **work-initiating commands** must:
 | `/pro:refactor` | Technical debt | `refactor/` | `debt` |
 | `/pro:spike` | Exploration | `spike/` | `spike` |
 | `/pro:chore` | Maintenance | `chore/` | `chore` |
+| `/pro:ops` | Ops / Executive | `ops/` | `ops` |
 
 ### Non-Work-Initiating Commands
 
@@ -55,7 +56,7 @@ These commands do NOT create branches:
 Updated to include new categories:
 
 ```
-Security > Bug > Spike > Tests > Feature > Chore > Debt > i18n
+Security > Bug > Spike > Ops > Tests > Feature > Chore > Debt > i18n
 ```
 
 Spike is placed high because exploratory work often unblocks other decisions.
@@ -67,6 +68,7 @@ security → fix/
 bug      → fix/
 spike    → spike/
 tests    → fix/
+ops      → ops/
 feature  → feat/
 chore    → chore/
 debt     → refactor/

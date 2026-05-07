@@ -1,6 +1,12 @@
 {
-  "lastSequence": 74,
+  "lastSequence": 75,
   "entries": [
+    {
+      "branch": "feat/lightweight-work-command",
+      "adrs": [
+        "075-ops-work-type-for-lightweight-repo-work.md"
+      ]
+    },
     {
       "branch": "fix/clip-plugin-not-showing-in-command-list",
       "adrs": [

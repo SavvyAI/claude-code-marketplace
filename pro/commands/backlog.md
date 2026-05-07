@@ -46,7 +46,7 @@ The backlog is stored in `.plan/backlog.json` at the project root. It contains c
    - `status: "wont-fix"` = explicitly rejected (never shown)
 
 4. **Group and sort items**
-   - Group by `category` (Security, Bug, Spike, Tests, Feature, Chore, Debt, i18n)
+   - Group by `category` (Security, Bug, Spike, Ops, Tests, Feature, Chore, Debt, i18n)
    - Within each category, sort by:
      1. Phase (must > should > could > wont > unset)
      2. Then by severity (critical > high > medium > low)
@@ -72,13 +72,14 @@ The backlog is stored in `.plan/backlog.json` at the project root. It contains c
    - Generate a descriptive branch name based on selected items:
 
      **Branch prefix by category:**
-     | Category | Prefix |
-     |----------|--------|
-     | security, bug, tests | `fix/` |
-     | spike | `spike/` |
-     | feature | `feat/` |
-     | chore, i18n | `chore/` |
-     | debt | `refactor/` |
+      | Category | Prefix |
+      |----------|--------|
+      | security, bug, tests | `fix/` |
+      | spike | `spike/` |
+      | ops | `ops/` |
+      | feature | `feat/` |
+      | chore, i18n | `chore/` |
+      | debt | `refactor/` |
 
      **Branch name format:**
      - Single item: `{prefix}{category}-{short-title}` (lowercase, dash-separated, max 50 chars)
@@ -100,7 +101,7 @@ The backlog is stored in `.plan/backlog.json` at the project root. It contains c
       "id": 1,
       "title": "Brief description",
       "description": "Full detailed description",
-      "category": "security|bug|spike|tests|feature|chore|debt|i18n",
+      "category": "security|bug|spike|ops|tests|feature|chore|debt|i18n",
       "severity": "low|medium|high|critical",
       "phase": "must|should|could|wont",         // optional, MoSCoW priority
       "phaseSource": "explicit|inferred",        // optional, how phase was determined
@@ -124,11 +125,12 @@ Present categories in this order (skip empty categories):
 1. Security
 2. Bug
 3. Spike
-4. Tests
-5. Feature
-6. Chore
-7. Debt
-8. i18n
+4. Ops
+5. Tests
+6. Feature
+7. Chore
+8. Debt
+9. i18n
 
 ## Example Selection UI
 
