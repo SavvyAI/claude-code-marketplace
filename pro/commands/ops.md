@@ -28,12 +28,47 @@ safety invariant per ADR-017.**
 2. **Check ADRs for related decisions** - Search `doc/decisions/` for prior decisions related to this work.
    Summarize any relevant decisions before proposing changes.
 
-3. Confirm scope and success criteria (fast):
-   - What system are we updating? (repo files vs external system like CRM)
-   - If external-only: what should be recorded in-repo (if anything)?
+3. **Infer the ops mode (fast + autonomous)**
+
+   Determine execution mode from `$ARGUMENTS` and lightweight repo signals.
+
+   **Modes**
+   - `external-only` - Update happens outside the repo (CRM, dashboards, statuses). No repo change is expected.
+   - `repo-only` - Update is entirely in-repo (docs/runbooks/dashboard markdown/config).
+   - `mixed` - External update + an in-repo record/update.
+
+   **Heuristic signals (examples)**
+   - External-first keywords: `crm`, `opportunity`, `pipeline`, `stage`, `deal`, `account`, `attio`, `hubspot`, `salesforce`, `airtable`, `notion`, `status update`, `follow-up`.
+   - Repo-first keywords: `readme`, `docs`, `runbook`, `markdown`, `json`, `yaml`, `config`, `update table`.
+
+   **Confidence model (deterministic)**
+   - Compute a score per mode from keyword matches and any obvious repo context.
+   - Compute confidence from the margin between top-2 scores.
+     - High: clear winner (large margin)
+     - Medium: winner exists but margin is small
+     - Low: ambiguous
+
+   **User snap-out rule**
+   - If confidence is High: proceed with the inferred mode automatically.
+   - If confidence is Medium: ask a single confirmation (default = inferred).
+   - If confidence is Low: use `AskUserQuestion` with 3 choices (external-only / repo-only / mixed).
+
+   Always print a single decision line before executing work, e.g.
+   `Decision: mode=mixed confidence=High (0.78); runner-up=external-only (0.55)`
+
+   **Learning artifact (only when needed)**
+   - If confidence is Low OR the user overrides the inferred mode, write `.plan/{branch-slug}/inference.json`:
+     - input text
+     - scores
+     - inferred mode + confidence
+     - final mode selection
+     - timestamp
+
+4. Confirm scope and success criteria (fast):
+   - What are we updating? (external system vs repo vs both)
    - What does "done" look like? (1 sentence)
 
-4. **Add to backlog as in-progress** - Lightweight work still needs traceability.
+5. **Add to backlog as in-progress** - Lightweight work still needs traceability.
    - Ensure `.plan/backlog.json` exists (create with `{"lastSequence": 0, "items": []}` if not)
    - Increment `lastSequence` and add item:
      ```json
@@ -51,19 +86,70 @@ safety invariant per ADR-017.**
      }
      ```
 
-5. Create a minimal planning directory: `${ProjectRoot}/.plan/${BranchName}` (branch naming: `ops/foo-bar` -> `ops-foo-bar`).
+6. Create a minimal planning directory: `${ProjectRoot}/.plan/${BranchName}` (branch naming: `ops/foo-bar` -> `ops-foo-bar`).
    Keep it lean:
    - `plan.md`: 5-10 lines: goal, constraints, steps
    - `notes.md`: optional scratchpad
+   - `outcome.md`: required for `external-only` (and recommended for all modes)
 
-6. Execute the work.
+7. Execute the work.
    - Prefer minimal diffs.
-   - If the work is external-only and there are no repo changes, write a short outcome note under the planning directory (so the branch can be merged or archived with evidence).
+   - If mode is `external-only`: ALWAYS write `.plan/{branch-slug}/outcome.md` describing what changed externally.
+   - If mode is `mixed`: write `.plan/{branch-slug}/outcome.md` and make the minimal in-repo update needed.
+   - If mode is `repo-only`: make the minimal in-repo update; `outcome.md` is optional.
 
-7. Wrap up:
-   - If changes are worth keeping: proceed to `/pro:pr` (often `fast` mode is sufficient)
-   - If this should be paused: use `/pro:branch.park`
-   - If this was a dead-end/no-op: use `/pro:branch.rmrf`
+8. Wrap up (self-contained, no other commands)
+
+   This command must not depend on other `/pro:*` commands.
+
+   ### 8.1 Check what changed
+
+   ```bash
+   git status --short --branch
+   git diff --stat
+   ```
+
+   ### 8.2 If there are NO repo changes
+
+   - If mode is `external-only`, `outcome.md` should exist under `.plan/{branch-slug}/`.
+   - Ask the user whether to delete the ops branch now.
+
+   If user confirms deletion:
+   ```bash
+   git checkout main
+   git pull origin main
+   git branch -d <ops-branch>
+   git push origin --delete <ops-branch>
+   ```
+
+   ### 8.3 If there ARE repo changes
+
+   1. Create a single commit (default).
+   2. Fast-forward merge into `main`.
+   3. Push `main`.
+   4. Offer to delete the ops branch.
+
+   **Commit**
+   ```bash
+   git add -A
+   git commit -m "ops: <short summary>"
+   ```
+
+   **Merge (fast path)**
+   ```bash
+   git checkout main
+   git pull origin main
+   git merge --ff-only <ops-branch>
+   git push origin main
+   ```
+
+   If `--ff-only` fails, STOP and ask the user what to do (do not create a merge commit without explicit user confirmation).
+
+   **Cleanup (optional, confirm first)**
+   ```bash
+   git branch -d <ops-branch>
+   git push origin --delete <ops-branch>
+   ```
 
 ## Intentional Differences vs /pro:feature
 
@@ -75,4 +161,7 @@ safety invariant per ADR-017.**
 
 - Branch exists (safety invariant satisfied)
 - Backlog item created for traceability
-- Repo changes made and documented, OR external-only work recorded with a brief outcome note
+- Mode inferred (with confidence) and user had a fast chance to override when uncertain
+- External-only work recorded in `.plan/{branch-slug}/outcome.md`
+- If repo changes exist: committed, ff-merged to main, pushed
+- Optional: branch deleted (local + remote)
